@@ -61,7 +61,7 @@ body {
   font-family: var(--main-font-family);
   font-size: 14px;
 
-  color: var(--font-main-color);
+  color: #fff;
   letter-spacing: 0.04em;
   max-width: 100%;
 }
