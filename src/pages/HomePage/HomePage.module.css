@@ -1,4 +1,4 @@
-.home{
+.homeBg{
     border: 2px red solid;
     width:100vw;
     height: 100vh;
@@ -8,8 +8,8 @@
 
 }
 
-@media screen and (min-width:768px) {
-    .home{
+@media screen and (min-width: 600px) {
+    .homeBg{
         background-image: url('../../images/bananas.png'), 
         url('../../images/strawberry.png'), 
         url( '../../images/leafs.png'), 
@@ -22,14 +22,12 @@
 
 }
 
-  @media screen and (min-width: 1025px) {
-    .home{
+  @media screen and (min-width: 992px) {
+    .homeBg{
         background-size: 55vh auto, calc(30vh), auto 100vh, auto calc(100vh - 3%);
         background-position: right top, right 35px bottom 65px, center -80px, right bottom;
         background-repeat: no-repeat;
     }
   }
-
-  
 
 

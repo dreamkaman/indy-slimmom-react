@@ -131,7 +131,7 @@ nav {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .container {
     max-width: 1024px;
     padding-left: 30px;
@@ -139,7 +139,7 @@ nav {
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 992px) {
   .container {
     max-width: 1600px;
   }
