@@ -21,10 +21,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "netlify deploy -p"
+    "deploy": "netlify deploy -p",
+    "eslint": "eslint --ext .js --ext .ts --ext .jsx --ext .tsx src",
+    "eslint:fix": "eslint --fix --ext .js --ext .ts --ext .jsx --ext .tsx src",
+    "test:nowatch": "react-scripts test --watchAll=false",
+    "prepare": "husky install",
+    "prepublish": "npm run eslint:fix && npm run test:nowatch"
   },
   "eslintConfig": {
     "extends": [
@@ -45,7 +50,16 @@
     ]
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.2"
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "typescript-plugin-css-modules": "^5.0.1"
   }
 }
