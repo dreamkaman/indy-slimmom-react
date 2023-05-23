@@ -1,5 +1,7 @@
 const HealthCalculatorPage=()=>{
-    return <></>
+    return <div className="homeBg">
+    
+    </div>
 }
 
 export default HealthCalculatorPage;
