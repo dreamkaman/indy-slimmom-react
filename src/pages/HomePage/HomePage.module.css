@@ -5,24 +5,25 @@
 }
 
 @media screen and (min-width: 320px) {
-    .home{
-        background-image: none;
-    }
+
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width:768px) {
     .home{
-        background-image: none;
-    }
-      }
-
-  @media screen and (min-width: 1025px) {
-    .home{
-        background-image: url(../../images/bananas.png), 
+        background-image: url('../../images/bananas.png'), 
         url('../../images/strawberry.png'), 
         url( '../../images/leafs.png'), 
         url('../../images/gray-bg.png');
         
+        background-size: 55vh auto, calc(30vh), auto 95vh, auto calc(100vh - 20%);
+        background-position: right bottom -80px, right -40px bottom 240px, center -250px, right -40px bottom -250px;
+        background-repeat: no-repeat;
+    }
+
+}
+
+  @media screen and (min-width: 1025px) {
+    .home{
         background-size: 55vh auto, calc(30vh), auto 100vh, auto calc(100vh - 3%);
         background-position: right top, right 35px bottom 65px, center -80px, right bottom;
         background-repeat: no-repeat;
