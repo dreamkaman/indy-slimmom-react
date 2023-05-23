@@ -1,0 +1,12 @@
+.home{
+    border: 2px red solid;
+    width:100vw;
+    height: 100vh;
+    background-image: url(../../images/bananas.png), url( '../../images/leafs.png'), url('../../images/gray-bg.png');
+    
+    background-size: 773px, contain, contain;
+    background-position: right top, center -80px, right;
+    background-repeat: no-repeat;
+
+    
+}
