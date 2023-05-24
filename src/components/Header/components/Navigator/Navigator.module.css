@@ -2,17 +2,20 @@
     position: absolute;
     bottom: -5px;
     left: 60px;
+    /* right: 0; */
+    min-width: 100%;
+}
 
+.navigationFlex {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-items: center;
+
+    justify-content: space-between;
     color: var(--font-secondary-color);
     font-family: var(--menu-font-family);
     text-transform: uppercase;
     white-space: nowrap;
     font-weight: 700;
-
-
 }
 
 .navWrapper {
