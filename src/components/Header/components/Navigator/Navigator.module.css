@@ -31,16 +31,32 @@
     padding: 7px 20px;
     border-left: 2px solid var(--font-secondary-color);
 
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
 }
 
 .menuItem:not(:last-child) {
     margin-right: 24px;
 }
 
+.rightNavWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-@media screen and (min-width: 320px) {}
+
+@media screen and (min-width: 320px) {
+    .burgerBtn {
+        padding: 5px 6px 2px;
+        border: none;
+        background-color: transparent;
+    }
+}
 
 @media screen and (min-width: 600px) {}
 
-@media screen and (min-width: 992px) {}
+@media screen and (min-width: 992px) {
+    .burgerBtn {
+        display: none;
+    }
+}

@@ -15,7 +15,10 @@ const Navigator = () => {
                     <li className={s.menuItem}>Calculator</li>
                 </ul>
             </div>
-            <NicButton />
+            <div className={s.rightNavWrapper}>
+                <NicButton />
+                <button className={s.burgerBtn}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>
+            </div>
         </div>
     </nav>
 }

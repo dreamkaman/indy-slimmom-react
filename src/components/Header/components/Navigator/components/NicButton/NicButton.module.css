@@ -6,9 +6,34 @@
 
 .item {
     padding: 7px 20px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+}
+
+.nic {
+    color: var(--font-main-color);
 }
 
 .item:not(:last-child) {
     border-right: 2px solid var(--font-secondary-color);
+}
+
+@media screen and (min-width: 320px) {}
+
+@media screen and (min-width: 600px) {}
+
+@media screen and (min-width: 992px) {
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .item {
+        padding: 7px 20px;
+        /* background-color: antiquewhite; */
+    }
+
+    .item:not(:last-child) {
+        border-right: 2px solid var(--font-secondary-color);
+    }
 }
