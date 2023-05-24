@@ -1,4 +1,4 @@
-const FoodNotRecommended=()=>{
+const FoodNotRecommended = () => {
     return <div></div>
 }
 

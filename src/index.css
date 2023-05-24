@@ -126,6 +126,11 @@ nav {
     padding-left: 15px;
     padding-right: 15px;
   }
+
+  .burgerSvg {
+    width: 18px;
+    height: 12px;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -147,4 +152,6 @@ nav {
     height: 16px;
     padding-right: 20px;
   }
+
+
 }
