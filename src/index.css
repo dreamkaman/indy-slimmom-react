@@ -1,46 +1,43 @@
 @font-face {
-    font-family: 'Verdana';
-    src: url('./fonts/verdana.woff2');
-  }
-  @font-face {
-    font-family: 'VerdanaBold';
-    src: url('./fonts/VerdanaBold.woff2');
-  }
-  @font-face {
-    font-family: 'GothamPro-Light';
-    src: url('./fonts/GothamPro-Light.woff');
-  }
-  @font-face {
-    font-family: 'GothamPro-Bold';
-    src: url('./fonts/GothamPro-Bold.woff');
-  }
-  
-  @font-face {
-    font-family: 'Verdana';
-    src: url('./fonts/verdana.woff2');
-  }
-  @font-face {
-    font-family: 'VerdanaBold';
-    src: url('./fonts/VerdanaBold.woff2');
-  }
-  @font-face {
-    font-family: 'GothamPro-Light';
-    src: url('./fonts/GothamPro-Light.woff');
-  }
-  @font-face {
-    font-family: 'GothamPro-Bold';
-    src: url('./fonts/GothamPro-Bold.woff');
-  }
+  font-family: 'Verdana';
+  src: local('Verdana Regular'), local('Verdana-Regular'),
+    url('./fonts/Verdana.woff2') format('woff2'),
+    url('./fonts/Verdana.woff') format('woff'),
+    url('./fonts/Verdana.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Verdana';
+  src: local('Verdana Bold'), local('Verdana-Bold'),
+    url('./fonts/Verdana-Bold.woff2') format('woff2'),
+    url('./fonts/Verdana-Bold.woff') format('woff'),
+    url('./fonts/Verdana-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamPro-Light';
+  src: url('./fonts/GothamPro-Light.woff');
+}
+
+@font-face {
+  font-family: 'GothamPro-Bold';
+  src: url('./fonts/GothamPro-Bold.woff');
+}
+
 
 /* normalizer */
 
 :root {
   --main-font-family: 'Verdana', sans-serif;
   --accent-color: #FC842D;
---font-main-color: #212121;
---font-secondary-color:#9B9FAA;
---bg-blue-color: #264061;
---bg-gray-color:#EFF1F3;
+  --font-main-color: #212121;
+  --font-secondary-color: #9B9FAA;
+  --bg-blue-color: #264061;
+  --bg-gray-color: #EFF1F3;
   /* --transition-for-all: all cubic-bezier(0.075, 0.82, 0.165, 1) 1500ms; */
 }
 
@@ -142,5 +139,12 @@ nav {
 @media screen and (min-width: 992px) {
   .container {
     max-width: 1600px;
+  }
+
+  /* SVG styles */
+  .logoTxt {
+    width: 107px;
+    height: 16px;
+    padding-right: 20px;
   }
 }
