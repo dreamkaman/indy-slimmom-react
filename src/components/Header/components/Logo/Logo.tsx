@@ -1,8 +1,10 @@
 import s from './Logo.module.css';
 
+import logo from 'images/logo.png';
+
 const Logo = () => {
     return <div className={s.logoWrapper}>
-        <img src="../../../../images/logo.png" alt="logo" />
+        <img src={logo} alt="logo" />
     </div>
 }
 

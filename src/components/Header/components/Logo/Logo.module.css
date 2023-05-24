@@ -1,7 +1,6 @@
 @media screen and (min-width: 320px) {
     .logoWrapper {
         width: 46px;
-        height: 44px;
     }
 }
 
@@ -10,6 +9,7 @@
 @media screen and (min-width: 992px) {
     .logoWrapper {
         width: 70px;
-        height: 66px;
+        top: 80px;
+        left: 16px;
     }
 }
