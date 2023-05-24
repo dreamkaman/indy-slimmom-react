@@ -1,0 +1,43 @@
+.navigation {
+    position: absolute;
+    bottom: -5px;
+    left: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: var(--font-secondary-color);
+    font-family: var(--menu-font-family);
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-weight: 700;
+
+
+}
+
+.navWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 7px 20px;
+    border-left: 2px solid var(--font-secondary-color);
+
+    background-color: aliceblue;
+}
+
+.menuItem:not(:last-child) {
+    margin-right: 24px;
+}
+
+
+@media screen and (min-width: 320px) {}
+
+@media screen and (min-width: 600px) {}
+
+@media screen and (min-width: 992px) {}

@@ -1,0 +1,32 @@
+.calculatorBg{
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid red;
+    background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 320px) {
+    .calculatorBg{
+        background-image: url('../../images/svg/grayBGMobile.svg');
+        background-size: 100vw auto;
+        background-position: center bottom;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .calculatorBg{
+        background-image: url( '../../images/leafs-rotated.png'),url('../../images/svg/grayBGTablet.svg');
+        background-size: auto calc(100vh - 50%), 100vw;
+        background-position: right -250px bottom -120px, center bottom;
+    }
+
+}
+
+  @media screen and (min-width: 992px) {
+    .calculatorBg{
+        background-image: url( '../../images/leafs.png'),url('../../images/svg/grayBG.svg');
+        background-size: auto calc(100vh - 5%), contain;
+        background-position: right -35% bottom -50%, right bottom;
+        
+    }
+  }
