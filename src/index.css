@@ -139,6 +139,12 @@ nav {
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  .logoTxt {
+    width: 107px;
+    height: 16px;
+    padding-right: 20px;
+  }
 }
 
 @media screen and (min-width: 992px) {
