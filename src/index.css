@@ -127,9 +127,14 @@ nav {
     padding-right: 15px;
   }
 
+  /* SVG styles */
   .burgerSvg {
     width: 18px;
     height: 12px;
+  }
+
+  .logoTxt {
+    display: none;
   }
 }
 
@@ -140,8 +145,11 @@ nav {
     padding-right: 30px;
   }
 
+  /* SVG styles */
+
   .logoTxt {
-    width: 107px;
+    display: block;
+    width: 105px;
     height: 16px;
     padding-right: 20px;
   }
@@ -154,10 +162,9 @@ nav {
 
   /* SVG styles */
   .logoTxt {
-    width: 107px;
-    height: 16px;
+    width: 108px;
+    height: 17px;
     padding-right: 20px;
   }
-
 
 }
