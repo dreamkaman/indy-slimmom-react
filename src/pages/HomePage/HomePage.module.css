@@ -10,12 +10,11 @@
     .homeBg {
         background-image: url('../../images/bananas.png'),
             url('../../images/strawberry.png'),
-            url('../../images/leafs.png'),
-            /* url('../../images/gray-bg.png'); */
+            url('../../images/leafs-rotated-tab.png'),
             url('images/svg/grayWaveBG.svg');
 
-        background-size: 55vh auto, calc(30vh), auto 95vh, auto calc(100vh - 20%);
-        background-position: right bottom -80px, right -40px bottom 240px, center -250px, right -40px bottom -250px;
+        background-size: 55vh auto, calc(30vh), 70vw auto, auto calc(100vh - 20%);
+        background-position: right bottom -80px, right -40px bottom 240px, left bottom, right -40px bottom -250px;
         background-repeat: no-repeat;
     }
 
@@ -23,8 +22,13 @@
 
 @media screen and (min-width: 992px) {
     .homeBg {
-        background-size: 55vh auto, calc(30vh), auto 100vh, auto calc(100vh - 3%);
-        background-position: right top, right 35px bottom 65px, center -80px, right bottom;
+        background-image: url('../../images/bananas.png'),
+            url('../../images/leafs.png'),
+            url('../../images/strawberry.png'),
+            url('images/svg/grayWaveBG.svg');
+
+        background-size: 55vh auto, auto 100vh, calc(30vh), auto calc(100vh - 3%);
+        background-position: right top, right 195px bottom 30px, right 35px bottom 65px, right bottom;
         background-repeat: no-repeat;
     }
 }

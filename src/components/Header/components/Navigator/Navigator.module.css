@@ -1,104 +1,79 @@
+.navigation {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+    color: var(--font-secondary-color);
+    font-family: var(--menu-font-family);
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.navWrapper {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.menuItem:not(:last-child) {
+    margin-right: 24px;
+}
+
+.rightNavWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.burgerBtn {
+    padding: 5px 6px 2px;
+    border: none;
+    background-color: transparent;
+}
+
 @media screen and (min-width: 320px) {
-    .burgerBtn {
-        padding: 5px 6px 2px;
-        border: none;
-        background-color: transparent;
+    .menu {
+        padding: 7px 20px;
+    }
+
+    .navWrapper {
+        justify-content: flex-end;
     }
 }
 
 @media screen and (min-width: 600px) {
     .navigation {
-        position: absolute;
-        bottom: 30%;
-        left: 90px;
-        min-width: 100%;
-        border: 1px red solid;
-    }
-
-    .navigationFlex {
-        position: relative;
-        display: flex;
-
         justify-content: space-between;
-        color: var(--font-secondary-color);
-        font-family: var(--menu-font-family);
-        text-transform: uppercase;
-        white-space: nowrap;
-        font-weight: 700;
     }
 
     .navWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     }
 
-    .menu {
-        display: flex;
-        align-items: center;
-        justify-items: space-between;
-        padding: 7px 20px;
-        /* border-left: 2px solid var(--font-secondary-color); */
-
-        /* background-color: aliceblue; */
-    }
-
-    .menuItem:not(:last-child) {
-        margin-right: 24px;
-    }
-
-    .rightNavWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 }
 
 @media screen and (min-width: 992px) {
-    .navigation {
-        position: absolute;
-        bottom: -5px;
-        left: 60px;
-        /* right: 0; */
-        min-width: 100%;
-    }
-
-    .navigationFlex {
-        position: relative;
-        display: flex;
-
-        justify-content: space-between;
-        color: var(--font-secondary-color);
-        font-family: var(--menu-font-family);
-        text-transform: uppercase;
-        white-space: nowrap;
-        font-weight: 700;
-    }
-
     .navWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .menu {
-        display: flex;
-        align-items: center;
-        justify-items: center;
         padding: 7px 20px;
         border-left: 2px solid var(--font-secondary-color);
-
-        /* background-color: aliceblue; */
     }
 
     .menuItem:not(:last-child) {
         margin-right: 24px;
-    }
-
-    .rightNavWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .burgerBtn {

@@ -1,15 +1,19 @@
 @media screen and (min-width: 320px) {
-    .logoWrapper {
+    .logoImage {
         width: 46px;
     }
 }
 
-@media screen and (min-width: 600px) {}
+@media screen and (min-width: 600px) {
+    .logoImage {
+        margin-right: 10px;
+    }
+}
 
 @media screen and (min-width: 992px) {
-    .logoWrapper {
+    .logoImage {
         width: 70px;
-        top: 80px;
-        left: 16px;
+
+        margin-right: 0;
     }
 }
