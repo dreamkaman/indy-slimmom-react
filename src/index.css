@@ -158,6 +158,7 @@ nav {
 @media screen and (min-width: 992px) {
   .container {
     max-width: 1600px;
+    padding: 0 60px;
   }
 
   /* SVG styles */

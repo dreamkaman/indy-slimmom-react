@@ -1,0 +1,37 @@
+.wrapper {
+    position: relative;
+
+}
+
+.wrapper input {
+    display: block;
+    width: 100%;
+    padding-top: 40px;
+
+    border: none;
+    border-bottom: 1px solid var(--font-secondary-color);
+
+    font-size: 18px;
+    color: var(--font-main-color);
+}
+
+.wrapper input::placeholder {
+    color: transparent;
+}
+
+.wrapper label {
+    position: absolute;
+    top: 30px;
+
+    font-weight: 700;
+    color: var(--font-secondary-color);
+
+}
+
+.wrapper input:focus+label {
+    top: 15px;
+}
+
+.wrapper input:not(:placeholder-shown)+label {
+    top: 15px;
+}
