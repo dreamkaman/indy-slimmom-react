@@ -1,0 +1,41 @@
+.calculateCaloriesForm {
+    width: 608px;
+
+    margin-bottom: 293px;
+}
+
+.formFlexBox {
+    display: flex;
+}
+
+.formLeftSubFlexWrapper {
+    width: 240px;
+    margin-right: 32px;
+}
+
+.formRightSubFlexWrapper {
+    width: 240px;
+}
+
+.title {
+    margin-bottom: 50px;
+    color: var(--font-main-color);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 140%;
+}
+
+.startLoosingWeightBtn {
+
+    padding: 13px 25px;
+    margin-left: auto;
+
+    border-radius: 30px;
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--accent-color);
+    border: 1px solid transparent;
+
+
+
+}
