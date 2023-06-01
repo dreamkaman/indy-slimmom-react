@@ -6,7 +6,7 @@
 .wrapper input {
     display: block;
     width: 100%;
-    padding-top: 40px;
+    margin-top: 40px;
 
     border: none;
     border-bottom: 1px solid var(--font-secondary-color);
@@ -21,7 +21,7 @@
 
 .wrapper label {
     position: absolute;
-    top: 30px;
+    top: -7px;
 
     font-weight: 700;
     color: var(--font-secondary-color);
@@ -29,9 +29,9 @@
 }
 
 .wrapper input:focus+label {
-    top: 15px;
+    top: -20px;
 }
 
 .wrapper input:not(:placeholder-shown)+label {
-    top: 15px;
+    top: -20px;
 }
