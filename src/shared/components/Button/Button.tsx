@@ -7,7 +7,7 @@ interface IButton {
     children?: ReactNode;
 }
 const Button: FC<IButton> = ({ name, className, type = 'button', children }) => {
-    return <button className={className} type={type}>{name}{children}</button>
+    return <button className={`${className}`} type={type}>{name}{children}</button>
 }
 
 export default Button;
