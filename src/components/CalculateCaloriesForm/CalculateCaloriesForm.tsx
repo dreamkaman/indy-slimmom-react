@@ -2,6 +2,7 @@ import LabelInput from "shared/components/LabelInput";
 import Button from "shared/components/Button/Button";
 
 import s from './CalculateCaloriesForm.module.css';
+import RadioButton from "shared/components/RadioButton/RadioButton";
 
 
 const CalculateCaloriesForm = () => {
@@ -18,6 +19,7 @@ const CalculateCaloriesForm = () => {
             </div>
         </div>
         <Button name={'Start losing weight'} type='submit' className={s.startLoosingWeightBtn} />
+        <RadioButton />
 
 
 
