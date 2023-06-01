@@ -1,0 +1,24 @@
+.radioBtnWrapper {
+    font-weight: 700;
+    line-height: 1.21;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.radioBtnWrapper label::before {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: ' ';
+    background-image: url('images/svg/radiobutton.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.radioBtnWrapper label::before>input:active {
+    background-image: url('images/svg/radiobuttonActive.svg');
+}
+
+.radioBtnWrapper input {
+    visibility: hidden;
+}
