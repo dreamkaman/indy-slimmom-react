@@ -25,6 +25,10 @@
     justify-items: center;
 }
 
+.menuItem {
+    cursor: pointer;
+}
+
 .menuItem:not(:last-child) {
     margin-right: 24px;
 }
