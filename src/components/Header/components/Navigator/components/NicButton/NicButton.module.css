@@ -10,6 +10,10 @@
     color: var(--font-main-color);
 }
 
+.exitBtn {
+    cursor: pointer;
+}
+
 .item:not(:last-child) {
     border-right: 2px solid var(--font-secondary-color);
 }
