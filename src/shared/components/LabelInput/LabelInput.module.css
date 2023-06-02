@@ -9,7 +9,7 @@
     margin-top: 40px;
 
     border: none;
-    border-bottom: 1px solid var(--font-secondary-color);
+    border-bottom: 1px solid var(--input-line-color);
 
     font-size: 18px;
     color: var(--font-main-color);
@@ -21,7 +21,7 @@
 
 .wrapper label {
     position: absolute;
-    top: -7px;
+    top: -10px;
 
     font-weight: 700;
     color: var(--font-secondary-color);
