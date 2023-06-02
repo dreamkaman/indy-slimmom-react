@@ -16,10 +16,11 @@ const CalculateCaloriesForm = () => {
             </div>
             <div className={s.formRightSubFlexWrapper}>
                 <LabelInput name='desiredWeight' type='text' labelText="Desired weight*" />
+                <RadioButton />
             </div>
         </div>
         <Button name={'Start losing weight'} type='submit' className={s.startLoosingWeightBtn} />
-        <RadioButton />
+
 
 
 
