@@ -6,7 +6,12 @@ import RadioButton from "shared/components/RadioButton/RadioButton";
 
 
 const CalculateCaloriesForm = () => {
-    return <form className={s.calculateCaloriesForm}>
+
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+    }
+
+    return <form className={s.calculateCaloriesForm} onSubmit={handleSubmit}>
         <h2 className={s.title}>Calculate your daily calorie intake right now</h2>
         <div className={s.formFlexBox}>
             <div className={s.formLeftSubFlexWrapper}>
