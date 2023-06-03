@@ -38,9 +38,8 @@
 
 @media screen and (min-width: 600px) {
     .calculateCaloriesForm {
+        display: inline-block;
         width: 608px;
-
-        margin-bottom: 293px;
     }
 
     .formFlexBox {

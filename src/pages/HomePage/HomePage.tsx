@@ -1,8 +1,11 @@
+import CalculateCaloriesForm from 'components/CalculateCaloriesForm/CalculateCaloriesForm';
 import s from './HomePage.module.css';
 
 const HomePage = () => {
+    const isAuth = false;
+
     return <section className={s.homeBg}>
-        <h2>Hello HomePage!</h2>
+        {!isAuth && <CalculateCaloriesForm />}
     </section>
 }
 

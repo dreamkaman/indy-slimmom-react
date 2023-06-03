@@ -1,7 +1,7 @@
 .homeBg {
     /* border: 2px red solid; */
-    width: 100vw;
-    height: 100vh;
+    width: 100svw;
+    height: 100svh;
 }
 
 @media screen and (min-width: 320px) {}
@@ -13,7 +13,7 @@
             url('../../images/leafs-rotated-tab.png'),
             url('images/svg/grayWaveBG.svg');
 
-        background-size: 55vh auto, calc(30vh), 70vw auto, auto calc(100vh - 20%);
+        background-size: 55vh auto, 30vh, 70vw auto, auto calc(100vh - 20%);
         background-position: right bottom -80px, right -40px bottom 240px, left bottom, right -40px bottom -250px;
         background-repeat: no-repeat;
     }
@@ -22,6 +22,7 @@
 
 @media screen and (min-width: 992px) {
     .homeBg {
+        padding: 293px 60px 0;
         background-image: url('../../images/bananas.png'),
             url('../../images/leafs.png'),
             url('../../images/strawberry.png'),
