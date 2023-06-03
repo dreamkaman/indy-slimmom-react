@@ -4,7 +4,7 @@ import s from './HomePage.module.css';
 const HomePage = () => {
     const isAuth = false;
 
-    return <section className={s.homeBg}>
+    return <section className={`${s.homeBg} container`}>
         {!isAuth && <CalculateCaloriesForm />}
     </section>
 }
