@@ -1,0 +1,63 @@
+.recommendedDailyCalorieForm {
+    /* position: absolute;
+    top: calc(100vh/2 - 574px/2);
+    left: calc(100vw/2 - 672px/2); */
+    width: 672px;
+    height: 574px;
+    padding: 64px 82px 82px;
+
+    background-color: white;
+}
+
+.formTitle {
+    margin-bottom: 20px;
+    font-size: 26px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--font-main-color);
+}
+
+.calorieTxt {
+    padding-bottom: 32px;
+
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: center;
+
+    color: var(--bg-blue-color);
+}
+
+.calorieTxt span {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.formSubtitle {
+    padding: 0 90px;
+    margin-bottom: 20px;
+
+    border-top: 1px solid var(--bg-gray-color);
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.foodList {
+    height: 112px;
+    padding: 0 90px;
+    margin-bottom: 40px;
+    color: var(--font-secondary-color);
+    overflow-y: auto;
+}
+
+.foodList li:not(:last-child) {
+    margin-bottom: 14px;
+}
+
+.startLosingWeightBtn {
+    width: 210px;
+    height: 43px;
+    margin-left: auto;
+    margin-right: auto;
+}
