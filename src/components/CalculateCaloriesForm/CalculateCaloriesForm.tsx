@@ -24,7 +24,7 @@ const CalculateCaloriesForm = () => {
                 <RadioButton />
             </div>
         </div>
-        <Button name={'Start losing weight'} type='submit' className={s.startLoosingWeightBtn} />
+        <Button name={'Start losing weight'} type='submit' className={`${s.startLoosingWeightBtn} buttonRectangleActive`} />
 
 
 
