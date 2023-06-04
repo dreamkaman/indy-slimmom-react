@@ -1,15 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "shared/components/Button/Button";
 import LabelInput from "shared/components/LabelInput/LabelInput";
 
 import s from './LoginUserForm.module.css';
 
 const LoginUserForm = () => {
+    const navigate = useNavigate();
+
     const handleSubmitLoginForm = () => {
         alert('Form submit!');
     }
 
     const handleRegistrationClick = () => {
-        alert('Button click!');
+        navigate('/register');
     };
 
     return <form onSubmit={handleSubmitLoginForm}>
@@ -20,7 +24,7 @@ const LoginUserForm = () => {
         </div>
         <div className={s.buttonWrapper}>
             <Button className={`${s.loginButton} ${s.button} buttonRectangleActive`} type="submit" name="Login" />
-            <Button className={`${s.registrationButton} ${s.button} buttonRectanglePassive`} type='button' onClick={handleRegistrationClick} name="Registration" />
+            <Button className={`${s.registrationButton} ${s.button} buttonRectanglePassive`} type='button' onClick={handleRegistrationClick} name="Register" />
         </div>
     </form>
 }
