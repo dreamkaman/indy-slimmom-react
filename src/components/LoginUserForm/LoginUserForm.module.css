@@ -1,0 +1,22 @@
+.loginFormTitle {
+    font-size: 14px;
+    line-height: 1.21;
+    text-transform: uppercase;
+    color: var(--accent-color)
+}
+
+.inputWrapper {
+    width: 240px;
+    margin-bottom: 60px;
+}
+
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button {
+    width: 180px;
+    padding: 13px;
+}
