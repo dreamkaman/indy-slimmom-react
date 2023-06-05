@@ -2,7 +2,8 @@
     font-size: 14px;
     line-height: 1.21;
     text-transform: uppercase;
-    color: var(--accent-color)
+    color: var(--accent-color);
+    text-align: center;
 }
 
 .inputWrapper {
@@ -30,6 +31,10 @@
 @media screen and (min-width: 600px) {
     .registrationForm {
         padding: 20px;
+    }
+
+    .registrationFormTitle {
+        text-align: left;
     }
 
     .buttonWrapper {

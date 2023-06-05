@@ -9,18 +9,19 @@ const HomePage = () => {
     const isAuth = false;
     const showModal = false;
 
-    return <>
-        <section className={s.homeBg}>
-            <div className='container'>
-                {!isAuth && <CalculateCaloriesForm />}
+    return <section className={s.homeBg}>
+        {!isAuth && <div className='container'>
+            <div className={s.calculatorFormWrapper}>
+                <CalculateCaloriesForm />
             </div>
-        </section>
+
+        </div>}
         {showModal &&
             <ModalWindow>
                 <RecommendedDailyCalorie />
             </ModalWindow>
         }
-    </>
+    </section>
 }
 
 export default HomePage;
