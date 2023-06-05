@@ -7,11 +7,13 @@ import s from './HomePage.module.css';
 
 const HomePage = () => {
     const isAuth = false;
-    const showModal = true;
+    const showModal = false;
 
     return <>
-        <section className={`${s.homeBg} container`}>
-            {!isAuth && <CalculateCaloriesForm />}
+        <section className={s.homeBg}>
+            <div className='container'>
+                {!isAuth && <CalculateCaloriesForm />}
+            </div>
         </section>
         {showModal &&
             <ModalWindow>

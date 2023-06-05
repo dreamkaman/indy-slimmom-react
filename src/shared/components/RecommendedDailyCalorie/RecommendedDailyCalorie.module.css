@@ -1,9 +1,5 @@
 .recommendedDailyCalorieForm {
-    /* position: absolute;
-    top: calc(100vh/2 - 574px/2);
-    left: calc(100vw/2 - 672px/2); */
     width: 672px;
-    height: 574px;
     padding: 64px 82px 82px;
 
     background-color: white;
