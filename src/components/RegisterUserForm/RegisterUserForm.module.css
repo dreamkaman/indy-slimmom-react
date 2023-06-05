@@ -10,13 +10,42 @@
     margin-bottom: 60px;
 }
 
-.buttonWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .button {
     width: 180px;
     padding: 13px;
 }
+
+@media screen and (min-width: 320px) {
+    .button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media screen and (min-width: 600px) {
+    .registrationForm {
+        padding: 20px;
+    }
+
+    .buttonWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .button {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .button:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 992px) {}

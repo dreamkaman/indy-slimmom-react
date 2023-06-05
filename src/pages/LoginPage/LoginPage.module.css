@@ -1,9 +1,8 @@
 .loginFormWrapper {
-    width: 395px;
+    max-width: 415px;
 }
 
 .loginPageBg {
-    /* border: 2px red solid; */
     width: 100vw;
     height: 100vh;
 }

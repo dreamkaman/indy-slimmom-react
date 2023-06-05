@@ -15,6 +15,12 @@
     color: var(--font-main-color);
 }
 
+.wrapper input:focus {
+    outline: none !important;
+    border: 2px solid var(--accent-color);
+    border-radius: 2px;
+}
+
 .wrapper input::placeholder {
     color: transparent;
 }
