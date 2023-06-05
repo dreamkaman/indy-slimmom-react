@@ -4,9 +4,17 @@
     height: 100vh;
 }
 
-@media screen and (min-width: 320px) {}
+@media screen and (min-width: 320px) {
+    .calculatorFormWrapper {
+        padding-top: 120px;
+    }
+}
 
 @media screen and (min-width: 600px) {
+    .calculatorFormWrapper {
+        padding-top: 160px;
+    }
+
     .homeBg {
         background-image: url('../../images/bananas.png'),
             url('../../images/strawberry.png'),
@@ -21,6 +29,10 @@
 }
 
 @media screen and (min-width: 992px) {
+    .calculatorFormWrapper {
+        padding-top: 200px;
+    }
+
     .homeBg {
         background-image: url('../../images/bananas.png'),
             url('../../images/leafs.png'),
