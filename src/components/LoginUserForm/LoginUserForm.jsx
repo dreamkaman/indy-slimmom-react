@@ -16,7 +16,7 @@ const LoginUserForm = () => {
         navigate('/register');
     };
 
-    return <form onSubmit={handleSubmitLoginForm}>
+    return <form className={s.loginUserForm} onSubmit={handleSubmitLoginForm}>
         <h3 className={s.loginFormTitle}>Log in</h3>
         <div className={s.inputWrapper}>
             <LabelInput name='email' type='email' labelText="Email*" />

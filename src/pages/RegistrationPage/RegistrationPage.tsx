@@ -3,10 +3,11 @@ import s from './RegistrationPage.module.css';
 
 const RegistrationPage = () => {
     return <section className="container">
-        <div className={s.registrationUserFormWrapper}>
-            <RegisterUserForm />
+        <div className="container">
+            <div className={s.registrationUserFormWrapper}>
+                <RegisterUserForm />
+            </div>
         </div>
-
     </section>
 }
 
