@@ -3,14 +3,21 @@
 }
 
 .registerPageBg {
-    /* border: 2px red solid; */
     width: 100vw;
     height: 100vh;
 }
 
-@media screen and (min-width: 320px) {}
+@media screen and (min-width: 320px) {
+    .registrationUserFormWrapper {
+        padding-top: 120px;
+    }
+}
 
 @media screen and (min-width: 600px) {
+    .registrationUserFormWrapper {
+        padding-top: 160px;
+    }
+
     .registerPageBg {
         background-image: url('../../images/bananas.png'),
             url('../../images/strawberry.png'),
@@ -25,6 +32,10 @@
 }
 
 @media screen and (min-width: 992px) {
+    .registrationUserFormWrapper {
+        padding-top: 200px;
+    }
+
     .registerPageBg {
         background-image: url('../../images/bananas.png'),
             url('../../images/leafs.png'),
