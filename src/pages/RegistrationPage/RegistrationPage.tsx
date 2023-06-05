@@ -2,7 +2,7 @@ import RegisterUserForm from "components/RegisterUserForm/RegisterUserForm";
 import s from './RegistrationPage.module.css';
 
 const RegistrationPage = () => {
-    return <section className="container">
+    return <section className={s.registerPageBg}>
         <div className="container">
             <div className={s.registrationUserFormWrapper}>
                 <RegisterUserForm />

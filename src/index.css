@@ -119,6 +119,9 @@ nav {
 }
 
 /* =============================Common classes======================================== */
+.active {
+  color: var(--font-main-color);
+}
 
 .buttonRectangleActive {
   border-radius: 30px;
