@@ -162,7 +162,7 @@ nav {
     max-width: 640px;
     margin-left: auto;
     margin-right: auto;
-    padding: 112px 20px 0;
+    padding: 0 20px;
   }
 
   /* SVG styles */
@@ -179,7 +179,7 @@ nav {
 @media screen and (min-width: 600px) {
   .container {
     max-width: 1024px;
-    padding-right: 180px 30px 0;
+    padding-right: 0 30px;
   }
 
   /* SVG styles */
@@ -195,7 +195,7 @@ nav {
 @media screen and (min-width: 992px) {
   .container {
     max-width: 1600px;
-    padding: 230px 60px 0;
+    padding: 0 60px;
   }
 
   /* SVG styles */
