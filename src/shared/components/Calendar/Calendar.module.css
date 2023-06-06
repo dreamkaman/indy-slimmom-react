@@ -1,0 +1,22 @@
+.dateText {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+
+    color: var(--font-main-color);
+}
+
+.calendarIcon {
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (min-width: 320px) {}
+
+@media screen and (min-width: 600px) {
+    .dateText {
+        font-size: 34px;
+    }
+}
+
+@media screen and (min-width: 992px) {}
