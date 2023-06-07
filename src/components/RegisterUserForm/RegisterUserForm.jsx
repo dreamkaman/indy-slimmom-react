@@ -23,8 +23,8 @@ const RegisterUserForm = () => {
             <LabelInput name='repeatedPassword' type="password" labelText="Repeat Password*" />
         </div>
         <div className={s.buttonWrapper}>
-            <Button className={`${s.registrationButton} ${s.button} buttonRectangleActive`} type='submit' name="Register" />
-            <Button className={`${s.loginButton} ${s.button} buttonRectanglePassive`} type="button" name="Login" onClick={handleLoginClick} />
+            <Button className={`${s.registrationButton} ${s.button} buttonActive buttonRectangle`} type='submit' name="Register" />
+            <Button className={`${s.loginButton} ${s.button} buttonPassive buttonRectangle`} type="button" name="Login" onClick={handleLoginClick} />
         </div>
     </form>
 }

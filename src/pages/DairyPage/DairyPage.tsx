@@ -1,6 +1,8 @@
-import Calendar from "shared/components/Calendar/Calendar";
+import Calendar from "shared/components/Calendar";
+import AddProductForm from "components/AddProductForm";
 
 import s from './DairyPage.module.css';
+
 
 const DairyPage = () => {
     return <section className={s.dairyPageBg}>
@@ -8,6 +10,7 @@ const DairyPage = () => {
             <div className={s.calendarWrapper}>
                 <Calendar />
             </div>
+            <AddProductForm />
         </div>
     </section>
 }

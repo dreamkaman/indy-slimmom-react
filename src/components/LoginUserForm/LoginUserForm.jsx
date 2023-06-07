@@ -23,8 +23,8 @@ const LoginUserForm = () => {
             <LabelInput name='password' type="password" labelText="Password*" />
         </div>
         <div className={s.buttonWrapper}>
-            <Button className={`${s.loginButton} ${s.button} buttonRectangleActive`} type="submit" name="Login" />
-            <Button className={`${s.registrationButton} ${s.button} buttonRectanglePassive`} type='button' onClick={handleRegistrationClick} name="Register" />
+            <Button className={`${s.loginButton} ${s.button} buttonActive buttonRectangle`} type="submit" name="Login" />
+            <Button className={`${s.registrationButton} ${s.button} buttonPassive buttonRectangle`} type='button' onClick={handleRegistrationClick} name="Register" />
         </div>
     </form>
 }

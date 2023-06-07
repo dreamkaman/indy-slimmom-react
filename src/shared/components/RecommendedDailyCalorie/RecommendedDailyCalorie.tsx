@@ -38,7 +38,7 @@ const RecommendedDailyCalorie = () => {
         {foodList.length && <ol className={s.foodList}>
             {foodList.map(foodItem => <li key={foodItem.id}>{foodItem.name}</li>)}
         </ol>}
-        <Button type='button' name='Start losing weight' className={`${s.startLosingWeightBtn} buttonRectangleActive`} />
+        <Button type='button' name='Start losing weight' className={`${s.startLosingWeightBtn} buttonActive buttonRectangle`} />
     </form>
 }
 

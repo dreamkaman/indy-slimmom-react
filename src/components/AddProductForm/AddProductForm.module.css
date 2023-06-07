@@ -1,0 +1,67 @@
+.inputProductBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.inputWeightWrapper label {
+    width: 100%;
+    text-align: right;
+}
+
+.addProductBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+}
+
+.plusIcon {
+    height: 100%;
+
+    padding: 16px;
+
+    fill: #fff;
+}
+
+.plusIcon:hover {
+    fill: var(--accent-color);
+
+}
+
+@media screen and (min-width: 320px) {
+
+    .inputProductWrapper {
+        display: none;
+    }
+
+    .inputWeightWrapper {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .addProductForm {
+        width: 503px;
+    }
+
+    .inputProductBlock {
+        justify-content: space-between;
+    }
+
+    .inputProductWrapper {
+        display: block;
+        width: 240px;
+    }
+
+    .inputWeightWrapper {
+        display: block;
+        width: 107px;
+    }
+}
+
+@media screen and (min-width: 992px) {}
