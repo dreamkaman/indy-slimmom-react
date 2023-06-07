@@ -123,8 +123,7 @@ nav {
   color: var(--font-main-color);
 }
 
-.buttonRectangleActive {
-  border-radius: 30px;
+.buttonActive {
   font-weight: 700;
   color: #fff;
   background-color: var(--accent-color);
@@ -133,22 +132,29 @@ nav {
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 }
 
-.buttonRectangleActive:hover {
+.buttonActive:hover {
   color: var(--accent-color);
   background-color: #fff;
   border: 2px solid var(--accent-color);
   box-shadow: none;
 }
 
-.buttonRectanglePassive {
+.buttonRectangle {
   border-radius: 30px;
+}
+
+.buttonCircle {
+  border-radius: 50%;
+}
+
+.buttonPassive {
   font-weight: 700;
   color: var(--accent-color);
   background-color: #fff;
   border: 2px solid var(--accent-color);
 }
 
-.buttonRectanglePassive:hover {
+.buttonPassive:hover {
   color: #fff;
   background-color: var(--accent-color);
   border: 2px solid transparent;
