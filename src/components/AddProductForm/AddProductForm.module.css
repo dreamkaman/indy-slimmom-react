@@ -51,6 +51,7 @@
 
     .inputProductBlock {
         justify-content: space-between;
+        margin-bottom: 60px;
     }
 
     .inputProductWrapper {
