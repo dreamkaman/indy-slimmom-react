@@ -1,5 +1,9 @@
 .header {
     position: absolute;
+}
+
+.navigation {
+    /* position: absolute; */
     display: flex;
     align-items: center;
 }
@@ -8,7 +12,9 @@
     .header {
         top: 0;
         left: 0;
+    }
 
+    .navigation {
         justify-content: space-between;
 
         width: calc(100%);
@@ -20,9 +26,9 @@
 }
 
 @media screen and (min-width: 600px) {
-    .header {
-        top: 0;
-        left: 0;
+    .navigation {
+        /* top: 0;
+        left: 0; */
 
         width: 100%;
 
@@ -33,7 +39,9 @@
 @media screen and (min-width: 992px) {
     .header {
         top: 80px;
+    }
 
+    .navigation {
         width: 100%;
 
         padding: 0 16px;
