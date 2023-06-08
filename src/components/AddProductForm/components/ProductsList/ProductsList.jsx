@@ -17,6 +17,30 @@ const ProductsList = () => {
             productName: 'Milk',
             productWeight: 250,
             productCalories: 900,
+        },
+        {
+            id: 3,
+            productName: 'Red meat',
+            productWeight: 250,
+            productCalories: 900,
+        },
+        {
+            id: 4,
+            productName: 'Sausage',
+            productWeight: 250,
+            productCalories: 600,
+        },
+        {
+            id: 5,
+            productName: 'Paper',
+            productWeight: 150,
+            productCalories: 300,
+        },
+        {
+            id: 6,
+            productName: 'Sweets',
+            productWeight: 150,
+            productCalories: 400,
         }
     ];
 

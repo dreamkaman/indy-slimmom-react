@@ -18,15 +18,13 @@
         background-size: auto calc(100vh - 50%), 100vw;
         background-position: right -250px bottom -120px, center bottom;
     }
-
 }
 
 @media screen and (min-width: 992px) {
     .calculatorBg {
-        padding-top: 293px;
+        padding-top: 200px;
         background-image: url('../../images/leafs.png'), url('../../images/svg/grayBG.svg');
         background-size: auto calc(100vh - 5%), contain;
         background-position: right -35% bottom -50%, right bottom;
-
     }
 }

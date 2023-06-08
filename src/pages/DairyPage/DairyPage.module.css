@@ -37,7 +37,7 @@
 
 @media screen and (min-width: 992px) {
     .dairyPageBg {
-        padding-top: 293px;
+        padding-top: 200px;
         background-image: url('../../images/leafs.png'), url('../../images/svg/grayBG.svg');
         background-size: 58% auto, auto 100%;
         background-position: right -19% top -3%, right bottom;
