@@ -5,11 +5,17 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import s from './Header.module.css';
 
 const Header = () => {
-  return <header className={s.header}>
-    <Logo />
-    <Navigator />
-    <SubHeader />
-  </header>;
+  const isAuth = true;
+
+  return <>
+    <header className={s.header}>
+      <div className={s.navigation}>
+        <Logo />
+        <Navigator />
+      </div>
+      {isAuth && <SubHeader />}
+    </header>;
+  </>
 }
 
 export default Header;

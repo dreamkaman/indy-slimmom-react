@@ -4,10 +4,12 @@ import NicButton from "../Navigator/components/NicButton/NicButton";
 import s from './SubHeader.module.css';
 
 const SubHeader = () => {
+    const showModal = true;
+
     return <div className={s.subHeader}>
-        <button type="button">
-            <GetSvg name="returnBtn" className={s.returnBtn} />
-        </button>
+        {showModal && <button type="button" className={s.returnBtn}>
+            <GetSvg name="returnBtn" className={s.returnIcon} />
+        </button>}
         <NicButton />
     </div>
 }
