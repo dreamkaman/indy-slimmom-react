@@ -1,0 +1,80 @@
+.productsList {
+    width: 100%;
+    max-height: 200px;
+
+    overflow-y: scroll;
+}
+
+.productsListItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.productsListItem:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.outputTextProductWeight {
+    text-align: right;
+}
+
+.outputTextProductCalories {
+    text-align: right;
+}
+
+.closeBtn {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+
+}
+
+.closeIcon {
+    width: 20px;
+    height: 20px;
+
+    padding: 4px;
+}
+
+@media screen and (min-width: 320px) {
+    .outputTextProductName {
+        width: 130px;
+    }
+
+    .outputTextProductWeight {
+        width: 49px;
+    }
+
+    .outputTextProductCalories {
+        width: 58px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .productsList {
+        width: 610px;
+        max-height: 244px;
+        padding-right: 40px;
+    }
+
+    .outputTextProductName {
+        width: 240px;
+    }
+
+    .outputTextProductWeight {
+        width: 107px;
+    }
+
+    .outputTextProductCalories {
+        width: 107px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .productsList {
+        width: 640px;
+        max-height: 306px;
+    }
+}
