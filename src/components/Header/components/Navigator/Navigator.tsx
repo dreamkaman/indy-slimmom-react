@@ -22,7 +22,9 @@ const Navigator = () => {
             </ul>
         </div>
         {isAuth && <div className={s.rightNavWrapper}>
-            <NicButton />
+            <div className={s.visible}>
+                <NicButton />
+            </div>
             <button className={s.burgerBtn}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>
         </div>}
     </nav>

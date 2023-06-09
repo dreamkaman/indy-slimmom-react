@@ -5,7 +5,7 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import s from './Header.module.css';
 
 const Header = () => {
-  const isAuth = false;
+  const isAuth = true;
 
   return <>
     <header className={s.header}>

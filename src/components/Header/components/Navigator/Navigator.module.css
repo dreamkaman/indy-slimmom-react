@@ -43,6 +43,10 @@
     justify-content: center;
 }
 
+.visible {
+    display: none;
+}
+
 .burgerBtn {
     padding: 5px 6px 2px;
     border: none;
@@ -68,6 +72,9 @@
         justify-content: space-between;
     }
 
+    .visible {
+        display: block;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -87,6 +94,10 @@
 
     .menuItem:not(:last-child) {
         margin-right: 24px;
+    }
+
+    .visible {
+        display: block;
     }
 
     .burgerBtn {
