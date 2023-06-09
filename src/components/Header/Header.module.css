@@ -1,11 +1,14 @@
 .header {
     position: absolute;
+    width: 100%;
 }
 
-.navigation {
+.menu {
     /* position: absolute; */
     display: flex;
     align-items: center;
+
+    width: 100%;
 }
 
 @media screen and (min-width: 320px) {
@@ -14,10 +17,8 @@
         left: 0;
     }
 
-    .navigation {
+    .menu {
         justify-content: space-between;
-
-        width: calc(100%);
 
         padding: 20px 20px 16px;
 
@@ -26,11 +27,8 @@
 }
 
 @media screen and (min-width: 600px) {
-    .navigation {
-        /* top: 0;
-        left: 0; */
-
-        width: 100%;
+    .menu {
+        /* width: 100%; */
 
         padding: 20px 32px 16px;
     }
@@ -41,7 +39,7 @@
         top: 80px;
     }
 
-    .navigation {
+    .menu {
         width: 100%;
 
         padding: 0 16px;
