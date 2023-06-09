@@ -5,16 +5,16 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import s from './Header.module.css';
 
 const Header = () => {
-  const isAuth = true;
+  const isAuth = false;
 
   return <>
     <header className={s.header}>
-      <div className={s.navigation}>
+      <div className={s.menu}>
         <Logo />
         <Navigator />
       </div>
       {isAuth && <SubHeader />}
-    </header>;
+    </header>
   </>
 }
 
