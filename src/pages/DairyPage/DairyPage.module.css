@@ -43,4 +43,18 @@
         background-position: right -19% top -3%, right bottom;
 
     }
+
+    .content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .summeryAndFoodBlock {
+        width: 270px;
+    }
+
+    .wrapperSummery {
+        margin-bottom: 60px;
+    }
 }

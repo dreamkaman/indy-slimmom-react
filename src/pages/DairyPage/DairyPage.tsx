@@ -9,14 +9,21 @@ import s from './DairyPage.module.css';
 
 const DairyPage = () => {
     return <section className={s.dairyPageBg}>
-        <div className="container">
-            <div className={s.calendarWrapper}>
-                <Calendar />
+        <div className={`container ${s.content}`}>
+            <div className={s.calendarAndForm}>
+                <div className={s.calendarWrapper}>
+                    <Calendar />
+                </div>
                 <AddProductForm />
             </div>
-            <div className={s.summeryAndFood}>
-                <SummeryForDay />
-                <FoodNotRecommended />
+            <div className={s.summeryAndFoodBlock}>
+                <div className={s.wrapperSummery}>
+                    <SummeryForDay />
+                </div>
+                <div className={s.wrapperFoodNotRecommended}>
+                    <FoodNotRecommended />
+                </div>
+
             </div>
         </div>
     </section>
