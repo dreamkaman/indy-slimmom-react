@@ -2,6 +2,7 @@ import s from './FoodNotRecommended.module.css';
 
 const FoodNotRecommended = () => {
     const foodNotRecommendedList = [];
+
     return <div className={s.foodNotRecommendedBlock}>
         <h4 className={s.title}>Food not recommended</h4>
         {foodNotRecommendedList.length ?
