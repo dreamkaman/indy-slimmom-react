@@ -1,30 +1,56 @@
-.calculatorBg {
-    width: 100vw;
-    height: 100vh;
-
-    background-repeat: no-repeat;
+.calendarWrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
-@media screen and (min-width: 320px) {
-    .calculatorBg {
-        padding-top: 112px;
-    }
-}
+@media screen and (min-width: 320px) {}
 
-@media screen and (min-width: 600px) {
-    .calculatorBg {
-        padding-top: 180px;
-        background-image: url('../../images/leafs-rotated.png'), url('../../images/svg/grayBGTablet.svg');
-        background-size: auto calc(100vh - 50%), 100vw;
-        background-position: right -250px bottom -120px, center bottom;
-    }
-}
+@media screen and (min-width: 600px) {}
 
 @media screen and (min-width: 992px) {
-    .calculatorBg {
-        padding-top: 200px;
-        background-image: url('../../images/leafs.png'), url('../../images/svg/grayBG.svg');
-        background-size: auto calc(100vh - 5%), contain;
-        background-position: right -35% bottom -50%, right bottom;
+    .dairyPageContent {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+    }
+
+    .calculatorForm {
+        padding-top: 240px;
+        padding-left: 75px;
+        padding-right: 75px;
+
+        width: 60%;
+    }
+
+    .calendarWrapper {
+        width: 260px;
+    }
+
+    .summeryAndFoodBlock {
+        width: 40%;
+        height: 100vh;
+        padding-top: 240px;
+
+        background-color: var(--bg-gray-color);
+        background-image: url('images/leafs.png');
+        background-position: left 20px top 25px;
+        background-size: auto 98vh;
+        background-repeat: no-repeat;
+    }
+
+    .wrapperSummery {
+        max-width: 270px;
+        margin-bottom: 60px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .wrapperFoodNotRecommended {
+        max-width: 270px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

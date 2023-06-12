@@ -6,3 +6,8 @@
     margin-bottom: 40px;
     color: var(--font-main-color);
 }
+
+.foodNotRecommendedList {
+    max-height: 120px;
+    overflow-y: auto;
+}
