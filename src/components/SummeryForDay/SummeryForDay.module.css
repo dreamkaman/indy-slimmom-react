@@ -1,0 +1,19 @@
+.summeryBlock {
+    color: var(--font-secondary-color);
+}
+
+.summeryTitle {
+    margin-bottom: 40px;
+
+    color: var(--font-main-color);
+}
+
+.summeryItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summeryItem:not(:last-child) {
+    margin-bottom: 10px;
+}
