@@ -52,7 +52,7 @@ const ProductsList = () => {
             <OutputText text={product.productName} className={s.outputTextProductName} />
             <OutputText text={addDimension(product.productWeight, 'g')} className={s.outputTextProductWeight} />
             <OutputText text={addDimension(product.productCalories, 'kcal')} className={s.outputTextProductCalories} />
-            <Button className={s.closeBtn}><GetSvg name='closeBtn' className={s.closeIcon} /></Button>
+            <Button className={`transparentButton`}><GetSvg name='closeBtn' className={s.closeIcon} /></Button>
         </li>)}
 
     </ul>

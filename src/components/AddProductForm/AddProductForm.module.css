@@ -27,7 +27,7 @@
     fill: #fff;
 }
 
-.plusIcon:hover {
+.addProductBtn:hover .plusIcon {
     fill: var(--accent-color);
 
 }
