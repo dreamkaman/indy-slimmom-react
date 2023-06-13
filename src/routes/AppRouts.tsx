@@ -1,18 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 
-import HealthCalculatorPage from 'pages/HealthCalculatorPage';
+import DairyCalculatorPage from 'pages/DairyPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage';
-import DairyPage from 'pages/DairyPage/DairyPage';
 import HomePage from 'pages/HomePage';
+
 
 const AppRouts = () => {
     return <Routes>
         <Route path={'/'} element={<HomePage />}></Route>
         <Route path={'/login'} element={< LoginPage />}></Route>
         <Route path={'/register'} element={<RegistrationPage />}></Route>
-        <Route path={'/calculator'} element={<HealthCalculatorPage />}></Route>
-        <Route path={'/dairy'} element={<DairyPage />}></Route>
+        <Route path={'/calculator'} element={<DairyCalculatorPage />}></Route>
+        <Route path={'/dairy'} element={<DairyCalculatorPage />}></Route>
         <Route path={'*'} element={<h2 style={{ color: 'black', padding: '300px', textAlign: 'center' }}>Page not found!</h2>
         }></Route >
     </Routes >
