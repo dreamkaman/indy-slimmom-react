@@ -67,6 +67,11 @@
         padding: 80px 30px;
 
         background-color: var(--bg-gray-color);
+        background-image: url('images/leafs-rotated-tab.png');
+        background-position: right -129% top -37px;
+        background-size: 602px auto;
+        background-repeat: no-repeat;
+
     }
 
     .calculatorForm {
