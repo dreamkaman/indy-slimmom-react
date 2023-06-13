@@ -21,9 +21,8 @@
 }
 
 .plusIcon {
-    height: 100%;
-
-    padding: 16px;
+    width: 13px;
+    height: 13px;
 
     fill: #fff;
 }
@@ -41,6 +40,15 @@
 
     .inputWeightWrapper {
         display: none;
+    }
+
+    .topBtn {
+        display: none;
+    }
+
+    .bottomBtn {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -62,6 +70,14 @@
     .inputWeightWrapper {
         display: block;
         width: 107px;
+    }
+
+    .topBtn {
+        display: block;
+    }
+
+    .bottomBtn {
+        display: none;
     }
 }
 

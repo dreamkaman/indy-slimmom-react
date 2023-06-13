@@ -9,7 +9,6 @@ import CalculateCaloriesForm from "components/CalculateCaloriesForm";
 import s from './DairyCalculatorPage.module.css';
 
 
-
 const DairyCalculatorPage = () => {
 
     const { pathname } = useLocation();
