@@ -2,6 +2,8 @@
     width: 100%;
 
     overflow-y: scroll;
+
+    scrollbar-width: 3px;
 }
 
 .productsListItem {
@@ -22,15 +24,6 @@
 .outputTextProductCalories {
     text-align: right;
 }
-
-.closeBtn {
-    display: inline-block;
-    border: none;
-    background-color: transparent;
-
-}
-
-
 
 .closeIcon {
     width: 20px;
@@ -62,9 +55,9 @@
 
 @media screen and (min-width: 600px) {
     .productsList {
-        max-width: 610px;
+        max-width: 580px;
         max-height: 200px;
-        padding-right: 40px;
+        padding-right: 20px;
     }
 
     .outputTextProductName {
@@ -82,7 +75,7 @@
 
 @media screen and (min-width: 992px) {
     .productsList {
-        width: 640px;
         max-height: 240px;
+        margin-bottom: 0;
     }
 }
