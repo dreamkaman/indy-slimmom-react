@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import DairyCalculatorPage from 'pages/DairyPage';
+import DairyCalculatorPage from 'pages/DairyCalculatorPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage';
 import HomePage from 'pages/HomePage';
