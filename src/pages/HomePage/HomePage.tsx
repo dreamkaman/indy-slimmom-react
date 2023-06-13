@@ -6,8 +6,8 @@ import s from './HomePage.module.css';
 
 
 const HomePage = () => {
-    const isAuth = true;
-    const showModal = false;
+    const isAuth = false;
+    const showModal = true;
 
     return <section className={s.homeBg}>
         {!isAuth && <div className='container'>
