@@ -17,8 +17,8 @@ const Navigator = () => {
             <ul className={s.menu}>
                 {!isAuth && <li className={s.menuItem}><NavLink to='/login'>Log in</NavLink></li>}
                 {!isAuth && <li className={s.menuItem}><NavLink to='/register'>Registration</NavLink></li>}
-                {isAuth && <li className={s.menuItem}><NavLink to='/dairy'>Dairy</NavLink></li>}
-                {isAuth && <li className={s.menuItem}><NavLink to='/calculator'>Calculator</NavLink></li>}
+                {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/dairy'>Dairy</NavLink></li>}
+                {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/calculator'>Calculator</NavLink></li>}
             </ul>
         </div>
         {isAuth && <div className={s.rightNavWrapper}>
