@@ -1,6 +1,6 @@
 import CalculateCaloriesForm from 'components/CalculateCaloriesForm';
 import ModalWindow from 'shared/components/ModalWindow';
-import RecommendedDailyCalorie from 'shared/components/RecommendedDailyCalorie';
+import RecommendedDailyCalorieForm from 'components/RecommendedDailyCalorieForm';
 
 import s from './HomePage.module.css';
 
@@ -18,7 +18,7 @@ const HomePage = () => {
         </div>}
         {showModal &&
             <ModalWindow>
-                <RecommendedDailyCalorie />
+                <RecommendedDailyCalorieForm />
             </ModalWindow>
         }
     </section>

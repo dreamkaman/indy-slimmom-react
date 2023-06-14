@@ -5,7 +5,6 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import s from './Header.module.css';
 
 const Header = () => {
-  const isAuth = false;
 
   return <>
     <header className={s.header}>
@@ -13,7 +12,7 @@ const Header = () => {
         <Logo />
         <Navigator />
       </div>
-      {isAuth && <SubHeader />}
+      <SubHeader />
     </header>
   </>
 }

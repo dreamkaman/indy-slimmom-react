@@ -3,7 +3,10 @@
     align-items: center;
     justify-content: space-between;
 
+    height: 32px;
+
     background-color: #EFF1F3;
+
 }
 
 .returnBtn {
@@ -22,6 +25,7 @@
 
 .nicButton {
     margin-left: auto;
+    /* padding: 2px 0; */
 }
 
 @media screen and (min-width: 320px) {}
