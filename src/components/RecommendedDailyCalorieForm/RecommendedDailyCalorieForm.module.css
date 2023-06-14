@@ -1,7 +1,4 @@
 .recommendedDailyCalorieForm {
-    width: 672px;
-    padding: 64px 82px 82px;
-
     background-color: white;
 }
 
@@ -57,6 +54,11 @@
 }
 
 @media screen and (min-width: 320px) {
+    .recommendedDailyCalorieForm {
+        width: 100vw;
+        padding: 40px 20px;
+    }
+
     .formTitle {
         margin-bottom: 42px;
         font-size: 18px;
@@ -68,6 +70,11 @@
 }
 
 @media screen and (min-width: 600px) {
+    .recommendedDailyCalorieForm {
+        width: 672px;
+        padding: 64px 82px 82px;
+    }
+
     .formTitle {
         margin-bottom: 20px;
         font-size: 26px;

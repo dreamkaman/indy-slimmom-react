@@ -5,14 +5,15 @@ import s from './SubHeader.module.css';
 
 const SubHeader = () => {
     const showModal = true;
+    const isAuth = false;
 
     return <div className={`${s.subHeader} container`}>
         {showModal && <button type="button" className={s.returnBtn}>
             <GetSvg name="returnBtn" className={s.returnIcon} />
         </button>}
-        <div className={s.nicButton}>
+        {isAuth && <div className={s.nicButton}>
             <NicButton />
-        </div>
+        </div>}
     </div>
 }
 

@@ -1,8 +1,8 @@
 import Button from '../../shared/components/Button/Button';
 
-import s from './RecommendedDailyCalorieModal.module.css';
+import s from './RecommendedDailyCalorieForm.module.css';
 
-const RecommendedDailyCalorieModal = () => {
+const RecommendedDailyCalorieForm = () => {
     const count = 2800;
     const foodList = [
         {
@@ -42,4 +42,4 @@ const RecommendedDailyCalorieModal = () => {
     </form>
 }
 
-export default RecommendedDailyCalorieModal;
+export default RecommendedDailyCalorieForm;
