@@ -6,8 +6,6 @@
 }
 
 .formTitle {
-    margin-bottom: 20px;
-    font-size: 26px;
     line-height: 1.4;
     text-align: center;
     color: var(--font-main-color);
@@ -57,3 +55,27 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+@media screen and (min-width: 320px) {
+    .formTitle {
+        margin-bottom: 42px;
+        font-size: 18px;
+    }
+
+    .formSubtitle {
+        padding-top: 20px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .formTitle {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    .formSubtitle {
+        padding-top: 12px;
+    }
+}
+
+@media screen and (min-width: 992px) {}

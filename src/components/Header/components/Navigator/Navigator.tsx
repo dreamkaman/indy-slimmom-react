@@ -7,7 +7,7 @@ import s from './Navigator.module.css';
 
 const Navigator = () => {
 
-    const isAuth = true;
+    const isAuth = false;
 
     return <nav className={s.navigation}>
         <div className={s.navWrapper}>
