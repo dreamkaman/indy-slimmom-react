@@ -7,7 +7,8 @@ import s from './Navigator.module.css';
 
 const Navigator = () => {
 
-    const isAuth = false;
+    const isAuth = true;
+    const showModal = false;
 
     return <nav className={s.navigation}>
         <div className={s.navWrapper}>
@@ -25,7 +26,8 @@ const Navigator = () => {
             <div className={s.visible}>
                 <NicButton />
             </div>
-            <button className={s.burgerBtn}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>
+            {!showModal && <button className={s.burgerBtn}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>}
+            {showModal && <button className={s.burgerBtn}><GetSvg name={'closeBtn'} className={'closeSvg'} /></button>}
         </div>}
     </nav>
 }

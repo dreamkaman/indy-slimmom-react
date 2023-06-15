@@ -57,11 +57,14 @@
     background-color: transparent;
 }
 
+.closeBtn {
+    padding: 5px;
+}
+
 @media screen and (min-width: 320px) {
     .menu {
         padding: 7px 20px;
     }
-
 
     .navWrapper {
         justify-content: flex-end;
