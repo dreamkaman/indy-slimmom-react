@@ -1,3 +1,4 @@
+import BurgerMenu from "components/BurgerMenu/BurgerMenu";
 import Logo from "./components/Logo";
 import Navigator from "./components/Navigator";
 import SubHeader from "./components/SubHeader/SubHeader";
@@ -14,6 +15,7 @@ const Header = () => {
       </div>
       <SubHeader />
     </header>
+    {<BurgerMenu />}
   </>
 }
 

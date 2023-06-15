@@ -1,0 +1,28 @@
+.burgerMenuList {
+    padding-top: 180px;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+
+    height: 100vh;
+    background-color: var(--bg-blue-color);
+}
+
+.burgerMenuListItem:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 320px) {
+    .burgerMenuList {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .burgerMenuList {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 992px) {}
