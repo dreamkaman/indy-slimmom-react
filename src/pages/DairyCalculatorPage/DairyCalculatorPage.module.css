@@ -1,6 +1,5 @@
 .calendarWrapper {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
     width: fit-content;
 }
@@ -23,8 +22,9 @@
     }
 
     .calendarWrapper {
-        width: 160px;
+        width: 156px;
         margin-bottom: 32px;
+        align-items: center;
     }
 
     .summeryAndFoodBlock {
@@ -58,6 +58,12 @@
         margin-bottom: 0;
     }
 
+    .calendarWrapper {
+        width: 260px;
+        margin-bottom: 60px;
+        align-items: baseline;
+    }
+
     .summeryAndFoodBlock {
         display: flex;
 
@@ -76,10 +82,6 @@
 
     .calculatorForm {
         padding: 0 32px;
-    }
-
-    .calendarWrapper {
-        margin-bottom: 60px;
     }
 }
 

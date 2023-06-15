@@ -5,7 +5,7 @@ import ProductsList from "./components/ProductsList";
 
 import s from './AddProductForm.module.css';
 
-const AddProductForm = () => {
+const AddProductForm = ({ onClick }) => {
     return <form className={s.addProductForm}>
         <div className={s.inputProductBlock}>
             <div className={s.inputProductWrapper}>
@@ -19,7 +19,7 @@ const AddProductForm = () => {
 
         <ProductsList />
 
-        <Button className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`}><GetSvg name="plusBtn" className={s.plusIcon} /></Button>
+        <Button className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`} onClick={onClick}><GetSvg name="plusBtn" className={s.plusIcon} /></Button>
     </form>
 }
 
