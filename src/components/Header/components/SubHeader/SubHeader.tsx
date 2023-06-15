@@ -4,7 +4,7 @@ import NicButton from "../Navigator/components/NicButton/NicButton";
 import s from './SubHeader.module.css';
 
 const SubHeader = () => {
-    const showModal = true;
+    const showModal = false;
     const isAuth = false;
 
     return <div className={`${s.subHeader} container`}>
