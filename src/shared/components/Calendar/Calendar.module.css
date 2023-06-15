@@ -11,6 +11,11 @@
     height: 20px;
 }
 
+.calendarText {
+    position: absolute;
+    background-color: #fff;
+}
+
 @media screen and (min-width: 320px) {}
 
 @media screen and (min-width: 600px) {

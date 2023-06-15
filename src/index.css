@@ -188,6 +188,11 @@ nav {
     height: 12px;
   }
 
+  .closeSvg {
+    width: 24px;
+    height: 24px;
+  }
+
   .logoTxt {
     display: none;
   }

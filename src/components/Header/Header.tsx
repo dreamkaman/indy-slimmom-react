@@ -4,9 +4,14 @@ import Navigator from "./components/Navigator";
 import SubHeader from "./components/SubHeader/SubHeader";
 
 import s from './Header.module.css';
+import { useState } from "react";
 
 const Header = () => {
+  const [showBurgerMenu, setShowBurgerMenu] = useState(true);
 
+  const handleBurgerMenuClick = () => {
+    setShowBurgerMenu(false);
+  }
   return <>
     <header className={s.header}>
       <div className={s.menu}>
@@ -15,7 +20,7 @@ const Header = () => {
       </div>
       <SubHeader />
     </header>
-    {<BurgerMenu />}
+    {showBurgerMenu && <BurgerMenu onClick={handleBurgerMenuClick} />}
   </>
 }
 
