@@ -2,7 +2,7 @@ import CalculateCaloriesForm from 'components/CalculateCaloriesForm';
 import ModalWindow from 'shared/components/ModalWindow';
 import RecommendedDailyCalorieForm from 'components/RecommendedDailyCalorieForm';
 
-import { loginUser } from 'API';
+import { loginUser, logoutUser } from 'API';
 
 import s from './HomePage.module.css';
 
@@ -18,6 +18,10 @@ const HomePage = () => {
         });
     }
 
+    const handleClick2 = () => {
+        console.log(logoutUser);
+    }
+
     return <section className={s.homeBg}>
         {!isAuth && <div className='container'>
             <div className={s.calculatorFormWrapper}>
@@ -31,6 +35,7 @@ const HomePage = () => {
             </ModalWindow>
         }
         <button type='button' onClick={handleClick}>Test API</button>
+        <button type='button' onClick={handleClick2}>Test API 2</button>
     </section>
 }
 
