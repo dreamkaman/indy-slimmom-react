@@ -2,7 +2,9 @@ import CalculateCaloriesForm from 'components/CalculateCaloriesForm';
 import ModalWindow from 'shared/components/ModalWindow';
 import RecommendedDailyCalorieForm from 'components/RecommendedDailyCalorieForm';
 
-import { loginUser, logoutUser } from 'API';
+import { logoutUser } from 'API';
+import { loginUser } from 'API';
+// import { registerUser } from 'API';
 
 import s from './HomePage.module.css';
 
@@ -12,6 +14,11 @@ const HomePage = () => {
     const showModal = false;
 
     const handleClick = () => {
+        // registerUser({
+        //     email: 'test@testdomain.ua',
+        //     password: 'Qwerty$12',
+        //     username: 'TestUser'
+        // });
         loginUser({
             email: 'test@testdomain.ua',
             password: 'Qwerty$12',
@@ -19,7 +26,7 @@ const HomePage = () => {
     }
 
     const handleClick2 = () => {
-        console.log(logoutUser);
+        logoutUser('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDhjM2I2ZDFmYmQ4MTA1MjU0MjIzZmEiLCJzaWQiOiI2NDhlMTY3YzFmYmQ4MTA1MjU0MjI5NjAiLCJpYXQiOjE2ODcwMzM0NjgsImV4cCI6MTY4NzAzNzA2OH0.f1Dwl6u_9xpC1cS6IZmM38Hvqa7mIMUWttA3wULBxIY');
     }
 
     return <section className={s.homeBg}>

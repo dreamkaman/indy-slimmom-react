@@ -95,7 +95,7 @@
     }
 
     .calendarAndFormBlock {
-        padding-top: 240px;
+        padding-top: 220px;
         padding-left: 75px;
         padding-right: 75px;
 
@@ -110,7 +110,7 @@
         display: block;
         width: 40%;
         height: 100vh;
-        padding-top: 240px;
+        padding-top: 220px;
 
         background-color: var(--bg-gray-color);
         background-image: url('images/leafs.png');
@@ -134,7 +134,7 @@
     }
 
     .calculatorForm {
-        padding-top: 240px;
+        padding-top: 220px;
         padding-left: 60px;
     }
 }
