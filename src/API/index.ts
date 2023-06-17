@@ -22,8 +22,11 @@ export const logoutUser = (token: string) => instanceAxios.post('/auth/logout', 
         Authorization: `Bearer ${token}`
     }
 })
-interface IDataRefresh {
-    token: string,
+interface IToken {
+    token: string
+}
+
+interface IDataRefresh extends IToken {
     sid: string
 }
 export const refreshUser = (data: IDataRefresh) => instanceAxios.post('auth/refresh', { sid: data.sid }, {
@@ -34,11 +37,10 @@ export const refreshUser = (data: IDataRefresh) => instanceAxios.post('auth/refr
 
 
 //Block Daily-rate
-interface IDataSearch {
-    token: string;
+interface IDataSearch extends IToken {
     searchText: string;
 }
-export const productSearch = (data: IDataSearch) => instanceAxios.get('/product', {
+export const findProduct = (data: IDataSearch) => instanceAxios.get('/product', {
     headers: {
         Authorization: `Bearer ${data.token}`
     },
@@ -72,9 +74,8 @@ export const deleteEatenProduct = (data: { requestData: IDeleteRequest, token: s
     }
 });
 
-interface IGetDayInfo {
-    date: string,
-    token: string
+interface IGetDayInfo extends IToken {
+    date: string
 }
 export const getDayInfo = (data: IGetDayInfo) => instanceAxios.post('/day/info', {
     date: data.date
@@ -83,4 +84,12 @@ export const getDayInfo = (data: IGetDayInfo) => instanceAxios.post('/day/info',
         Authorization: `Bearer ${data.token}`
     }
 })
+
+//Block User
+export const getUser = (token: string) => instanceAxios.get('/user', {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+});
+
 
