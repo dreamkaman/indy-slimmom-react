@@ -16,22 +16,25 @@ interface IUserRegisterData extends IUserLoginData {
 //Block Auth
 
 interface IRegisterUserRes {
+    config: object,
     data: {
         email: string,
         username: string,
         id: string,
     },
+    headers: any,
+    request: XMLHttpRequest,
     status: number,
-    config: object,
-    statusText: string,
-    headers: any
+    statusText: string
 }
 
-export const registerUser = async (userData: IUserRegisterData): Promise<AxiosResponse<IRegisterUserRes>> => {
+export const registerUser = async (userData: IUserRegisterData) => {
     try {
-        const result: AxiosResponse<IRegisterUserRes> = await instanceAxios.post('/auth/register', userData);
-        console.log(result);
-        return result;
+        const result: IRegisterUserRes = await instanceAxios.post('/auth/register', userData);
+
+        const { data } = result;
+
+        return data;
     } catch (error) {
         console.log(error);
         throw new Error(error.message);

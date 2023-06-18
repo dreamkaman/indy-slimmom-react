@@ -3,8 +3,8 @@ import ModalWindow from 'shared/components/ModalWindow';
 import RecommendedDailyCalorieForm from 'components/RecommendedDailyCalorieForm';
 
 import { logoutUser } from 'API';
-import { loginUser } from 'API';
-// import { registerUser } from 'API';
+// import { loginUser } from 'API';
+import { registerUser } from 'API';
 
 import s from './HomePage.module.css';
 
@@ -14,15 +14,15 @@ const HomePage = () => {
     const showModal = false;
 
     const handleClick = () => {
-        // registerUser({
+        registerUser({
+            email: 'test2@testdomain.ua',
+            password: 'Qwerty$12',
+            username: 'TestUser2'
+        });
+        // loginUser({
         //     email: 'test@testdomain.ua',
         //     password: 'Qwerty$12',
-        //     username: 'TestUser'
         // });
-        loginUser({
-            email: 'test@testdomain.ua',
-            password: 'Qwerty$12',
-        });
     }
 
     const handleClick2 = () => {
