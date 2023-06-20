@@ -16,16 +16,11 @@ interface IUserRegisterData extends IUserLoginData {
 //Block Auth
 
 interface IRegisterUserRes {
-    config: object,
     data: {
         email: string,
         username: string,
         id: string,
-    },
-    headers: any,
-    request: XMLHttpRequest,
-    status: number,
-    statusText: string
+    }
 }
 
 export const registerUser = async (userData: IUserRegisterData) => {
