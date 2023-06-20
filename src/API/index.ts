@@ -9,7 +9,7 @@ interface IUserLoginData {
     email: string,
     password: string,
 }
-interface IUserRegisterData extends IUserLoginData {
+export interface IUserRegisterData extends IUserLoginData {
     username: string
 }
 
