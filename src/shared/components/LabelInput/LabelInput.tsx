@@ -21,7 +21,10 @@ interface ILabelInput {
 const LabelInput: FC<ILabelInput> = ({ name, type, labelText, register = null, rules = null }) => {
     return <div className={s.wrapper}>
         {register === null ?
-            <input name={name} type={type} placeholder='.' /> :
+            <input
+                name={name}
+                type={type}
+                placeholder='.' /> :
             <input
                 type={type}
                 placeholder='.'
