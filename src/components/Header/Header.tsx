@@ -7,7 +7,7 @@ import s from './Header.module.css';
 import { useState } from "react";
 
 const Header = () => {
-  const [showBurgerMenu, setShowBurgerMenu] = useState(true);
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const handleBurgerMenuClick = () => {
     setShowBurgerMenu(false);

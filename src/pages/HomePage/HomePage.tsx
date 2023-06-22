@@ -6,7 +6,7 @@ import s from './HomePage.module.css';
 
 
 const HomePage = () => {
-    const isAuth = true;
+    const isAuth = false;
     const showModal = false;
 
 
