@@ -1,6 +1,7 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { ToastContainer } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 import Header from 'components/Header';
@@ -14,7 +15,7 @@ function App() {
       <AppRouts />
       <ToastContainer
         position="top-right"
-        autoClose={4000}
+        autoClose={6000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick

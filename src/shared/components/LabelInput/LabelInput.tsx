@@ -3,25 +3,30 @@ import { useForm } from 'react-hook-form';
 
 import s from './LabelInput.module.css';
 
+interface IRules {
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    pattern?: RegExp;
+    validate?: (value: string) => boolean | string;
+}
 
 interface ILabelInput {
     name: string;
     type: 'telephone' | 'email' | 'text' | 'password';
     labelText: string;
     register?: ReturnType<typeof useForm>['register'] | null;
-    settings?: object | null;
+    rules?: IRules | null;
 }
-const LabelInput: FC<ILabelInput> = ({ name, type, labelText, register = null, settings = null }) => {
+const LabelInput: FC<ILabelInput> = ({ name, type, labelText, register = null, rules = null }) => {
     return <div className={s.wrapper}>
         {register === null ?
             <input name={name} type={type} placeholder='.' /> :
             <input
-                // name={name}
                 type={type}
                 placeholder='.'
-                {...register(name, { ...settings })} />
+                {...register(name, rules)} />
         }
-        {/* {register && <input name={name} type={type} placeholder='.' />} */}
         <label htmlFor={name}>{labelText}</label>
     </div >
 }
