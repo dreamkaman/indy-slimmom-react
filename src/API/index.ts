@@ -5,7 +5,7 @@ export const instanceAxios = axios.create({
     baseURL: "https://slimmom-backend.goit.global",
 });
 
-interface IUserLoginData {
+export interface IUserLoginData {
     email: string,
     password: string,
 }
