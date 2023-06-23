@@ -9,11 +9,15 @@ import { validation } from 'shared/tools/validation';
 
 
 const CalculateCaloriesForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm();
 
     const handleCaloriesFormSubmit: React.FormEventHandler<HTMLFormElement> = (data) => {
-        // e.preventDefault();
         console.log(data);
+        reset();
     }
 
     const heightRules = {
