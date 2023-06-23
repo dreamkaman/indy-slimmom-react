@@ -4,10 +4,19 @@ import { useForm } from 'react-hook-form';
 import s from './LabelInput.module.css';
 
 interface IRules {
-    required?: boolean;
-    minLength?: number;
-    maxLength?: number;
-    pattern?: RegExp;
+    required?: string | boolean;
+    minLength?: {
+        value: number;
+        message: string
+    } | number;
+    maxLength?: {
+        value: number;
+        message: string
+    } | number;
+    pattern?: {
+        value: RegExp;
+        message: string
+    };
     validate?: (value: string) => boolean | string;
 }
 

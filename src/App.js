@@ -15,7 +15,7 @@ function App() {
       <AppRouts />
       <ToastContainer
         position="top-right"
-        autoClose={6000}
+        autoClose={5000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick
@@ -24,7 +24,6 @@ function App() {
         draggable
         pauseOnHover
         theme="colored"
-        // transition="zoom"
       />
     </LocalizationProvider>
   );
