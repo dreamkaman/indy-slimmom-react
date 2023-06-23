@@ -7,23 +7,22 @@ export const validation = (errors: FieldErrors<FieldValues>) => {
     if (errorKeys.length) {
         errorKeys.forEach(key => {
             let message: string | FieldValues = '';
-            console.log(errors[key].message);
 
             switch (errors[key].type) {
                 case 'required':
-                    message = errors[key].message || `The value of the field "${key.toUpperCase()}" is required!`;
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is required!`;
                     break;
                 case 'minLength':
-                    message = errors[key].message || `The value of the field "${key.toUpperCase()}" is too short!`;
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too short!`;
                     break;
                 case 'maxLength':
-                    message = errors[key].message || `The value of the field "${key.toUpperCase()}" is too long!`;
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too long!`;
                     break;
                 case 'pattern':
-                    message = errors[key].message || `The value of the field "${key.toUpperCase()} is wrong!"`;
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()} is wrong!"`;
                     break;
                 default:
-                    message = errors[key].message || `The form field "${key}" doesn't meet requirements!`;
+                    message = `Unexpected error!`;
                     break;
             }
 

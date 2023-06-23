@@ -20,12 +20,14 @@ const LoginUserForm = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors } } = useForm();
 
     const navigate = useNavigate();
 
     const handleSubmitLoginForm = (data: IFormData) => {
         console.log(data);
+        reset();
     }
 
     const handleRegistrationClick = () => {
