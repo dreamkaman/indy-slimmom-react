@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import LabelInput from 'shared/components/LabelInput';
 import Button from 'shared/components/Button/Button';
 
-import { nameRules, emailRules, passwordRules } from 'shared/reactHookFormRules';
-import { validation } from 'shared/tools/validation';
+import { nameRegisterRules, emailRegisterRules, passwordRegisterRules } from 'shared/reactHookFormRules';
+import { checkError } from 'shared/tools/checkError';
 
 import s from './RegisterUserForm.module.css';
 
@@ -34,7 +34,7 @@ const RegisterUserForm = () => {
     };
 
     const handleRegisterClick = () => {
-        validation(errors);
+        checkError(errors);
     }
 
 
@@ -42,10 +42,10 @@ const RegisterUserForm = () => {
     return <form className={s.registrationForm} onSubmit={handleSubmit(handleSubmitRegistrationForm)}>
         <h3 className={s.registrationFormTitle}>Register</h3>
         <div className={s.inputWrapper}>
-            <LabelInput name='name' type='text' labelText="Name*" register={register} rules={nameRules} />
-            <LabelInput name='email' type='email' labelText="Email*" register={register} rules={emailRules} />
-            <LabelInput name='password' type="password" labelText="Password*" register={register} rules={passwordRules} />
-            <LabelInput name='repeatedPassword' type="password" labelText="Repeat Password*" register={register} rules={passwordRules} />
+            <LabelInput name='name' type='text' labelText="Name*" register={register} rules={nameRegisterRules} />
+            <LabelInput name='email' type='email' labelText="Email*" register={register} rules={emailRegisterRules} />
+            <LabelInput name='password' type="password" labelText="Password*" register={register} rules={passwordRegisterRules} />
+            <LabelInput name='repeatedPassword' type="password" labelText="Repeat Password*" register={register} rules={passwordRegisterRules} />
         </div>
         <div className={s.buttonWrapper}>
             <Button className={`${s.registrationButton} ${s.button} buttonActive buttonRectangle`} type='submit' name="Register" onClick={handleRegisterClick} />

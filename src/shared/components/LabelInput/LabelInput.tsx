@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 import s from './LabelInput.module.css';
 
@@ -24,7 +24,7 @@ interface ILabelInput {
     name: string;
     type: 'telephone' | 'email' | 'text' | 'password';
     labelText: string;
-    register?: ReturnType<typeof useForm>['register'] | null;
+    register?: UseFormRegister<FieldValues> | null;
     rules?: IRules | null;
 }
 const LabelInput: FC<ILabelInput> = ({ name, type, labelText, register = null, rules = null }) => {

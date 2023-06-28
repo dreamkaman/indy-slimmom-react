@@ -5,7 +5,22 @@ import Button from "shared/components/Button/Button";
 
 import s from './CalculateCaloriesForm.module.css';
 import RadioButton from "shared/components/RadioButton/RadioButton";
-import { validation } from 'shared/tools/validation';
+import { checkError } from 'shared/tools/checkError';
+import {
+    ageRules,
+    bloodRules,
+    currentWeightRules,
+    desiredWeightRules,
+    heightRules
+} from 'shared/reactHookFormRules';
+
+interface ICalculateCaloriesFormData {
+    height: string;
+    age: string;
+    currentWeight: string;
+    desiredWeight: string;
+    bloodGroup: string;
+}
 
 
 const CalculateCaloriesForm = () => {
@@ -15,30 +30,13 @@ const CalculateCaloriesForm = () => {
         formState: { errors }
     } = useForm();
 
-    const handleCaloriesFormSubmit: React.FormEventHandler<HTMLFormElement> = (data) => {
+    const handleCaloriesFormSubmit = (data: ICalculateCaloriesFormData) => {
         console.log(data);
         reset();
     }
 
-    const heightRules = {
-        required: true,
-    }
-    const ageRules = {
-        required: true,
-    }
-    const currentWeightRules = {
-        required: true,
-    }
-    const desiredWeightRules = {
-        required: true,
-    }
-
-    const bloodRules = {
-        required: true,
-    }
-
     const handleStartLoosingWeightBtnClick = () => {
-        validation(errors);
+        checkError(errors);
     }
 
     return <form
