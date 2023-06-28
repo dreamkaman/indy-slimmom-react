@@ -1,6 +1,6 @@
-// import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 
-// import * as userActionTypes from 'redux/actions/auth/actionTypes';
+import * as userActionTypes from 'redux/actions/auth/actionTypes';
 
 interface IUserState {
     accessToken: string,
@@ -43,21 +43,23 @@ export const initialState: IUserState = {
 
 };
 
-// const userReducer = createReducer(initialState, {
-//     [userActionTypes.LOGIN_USER]: (state, action) => {
-//         return {
-//             ...state,
-//             accessToken: action.payload.accessToken,
-//             refreshToken: action.payload.refreshToken,
-//             sid: action.payload.sid,
-//             user: {
-//                 ...state.user,
-//                 email: action.payload.user.email,
-//                 username: '',
-//                 userData: {
-//                 }
-//             }
-//         }
-//     }
-// }
-// );
+export const userReducer = createReducer(initialState, {
+    [userActionTypes.LOGIN_USER]: (state, action) => {
+        console.log(action);
+        return { ...state };
+        // return {
+        //     ...state,
+        //     accessToken: action.payload.accessToken,
+        //     refreshToken: action.payload.refreshToken,
+        //     sid: action.payload.sid,
+        //     user: {
+        //         ...state.user,
+        //         email: action.payload.user.email,
+        //         username: '',
+        //         userData: {
+        //         }
+        //     }
+        // }
+    }
+}
+);

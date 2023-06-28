@@ -6,8 +6,8 @@ import LabelInput from 'shared/components/LabelInput/LabelInput';
 
 // import { showErrorMessage } from 'shared/tools/showMessages';
 
-import { emailRules, passwordRules } from 'shared/reactHookFormRules';
-import { validation } from 'shared/tools/validation';
+import { emailLoginRules, passwordLoginRules } from 'shared/reactHookFormRules';
+import { checkError } from 'shared/tools/checkError';
 
 import s from './LoginUserForm.module.css';
 
@@ -35,14 +35,14 @@ const LoginUserForm = () => {
     };
 
     const handleLoginClick = () => {
-        validation(errors);
+        checkError(errors);
     }
 
     return <form className={s.loginUserForm} onSubmit={handleSubmit(handleSubmitLoginForm)}>
         <h3 className={s.loginFormTitle}>Log in</h3>
         <div className={s.inputWrapper}>
-            <LabelInput name='email' type='email' labelText='Email*' register={register} rules={emailRules} />
-            <LabelInput name='password' type='password' labelText='Password*' register={register} rules={passwordRules} />
+            <LabelInput name='email' type='email' labelText='Email*' register={register} rules={emailLoginRules} />
+            <LabelInput name='password' type='password' labelText='Password*' register={register} rules={passwordLoginRules} />
         </div>
         <div className={s.buttonWrapper}>
             <Button className={`${s.loginButton} ${s.button} buttonActive buttonRectangle`} type='submit' name='Login' onClick={handleLoginClick} />

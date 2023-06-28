@@ -2,7 +2,7 @@ import { FieldErrors, FieldValues } from 'react-hook-form';
 import { showErrorMessage } from '../showMessages';
 
 
-export const validation = (errors: FieldErrors<FieldValues>) => {
+export const checkError = (errors: FieldErrors<FieldValues>) => {
     const errorKeys = Object.keys(errors);
     if (errorKeys.length) {
         errorKeys.forEach(key => {
@@ -14,6 +14,12 @@ export const validation = (errors: FieldErrors<FieldValues>) => {
                     break;
                 case 'minLength':
                     message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too short!`;
+                    break;
+                case 'min':
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too small!`;
+                    break;
+                case 'max':
+                    message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too big!`;
                     break;
                 case 'maxLength':
                     message = errors[key]?.message || `The value of the field "${key.toUpperCase()}" is too long!`;
