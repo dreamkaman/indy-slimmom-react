@@ -1,8 +1,10 @@
-import { all, fork, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
 import { LOGIN_USER, REGISTER_USER } from "redux/actions/auth/actionTypes";
 
-import { IUserLoginData } from 'API';
+import { IUserLoginData, loginUser } from 'API';
+import { loginUserSucceeded } from 'redux/actions/auth/actionCreators';
+import { showErrorMessage } from 'shared/tools/showMessages';
 
 function* registerUserWorker() {
     console.log('registerUserWorker works');
@@ -16,17 +18,34 @@ function* loginUserWorker(action: {
     type: string,
     payload: IUserLoginData
 }) {
-    console.log('email: ', action.payload.email);
-    console.log('password: ', action.payload.password);
-    yield;
+    try {
+        const { payload } = action;
+        const req = yield call(loginUser, payload);
+        yield put(loginUserSucceeded(req));
+    } catch (error) {
+        showErrorMessage(error.message);
+    }
+
+
 }
+
 function* loginUserWatcher() {
     yield takeEvery(LOGIN_USER, loginUserWorker);
 }
+
+// function* loginUserSucceededWorker() {
+
+// }
+
+// function* loginUserSucceededWatcher() {
+//     yield takeEvery(LOGIN_USER_SUCCEEDED, loginUserSucceededWorker);
+// }
+
 export default function* rootSaga() {
     yield all([
         fork(registerUserWatcher),
-        fork(loginUserWatcher)
+        fork(loginUserWatcher),
+        // fork(loginUserSucceededWatcher)
 
     ]);
 }

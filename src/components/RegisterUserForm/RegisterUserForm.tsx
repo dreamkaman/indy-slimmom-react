@@ -35,12 +35,10 @@ const RegisterUserForm = () => {
         try {
             const { username, email, password } = data;
             await registerUser({ username, email, password });
-            navigate('/calculator');
+            navigate('/login');
         } catch (error) {
             showErrorMessage(error.message);
         }
-        console.log(data);
-
     };
 
     const handleLoginClick = () => {
