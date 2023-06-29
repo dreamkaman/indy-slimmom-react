@@ -4,12 +4,11 @@ import { useForm } from 'react-hook-form';
 import Button from 'shared/components/Button/Button';
 import LabelInput from 'shared/components/LabelInput/LabelInput';
 
-// import { showErrorMessage } from 'shared/tools/showMessages';
-
 import { emailLoginRules, passwordLoginRules } from 'shared/reactHookFormRules';
 import { checkError } from 'shared/tools/checkError';
 
 import s from './LoginUserForm.module.css';
+
 
 interface IFormData {
     email: string,
@@ -27,6 +26,7 @@ const LoginUserForm = () => {
 
     const handleSubmitLoginForm = (data: IFormData) => {
         console.log(data);
+
         reset();
     }
 

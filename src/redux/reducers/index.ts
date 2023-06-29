@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 
-const test = (state = {}, action) => {
-  console.log(action); //only for Eslint avoiding
-  return state;
-};
+import { userReducer } from './auth';
 
-const rootReducer = combineReducers({
-  test,
+// const test = (state = {}, action) => {
+//   console.log(action); //only for Eslint avoiding
+//   return state;
+// };
+
+export const rootReducer = combineReducers({
+  userReducer,
 });
 
-export default rootReducer;
