@@ -10,6 +10,8 @@ import { checkError } from 'shared/tools/checkError';
 import { registerUser } from 'API';
 
 import s from './RegisterUserForm.module.css';
+import { showErrorMessage } from 'shared/tools/showMessages';
+
 
 
 interface FormData {
@@ -26,15 +28,19 @@ const RegisterUserForm = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors } } = useForm()
 
 
     const handleSubmitRegistrationForm = async (data: FormData) => {
+        try {
+            const { username, email, password } = data;
+            await registerUser({ username, email, password });
+            navigate('/calculator');
+        } catch (error) {
+            showErrorMessage(error.message);
+        }
         console.log(data);
-        const { username, email, password } = data;
-        await registerUser({ username, email, password });
-        reset();
+
     };
 
     const handleLoginClick = () => {
@@ -44,7 +50,6 @@ const RegisterUserForm = () => {
     const handleRegisterClick = () => {
         checkError(errors);
     }
-
 
 
     return <form className={s.registrationForm} onSubmit={handleSubmit(handleSubmitRegistrationForm)}>

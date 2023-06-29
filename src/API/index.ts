@@ -31,8 +31,7 @@ export const registerUser = async (userData: IUserRegisterData) => {
 
         return data;
     } catch (error) {
-        console.log(error);
-        throw new Error(error.message);
+        throw new Error(error.response.data.message);
     }
 
 }
@@ -70,8 +69,7 @@ export const loginUser = async (userData: IUserLoginData) => {
         const { data }: AxiosResponse<ILoginUserRes> = await instanceAxios.post('/auth/login', userData);
         return data;
     } catch (error) {
-        console.log(error);
-        throw new Error(error.message);
+        throw new Error(error.response.data.message);
     }
 
 }
