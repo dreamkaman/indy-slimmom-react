@@ -8,6 +8,6 @@ import { userReducer } from './auth';
 // };
 
 export const rootReducer = combineReducers({
-  userReducer,
+  userReducer
 });
 

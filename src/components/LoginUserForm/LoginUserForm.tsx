@@ -8,9 +8,11 @@ import { emailLoginRules, passwordLoginRules } from 'shared/reactHookFormRules';
 import { checkError } from 'shared/tools/checkError';
 
 import s from './LoginUserForm.module.css';
+import { useAppDispatch } from 'redux/hooks';
+import { loginUserAction } from 'redux/actions/auth/actionCreators';
 
 
-interface IFormData {
+export interface IFormData {
     email: string,
     password: string
 }
@@ -22,11 +24,13 @@ const LoginUserForm = () => {
         reset,
         formState: { errors } } = useForm();
 
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
 
     const handleSubmitLoginForm = (data: IFormData) => {
         console.log(data);
-
+        dispatch(loginUserAction(data));
         reset();
     }
 
