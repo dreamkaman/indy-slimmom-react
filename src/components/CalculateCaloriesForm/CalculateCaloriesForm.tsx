@@ -58,7 +58,7 @@ const CalculateCaloriesForm = () => {
                     register={register}
                     rules={ageRules} />
                 <LabelInput
-                    name='currentWeight'
+                    name='weight'
                     type='text'
                     labelText="Current weight*"
                     register={register}
