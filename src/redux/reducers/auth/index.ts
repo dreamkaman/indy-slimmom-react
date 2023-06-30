@@ -60,6 +60,11 @@ export const userReducer = createReducer(initialState, {
                 id: action.payload.user.id
             }
         }
+    },
+    [userActionTypes.LOGOUT_USER_SUCCEEDED]: (_state, action) => {
+        console.log('LOGIN_USER_SUCCEEDED');
+        console.log(action);
+        return { ...initialState };
     }
 }
 );
