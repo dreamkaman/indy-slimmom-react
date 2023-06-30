@@ -1,13 +1,18 @@
 import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import GetSvg from 'shared/components/GetSvg';
 import NicButton from './components/NicButton'
 
+import { isAuthSelector } from 'redux/selectors/auth';
+
 import s from './Navigator.module.css';
+
+
 
 const Navigator = () => {
 
-    const isAuth = false;
+    const isAuth = useSelector(isAuthSelector);
     const showModal = false;
 
     return <nav className={s.navigation}>

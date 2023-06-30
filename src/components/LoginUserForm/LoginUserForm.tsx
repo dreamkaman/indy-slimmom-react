@@ -21,7 +21,6 @@ const LoginUserForm = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors } } = useForm();
 
     const dispatch = useAppDispatch();
@@ -29,9 +28,9 @@ const LoginUserForm = () => {
     const navigate = useNavigate();
 
     const handleSubmitLoginForm = (data: IFormData) => {
-        console.log(data);
+
         dispatch(loginUserAction(data));
-        reset();
+        navigate('/dairy');
     }
 
     const handleRegistrationClick = () => {
