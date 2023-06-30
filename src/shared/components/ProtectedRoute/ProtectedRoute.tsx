@@ -1,18 +1,18 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 // import LoginPage from 'pages/LoginPage';
 
-import { isAuthSelector } from "redux/selectors/auth";
+// import { isAuthSelector } from "redux/selectors/auth";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, criteria, path }) => {
 
-    const isAuth = useSelector(isAuthSelector);
+    // const isAuth = useSelector(isAuthSelector);
 
-    if (isAuth) {
+    if (criteria) {
         return children;
     }
-    return <Navigate to="/login" replace={true} />
+    return <Navigate to={path} replace={true} />
 }
 
 export default ProtectedRoute;
