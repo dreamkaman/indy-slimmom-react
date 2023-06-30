@@ -15,7 +15,7 @@ export interface IUserRegisterData extends IUserLoginData {
 
 //Block Auth
 
-interface IRegisterUserRes {
+interface IRegisterUserResponse {
     data: {
         email: string,
         username: string,
@@ -25,7 +25,7 @@ interface IRegisterUserRes {
 
 export const registerUser = async (userData: IUserRegisterData) => {
     try {
-        const result: IRegisterUserRes = await instanceAxios.post('/auth/register', userData);
+        const result: IRegisterUserResponse = await instanceAxios.post('/auth/register', userData);
 
         const { data } = result;
 
@@ -36,7 +36,7 @@ export const registerUser = async (userData: IUserRegisterData) => {
 
 }
 
-interface ILoginUserRes {
+interface ILoginUserResponse {
     accessToken: string,
     refreshToken: string,
     sid: string,
@@ -66,7 +66,7 @@ interface ILoginUserRes {
 }
 export const loginUser = async (userData: IUserLoginData) => {
     try {
-        const { data }: AxiosResponse<ILoginUserRes> = await instanceAxios.post('/auth/login', userData);
+        const { data }: AxiosResponse<ILoginUserResponse> = await instanceAxios.post('/auth/login', userData);
         return data;
     } catch (error) {
         throw new Error(error.response.data.message);
@@ -109,6 +109,25 @@ export const refreshUser = (data: IDataRefresh) => {
 
 
 //Block Daily-rate
+interface IDailyRateRequest {
+    weight: number,
+    height: number,
+    age: number,
+    desiredWeight: number,
+    bloodType: number
+}
+
+interface IDailyRateResponse {
+    dailyRate: number,
+    notAllowedProducts: string[]
+}
+
+export const getDailyRate = async (data: IDailyRateRequest) => {
+    const response: IDailyRateResponse = await instanceAxios.post('/daily-rate', data);
+    console.log(response);
+}
+
+//Block Product-search
 interface IDataSearch extends IToken {
     searchText: string;
 }
