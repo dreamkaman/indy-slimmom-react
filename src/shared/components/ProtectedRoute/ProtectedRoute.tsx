@@ -1,13 +1,12 @@
-// import { useSelector } from "react-redux";
-
-// import LoginPage from 'pages/LoginPage';
-
-// import { isAuthSelector } from "redux/selectors/auth";
+import { FC, ReactElement } from 'react';
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children, criteria, path }) => {
-
-    // const isAuth = useSelector(isAuthSelector);
+interface IProtectedRouteProps {
+    children: ReactElement,
+    criteria: string | boolean,
+    path: string
+}
+const ProtectedRoute: FC<IProtectedRouteProps> = ({ children, criteria, path }) => {
 
     if (criteria) {
         return children;
