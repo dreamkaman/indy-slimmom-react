@@ -30,7 +30,6 @@ const LoginUserForm = () => {
     const handleSubmitLoginForm = (data: IFormData) => {
 
         dispatch(loginUserAction(data));
-        navigate('/dairy');
     }
 
     const handleRegistrationClick = () => {
