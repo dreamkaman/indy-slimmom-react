@@ -74,8 +74,6 @@ export const loginUser = async (userData: IUserLoginData) => {
 
 }
 
-// interface ILogoutUserRes =
-
 export const logoutUser = async (token: string) => {
     try {
         const { data } = await instanceAxios.post('/auth/logout', {}, {
@@ -83,11 +81,10 @@ export const logoutUser = async (token: string) => {
                 Authorization: `Bearer ${token}`
             }
         });
-        console.log(data);
         return data;
 
     } catch (error) {
-        console.log(error);
+        throw new Error(error.message);
     }
 
 }
@@ -100,16 +97,21 @@ interface IDataRefresh extends IToken {
     sid: string
 }
 export const refreshUser = (data: IDataRefresh) => {
-    instanceAxios.post('auth/refresh', { sid: data.sid }, {
-        headers: {
-            Authorization: `Bearer ${data.token}`
-        }
-    });
+    try {
+        instanceAxios.post('auth/refresh', { sid: data.sid }, {
+            headers: {
+                Authorization: `Bearer ${data.token}`
+            }
+        });
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
 }
 
 
 //Block Daily-rate
-interface IDailyRateRequest {
+export interface IDailyRateRequest {
     weight: number,
     height: number,
     age: number,
@@ -118,13 +120,33 @@ interface IDailyRateRequest {
 }
 
 interface IDailyRateResponse {
-    dailyRate: number,
-    notAllowedProducts: string[]
+    data: {
+        dailyRate: number,
+        notAllowedProducts: string[]
+    }
 }
 
-export const getDailyRate = async (data: IDailyRateRequest) => {
-    const response: IDailyRateResponse = await instanceAxios.post('/daily-rate', data);
-    console.log(response);
+export const getDailyRate = async (request: IDailyRateRequest) => {
+    try {
+        const { data }: IDailyRateResponse = await instanceAxios.post('/daily-rate', request);
+
+        console.log('Response - ', data);
+
+        return data;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
+}
+
+export const postDailyRate = async (request: IDailyRateRequest, userId: string) => {
+    try {
+        const result = await instanceAxios.post(`/daily-rate/:${userId}`, request);
+
+        console.log(result);
+    } catch (error) {
+        throw new Error(error.message);
+    }
 }
 
 //Block Product-search
@@ -132,15 +154,20 @@ interface IDataSearch extends IToken {
     searchText: string;
 }
 export const findProduct = async (data: IDataSearch) => {
-    const result = await instanceAxios.get('/product', {
-        headers: {
-            Authorization: `Bearer ${data.token}`
-        },
-        params:
-            { search: data.searchText }
-    });
+    try {
+        const result = await instanceAxios.get('/product', {
+            headers: {
+                Authorization: `Bearer ${data.token}`
+            },
+            params:
+                { search: data.searchText }
+        });
 
-    return result;
+        return result;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+
 }
 
 //Block Day

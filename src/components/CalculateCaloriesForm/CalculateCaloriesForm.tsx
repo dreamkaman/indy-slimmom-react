@@ -6,6 +6,8 @@ import Button from "shared/components/Button/Button";
 import s from './CalculateCaloriesForm.module.css';
 import RadioButton from "shared/components/RadioButton/RadioButton";
 import { checkError } from 'shared/tools/checkError';
+import { IDailyRateRequest, getDailyRate } from 'API';
+import { showErrorMessage } from 'shared/tools/showMessages';
 import {
     ageRules,
     bloodRules,
@@ -13,26 +15,37 @@ import {
     desiredWeightRules,
     heightRules
 } from 'shared/reactHookFormRules';
-
-interface ICalculateCaloriesFormData {
-    height: string;
-    age: string;
-    currentWeight: string;
-    desiredWeight: string;
-    bloodGroup: string;
-}
+import { useLocation } from 'react-router-dom';
 
 
 const CalculateCaloriesForm = () => {
+    const location = useLocation();
+
+    console.log(location);
+
     const { register,
         handleSubmit,
         reset,
         formState: { errors }
     } = useForm();
 
-    const handleCaloriesFormSubmit = (data: ICalculateCaloriesFormData) => {
-        console.log(data);
-        reset();
+    const handleCaloriesFormSubmit = async (data: IDailyRateRequest) => {
+        if (location.pathname === '/') {
+            try {
+                const result = await getDailyRate(data);
+                console.log('Result');
+
+                console.log(result);
+                reset();
+            } catch (error) {
+                showErrorMessage(error.message);
+            }
+        }
+
+        if (location.pathname === '/calculator') {
+
+        }
+
     }
 
     const handleStartLoosingWeightBtnClick = () => {
@@ -81,11 +94,6 @@ const CalculateCaloriesForm = () => {
             type='submit'
             className={`${s.startLoosingWeightBtn} buttonActive buttonRectangle`}
             onClick={handleStartLoosingWeightBtnClick} />
-
-
-
-
-
 
     </form>
 }
