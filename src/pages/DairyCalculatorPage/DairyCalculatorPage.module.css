@@ -27,7 +27,7 @@
         align-items: center;
     }
 
-    .summeryAndFoodBlock {
+    .summaryAndFoodBlock {
         width: 100%;
         height: min-content;
 
@@ -36,7 +36,7 @@
         background-color: var(--bg-gray-color);
     }
 
-    .wrapperSummery {
+    .wrapperSummary {
         margin: 0 auto 40px;
         max-width: 270px;
     }
@@ -64,7 +64,7 @@
         align-items: baseline;
     }
 
-    .summeryAndFoodBlock {
+    .summaryAndFoodBlock {
         display: flex;
 
         width: 100%;
@@ -106,7 +106,7 @@
         width: 260px;
     }
 
-    .summeryAndFoodBlock {
+    .summaryAndFoodBlock {
         display: block;
         width: 40%;
         height: 100vh;
@@ -119,7 +119,7 @@
         background-repeat: no-repeat;
     }
 
-    .wrapperSummery {
+    .wrapperSummary {
         max-width: 270px;
         margin-bottom: 60px;
         margin-left: auto;

@@ -81,6 +81,25 @@ export const userReducer = createReducer(initialState, {
                 }
             }
         }
+    },
+    // [userActionTypes.GET_USER_INFO]: (state, action) => {
+    //     console.log('GET_USER_INFO');
+    //     console.log(state);
+    //     console.log(action);
+    //     return { ...state }
+    // },
+    [userActionTypes.GET_USER_INFO_SUCCEEDED]: (state, action) => {
+        console.log('GET_USER_INFO_SUCCEEDED');
+        console.log(action);
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                userData: {
+                    ...action.payload,
+                }
+            }
+        }
     }
 }
 );

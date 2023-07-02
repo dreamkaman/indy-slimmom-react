@@ -1,9 +1,28 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
-import { GET_USER_INFO, LOGIN_USER, LOGOUT_USER, POST_USER_DAILY_RATE, REGISTER_USER } from "redux/actions/user/actionTypes";
+import {
+    GET_USER_INFO,
+    LOGIN_USER,
+    LOGOUT_USER,
+    POST_USER_DAILY_RATE,
+    REGISTER_USER
+} from "redux/actions/user/actionTypes";
 
-import { IDailyRateRequest, IUserLoginData, loginUser, logoutUser, postUserDailyRate } from 'API';
-import { logOutUserSucceededAction, loginUserSucceededAction, postUserDailyRateSucceededAction } from 'redux/actions/user/actionCreators';
+import {
+    IDailyRateRequest,
+    IUserLoginData,
+    getUserInfo,
+    loginUser,
+    logoutUser,
+    postUserDailyRate
+} from 'API';
+import {
+    getUserInfoAction,
+    getUserInfoSucceededACtion,
+    logOutUserSucceededAction,
+    loginUserSucceededAction,
+    postUserDailyRateSucceededAction,
+} from 'redux/actions/user/actionCreators';
 import { showErrorMessage } from 'shared/tools/showMessages';
 
 function* registerUserWorker() {
@@ -77,6 +96,9 @@ function* postUserDailyRateWorker(action: {
         console.log('postUserDailyRateWorker saga');
         console.log(data);
         yield put(postUserDailyRateSucceededAction(data));
+        const result = yield put(getUserInfoAction(token));
+        console.log('UserData');
+        console.log(result);
     } catch (error) {
         showErrorMessage(error.message);
     }
@@ -88,15 +110,16 @@ function* postUserDailyRateWatcher() {
 
 function* getUserInfoWorker(action: {
     type: string,
-    payload: {
-        token: string
-    }
+    payload: string
 }) {
     try {
-        const { payload: { token } } = action;
+        const { payload: token } = action;
         console.log('getUserInfoWorker');
-        console.log(token);
-        yield;
+        console.log(action);
+        const { data: { userData } } = yield call(getUserInfo, token);
+        console.log(userData);
+        yield put(getUserInfoSucceededACtion(userData));
+
     } catch (error) {
         showErrorMessage(error.message);
     }
