@@ -1,7 +1,12 @@
+import { useSelector } from 'react-redux';
+
 import s from './FoodNotRecommended.module.css';
+import { userDataSelector } from 'redux/selectors/user';
 
 const FoodNotRecommended = () => {
-    const foodNotRecommendedList = [];
+    const { notAllowedProducts } = useSelector(userDataSelector);
+
+    const foodNotRecommendedList = notAllowedProducts;
 
     return <div className={s.foodNotRecommendedBlock}>
         <h4 className={s.title}>Food not recommended</h4>

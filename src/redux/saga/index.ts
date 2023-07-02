@@ -23,7 +23,7 @@ import {
     loginUserSucceededAction,
     postUserDailyRateSucceededAction,
 } from 'redux/actions/user/actionCreators';
-import { showErrorMessage } from 'shared/tools/showMessages';
+import { showMessage } from 'shared/tools/showMessages';
 
 function* registerUserWorker() {
     console.log('registerUserWorker works');
@@ -42,7 +42,7 @@ function* loginUserWorker(action: {
         const response = yield call(loginUser, payload);
         yield put(loginUserSucceededAction(response));
     } catch (error) {
-        showErrorMessage(error.message);
+        showMessage(error.message);
     }
 
 
@@ -77,7 +77,7 @@ function* logoutUserWorker(action: {
 
         yield put(logOutUserSucceededAction());
     } catch (error) {
-        showErrorMessage(error.message);
+        showMessage(error.message);
     }
 
 }
@@ -100,7 +100,7 @@ function* postUserDailyRateWorker(action: {
         console.log('UserData');
         console.log(result);
     } catch (error) {
-        showErrorMessage(error.message);
+        showMessage(error.message);
     }
 }
 
@@ -121,7 +121,7 @@ function* getUserInfoWorker(action: {
         yield put(getUserInfoSucceededACtion(userData));
 
     } catch (error) {
-        showErrorMessage(error.message);
+        showMessage(error.message);
     }
 }
 
