@@ -5,3 +5,5 @@ export const isAuthSelector = (state: RootState) => state.userReducer.accessToke
 export const userNameSelector = (state: RootState) => state.userReducer.user.username;
 
 export const userIdSelector = (state: RootState) => state.userReducer.user.id;
+
+export const userDataSelector = (state: RootState) => state.userReducer.user.userData;

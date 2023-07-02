@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Calendar from "shared/components/Calendar";
 import AddProductForm from "components/AddProductForm";
-import SummeryForDay from "components/SummeryForDay";
+import SummaryForDay from "components/SummaryForDay";
 import FoodNotRecommended from "components/FoodNotRecommended";
 import CalculateCaloriesForm from "components/CalculateCaloriesForm";
 
@@ -40,9 +40,9 @@ const DairyCalculatorPage = () => {
             {pathname === '/calculator' && <div className={s.calculatorForm}>
                 <CalculateCaloriesForm />
             </div>}
-            <div className={s.summeryAndFoodBlock}>
-                <div className={s.wrapperSummery}>
-                    <SummeryForDay />
+            <div className={s.summaryAndFoodBlock}>
+                <div className={s.wrapperSummary}>
+                    <SummaryForDay />
                 </div>
                 <div className={s.wrapperFoodNotRecommended}>
                     <FoodNotRecommended />
