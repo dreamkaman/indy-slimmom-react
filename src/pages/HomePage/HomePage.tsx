@@ -3,7 +3,7 @@ import CalculateCaloriesForm from 'components/CalculateCaloriesForm';
 import ModalWindow from 'shared/components/ModalWindow';
 import RecommendedDailyCalorieForm from 'components/RecommendedDailyCalorieForm';
 
-import { isAuthSelector } from 'redux/selectors/auth';
+import { isAuthSelector } from 'redux/selectors/user';
 import s from './HomePage.module.css';
 
 

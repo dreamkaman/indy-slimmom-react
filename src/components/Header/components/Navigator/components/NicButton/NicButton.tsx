@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/hooks';
 
-import { isAuthSelector, userNameSelector } from 'redux/selectors/auth';
+import { isAuthSelector, userNameSelector } from 'redux/selectors/user';
 
 import s from './NicButton.module.css';
-import { logoutUserAction } from 'redux/actions/auth/actionCreators';
+import { logoutUserAction } from 'redux/actions/user/actionCreators';
 
 const NicButton = () => {
     const nic = useSelector(userNameSelector);

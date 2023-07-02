@@ -126,7 +126,7 @@ interface IDailyRateResponse {
     }
 }
 
-export const getDailyRate = async (request: IDailyRateRequest) => {
+export const getGeneralDailyRate = async (request: IDailyRateRequest) => {
     try {
         const { data }: IDailyRateResponse = await instanceAxios.post('/daily-rate', request);
 
@@ -139,11 +139,14 @@ export const getDailyRate = async (request: IDailyRateRequest) => {
 
 }
 
-export const postDailyRate = async (request: IDailyRateRequest, userId: string) => {
+export const postUserDailyRate = async (request: IDailyRateRequest, userId: string, token: string) => {
     try {
-        const result = await instanceAxios.post(`/daily-rate/:${userId}`, request);
-
-        console.log(result);
+        const result: IDailyRateResponse = await instanceAxios.post(`/daily-rate/${userId}`, request, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return result;
     } catch (error) {
         throw new Error(error.message);
     }
@@ -208,7 +211,7 @@ export const getDayInfo = (data: IGetDayInfo) => instanceAxios.post('/day/info',
 })
 
 //Block User
-export const getUser = (token: string) => instanceAxios.get('/user', {
+export const getUserInfo = (token: string) => instanceAxios.get('/user', {
     headers: {
         Authorization: `Bearer ${token}`
     }

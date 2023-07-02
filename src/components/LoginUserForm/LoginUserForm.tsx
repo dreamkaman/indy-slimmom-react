@@ -9,7 +9,7 @@ import { checkError } from 'shared/tools/checkError';
 
 import s from './LoginUserForm.module.css';
 import { useAppDispatch } from 'redux/hooks';
-import { loginUserAction } from 'redux/actions/auth/actionCreators';
+import { loginUserAction } from 'redux/actions/user/actionCreators';
 
 
 export interface IFormData {

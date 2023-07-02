@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import GetSvg from "shared/components/GetSvg/GetSvg";
 import NicButton from "../Navigator/components/NicButton/NicButton";
 
-import { isAuthSelector } from "redux/selectors/auth";
+import { isAuthSelector } from "redux/selectors/user";
 import s from './SubHeader.module.css';
 
 const SubHeader = () => {
