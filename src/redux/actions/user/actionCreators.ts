@@ -12,7 +12,8 @@ import {
     LOGOUT_USER_SUCCEEDED,
     POST_USER_DAILY_RATE,
     POST_USER_DAILY_RATE_SUCCEEDED,
-    GET_USER_INFO_SUCCEEDED
+    GET_USER_INFO_SUCCEEDED,
+    GET_USER_DAILY_RATE
 } from './actionTypes';
 
 import { IDailyRateRequest, IUserRegisterData } from 'API';
@@ -29,8 +30,10 @@ export const logOutUserSucceededAction = createAction<string, 'LOGOUT_USER_SUCCE
 
 export const getUserInfoAction = createAction<string, 'GET_USER_INFO'>(GET_USER_INFO);
 
-export const postUserDailyRate = createAction<{ request: IDailyRateRequest, userId: string, token: string }, 'POST_USER_DAILY_RATE'>(POST_USER_DAILY_RATE);
+export const postUserDailyRateAction = createAction<{ request: IDailyRateRequest, userId: string, token: string }, 'POST_USER_DAILY_RATE'>(POST_USER_DAILY_RATE);
 
 export const postUserDailyRateSucceededAction = createAction<{ request: IDailyRateRequest, userId: string }>(POST_USER_DAILY_RATE_SUCCEEDED);
 
 export const getUserInfoSucceededACtion = createAction(GET_USER_INFO_SUCCEEDED);
+
+export const getUserDailyRateAction = createAction<IDailyRateRequest, 'GET_USER_DAILY_RATE'>(GET_USER_DAILY_RATE);

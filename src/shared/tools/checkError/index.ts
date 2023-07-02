@@ -1,5 +1,5 @@
 import { FieldErrors, FieldValues } from 'react-hook-form';
-import { showErrorMessage } from '../showMessages';
+import { showMessage } from '../showMessages';
 
 
 export const checkError = (errors: FieldErrors<FieldValues>) => {
@@ -32,7 +32,7 @@ export const checkError = (errors: FieldErrors<FieldValues>) => {
                     break;
             }
 
-            showErrorMessage(message);
+            showMessage(message);
         });
     }
 }

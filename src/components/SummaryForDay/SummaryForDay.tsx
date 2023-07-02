@@ -8,15 +8,13 @@ import { userDataSelector } from "redux/selectors/user";
 
 
 const SummaryForDay = () => {
-    const userData = useSelector(userDataSelector);
-
-    console.log(userData);
+    const { dailyRate } = useSelector(userDataSelector);
 
     const day = new Date();
-    const leftCalories = '000';
-    const consumedCalories = '000';
-    const dailyRateCalories = '000';
-    const percentCalories = '000';
+    const leftCalories = '0.00';
+    const consumedCalories = '0.00';
+    const dailyRateCalories = dailyRate || '0.00';
+    const percentCalories = '0.00';
 
     return <div className={s.summaryBlock}>
         <h4 className={s.summaryTitle}>Summary for {dateFormatter(day)}</h4>

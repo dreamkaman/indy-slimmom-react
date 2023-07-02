@@ -6,8 +6,8 @@ import Button from "shared/components/Button/Button";
 import s from './CalculateCaloriesForm.module.css';
 import RadioButton from "shared/components/RadioButton/RadioButton";
 import { checkError } from 'shared/tools/checkError';
-import { IDailyRateRequest, getGeneralDailyRate } from 'API';
-import { showErrorMessage } from 'shared/tools/showMessages';
+import { IDailyRateRequest } from 'API';
+import { showMessage } from 'shared/tools/showMessages';
 import {
     ageRules,
     bloodRules,
@@ -19,7 +19,10 @@ import {
 import { useSelector } from 'react-redux';
 import { isAuthSelector, userIdSelector } from 'redux/selectors/user';
 import { useAppDispatch } from 'redux/hooks';
-import { postUserDailyRate } from 'redux/actions/user/actionCreators';
+import {
+    getUserDailyRateAction,
+    postUserDailyRateAction
+} from 'redux/actions/user/actionCreators';
 
 
 const CalculateCaloriesForm = () => {
@@ -27,7 +30,6 @@ const CalculateCaloriesForm = () => {
 
     const id = useSelector(userIdSelector);
     const token = useSelector(isAuthSelector);
-    console.log(id);
 
     const { register,
         handleSubmit,
@@ -38,20 +40,18 @@ const CalculateCaloriesForm = () => {
     const handleCaloriesFormSubmit = async (data: IDailyRateRequest) => {
         if (!id) {
             try {
-                const result = await getGeneralDailyRate(data);
-                console.log('Result');
-
-                console.log(result);
+                dispatch(getUserDailyRateAction(data));
+                // const result = await getGeneralDailyRate(data);
                 reset();
             } catch (error) {
-                showErrorMessage(error.message);
+                showMessage(error.message);
             }
         } else {
             try {
-                dispatch(postUserDailyRate({ request: data, userId: id, token }));
-
+                dispatch(postUserDailyRateAction({ request: data, userId: id, token }));
+                reset();
             } catch (error) {
-                showErrorMessage(error.message);
+                showMessage(error.message);
             }
         }
     }

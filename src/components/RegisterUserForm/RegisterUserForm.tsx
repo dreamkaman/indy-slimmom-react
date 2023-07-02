@@ -10,7 +10,7 @@ import { checkError } from 'shared/tools/checkError';
 import { registerUser } from 'API';
 
 import s from './RegisterUserForm.module.css';
-import { showErrorMessage } from 'shared/tools/showMessages';
+import { showMessage } from 'shared/tools/showMessages';
 
 
 
@@ -37,7 +37,7 @@ const RegisterUserForm = () => {
             await registerUser({ username, email, password });
             navigate('/login');
         } catch (error) {
-            showErrorMessage(error.message);
+            showMessage(error.message);
         }
     };
 
