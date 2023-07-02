@@ -6,7 +6,7 @@ import Button from "shared/components/Button/Button";
 import s from './CalculateCaloriesForm.module.css';
 import RadioButton from "shared/components/RadioButton/RadioButton";
 import { checkError } from 'shared/tools/checkError';
-import { IDailyRateRequest, getDailyRate } from 'API';
+import { IDailyRateRequest, getGeneralDailyRate } from 'API';
 import { showErrorMessage } from 'shared/tools/showMessages';
 import {
     ageRules,
@@ -15,13 +15,19 @@ import {
     desiredWeightRules,
     heightRules
 } from 'shared/reactHookFormRules';
-import { useLocation } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+import { isAuthSelector, userIdSelector } from 'redux/selectors/user';
+import { useAppDispatch } from 'redux/hooks';
+import { postUserDailyRate } from 'redux/actions/user/actionCreators';
 
 
 const CalculateCaloriesForm = () => {
-    const location = useLocation();
+    const dispatch = useAppDispatch();
 
-    console.log(location);
+    const id = useSelector(userIdSelector);
+    const token = useSelector(isAuthSelector);
+    console.log(id);
 
     const { register,
         handleSubmit,
@@ -30,9 +36,9 @@ const CalculateCaloriesForm = () => {
     } = useForm();
 
     const handleCaloriesFormSubmit = async (data: IDailyRateRequest) => {
-        if (location.pathname === '/') {
+        if (!id) {
             try {
-                const result = await getDailyRate(data);
+                const result = await getGeneralDailyRate(data);
                 console.log('Result');
 
                 console.log(result);
@@ -40,12 +46,14 @@ const CalculateCaloriesForm = () => {
             } catch (error) {
                 showErrorMessage(error.message);
             }
+        } else {
+            try {
+                dispatch(postUserDailyRate({ request: data, userId: id, token }));
+
+            } catch (error) {
+                showErrorMessage(error.message);
+            }
         }
-
-        if (location.pathname === '/calculator') {
-
-        }
-
     }
 
     const handleStartLoosingWeightBtnClick = () => {

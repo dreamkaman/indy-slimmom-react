@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import * as userActionTypes from 'redux/actions/auth/actionTypes';
+import * as userActionTypes from 'redux/actions/user/actionTypes';
 
 export interface IUserState {
     accessToken: string,
@@ -65,6 +65,22 @@ export const userReducer = createReducer(initialState, {
         console.log('LOGIN_USER_SUCCEEDED');
         console.log(action);
         return { ...initialState };
+    },
+    [userActionTypes.POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+        const { payload } = action;
+        console.log('POST_USER_DAILY_RATE_SUCCEEDED');
+        console.log(action);
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                userData: {
+                    ...state.user.userData,
+                    dailyRate: payload.dailyRate,
+                    notAllowedProducts: [...payload.notAllowedProducts]
+                }
+            }
+        }
     }
 }
 );

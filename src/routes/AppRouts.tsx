@@ -7,7 +7,7 @@ import RegistrationPage from 'pages/RegistrationPage';
 import HomePage from 'pages/HomePage';
 import ProtectedRoute from 'shared/components/ProtectedRoute';
 
-import { isAuthSelector } from 'redux/selectors/auth';
+import { isAuthSelector } from 'redux/selectors/user';
 
 const AppRouts = () => {
     const isAuth = useSelector(isAuthSelector);
