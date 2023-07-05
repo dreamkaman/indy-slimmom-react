@@ -5,8 +5,8 @@ export const nameRegisterRules = {
         message: 'The length of the name you entered must be more than or equal 2 characters!'
     },
     maxLength: {
-        value: 8,
-        message: 'The length of the name you entered must be less than or equal 8 characters!'
+        value: 25,
+        message: 'The length of the name you entered must be less than or equal 25 characters!'
     }
 }
 

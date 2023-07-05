@@ -35,6 +35,7 @@ const RegisterUserForm = () => {
         try {
             const { username, email, password } = data;
             await registerUser({ username, email, password });
+            showMessage(`The user ${username} was registered successfully!`, 'success');
             navigate('/login');
         } catch (error) {
             showMessage(error.message);
