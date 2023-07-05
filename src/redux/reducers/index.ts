@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import { userReducer } from './user';
+import { modalReducer } from './modal';
 
 // const test = (state = {}, action) => {
 //   console.log(action); //only for Eslint avoiding
@@ -8,6 +9,7 @@ import { userReducer } from './user';
 // };
 
 export const rootReducer = combineReducers({
-  userReducer
+  userState: userReducer,
+  modalState: modalReducer
 });
 
