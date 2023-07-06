@@ -112,14 +112,14 @@ export const refreshUser = (data: IDataRefresh) => {
 
 //Block Daily-rate
 export interface IDailyRateRequest {
-    weight: number,
-    height: number,
-    age: number,
-    desiredWeight: number,
-    bloodType: number
+    weight: string,
+    height: string,
+    age: string,
+    desiredWeight: string,
+    bloodType: string
 }
 
-interface IDailyRateResponse {
+export interface IDailyRateResponse {
     data: {
         dailyRate: number,
         notAllowedProducts: string[]

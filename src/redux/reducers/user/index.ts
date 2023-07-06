@@ -100,6 +100,10 @@ export const userReducer = createReducer(initialState, {
                 }
             }
         }
+    },
+    [userActionTypes.GET_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+        console.log(action);
+        return { ...state }
     }
 }
 );

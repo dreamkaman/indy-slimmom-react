@@ -1,6 +1,8 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
 import {
+    GET_USER_DAILY_RATE,
+    // GET_USER_DAILY_RATE_SUCCEEDED,
     GET_USER_INFO,
     LOGIN_USER,
     LOGOUT_USER,
@@ -11,12 +13,14 @@ import {
 import {
     IDailyRateRequest,
     IUserLoginData,
+    getGeneralDailyRate,
     getUserInfo,
     loginUser,
     logoutUser,
     postUserDailyRate
 } from 'API';
 import {
+    getUserDailyRateSucceededAction,
     getUserInfoAction,
     getUserInfoSucceededACtion,
     logOutUserSucceededAction,
@@ -129,13 +133,43 @@ function* getUserInfoWatcher() {
     yield takeEvery(GET_USER_INFO, getUserInfoWorker);
 }
 
+function* getUserDailyRateWorker(action: {
+    type: string,
+    payload: IDailyRateRequest
+}) {
+    try {
+        const { payload } = action;
+        console.log('Payload saga');
+        console.log(payload);
+        const userDailyRate = yield call(getGeneralDailyRate, payload);
+        console.log(userDailyRate);
+        yield put(getUserDailyRateSucceededAction(userDailyRate));
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function* getUserDailyRateWatcher() {
+    yield takeEvery(GET_USER_DAILY_RATE, getUserDailyRateWorker);
+}
+
+// function* getUserDailyRateSucceededWorker() {
+//     yield;
+// }
+
+// function* getUserDailyRateSucceededWatcher() {
+//     yield takeEvery(GET_USER_DAILY_RATE_SUCCEEDED, getUserDailyRateSucceededWorker);
+// }
+
 export default function* rootSaga() {
     yield all([
         fork(registerUserWatcher),
         fork(loginUserWatcher),
         fork(logoutUserWatcher),
         fork(postUserDailyRateWatcher),
-        fork(getUserInfoWatcher)
+        fork(getUserDailyRateWatcher),
+        fork(getUserInfoWatcher),
+        // fork(getUserDailyRateSucceededWatcher)
     ]);
 }
 

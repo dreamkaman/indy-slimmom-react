@@ -37,11 +37,10 @@ const CalculateCaloriesForm = () => {
         formState: { errors }
     } = useForm();
 
-    const handleCaloriesFormSubmit = async (data: IDailyRateRequest) => {
+    const handleCaloriesFormSubmit = (data: IDailyRateRequest) => {
         if (!id) {
             try {
                 dispatch(getUserDailyRateAction(data));
-                // const result = await getGeneralDailyRate(data);
                 reset();
             } catch (error) {
                 showMessage(error.message);
