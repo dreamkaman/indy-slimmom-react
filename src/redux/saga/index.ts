@@ -28,6 +28,7 @@ import {
     postUserDailyRateSucceededAction,
 } from 'redux/actions/user/actionCreators';
 import { showMessage } from 'shared/tools/showMessages';
+import { showModalAction } from 'redux/actions/modal/actionCreator';
 
 function* registerUserWorker() {
     console.log('registerUserWorker works');
@@ -144,6 +145,7 @@ function* getUserDailyRateWorker(action: {
         const userDailyRate = yield call(getGeneralDailyRate, payload);
         console.log(userDailyRate);
         yield put(getUserDailyRateSucceededAction(userDailyRate));
+        yield put(showModalAction());
     } catch (error) {
         showMessage(error.message);
     }
