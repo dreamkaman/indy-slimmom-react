@@ -102,8 +102,24 @@ export const userReducer = createReducer(initialState, {
         }
     },
     [userActionTypes.GET_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
-        console.log(action);
-        return { ...state }
+
+        const { payload: {
+            dailyRate,
+            notAllowedProducts
+        } } = action;
+        console.log(dailyRate, notAllowedProducts);
+        console.log(state);
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                userData: {
+                    ...state.user.userData,
+                    dailyRate,
+                    notAllowedProducts
+                }
+            }
+        }
     }
 }
 );
