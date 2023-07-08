@@ -76,9 +76,7 @@ function* logoutUserWorker(action: {
     try {
         const { payload } = action;
 
-        const response = yield call(logoutUser, payload);
-
-        console.log(response);
+        yield call(logoutUser, payload);
 
         yield put(logOutUserSucceededAction());
     } catch (error) {
@@ -98,12 +96,9 @@ function* postUserDailyRateWorker(action: {
     try {
         const { payload: { request, userId, token } } = action;
         const { data } = yield call(postUserDailyRate, request, userId, token);
-        console.log('postUserDailyRateWorker saga');
-        console.log(data);
         yield put(postUserDailyRateSucceededAction(data));
-        const result = yield put(getUserInfoAction(token));
-        console.log('UserData');
-        console.log(result);
+        yield put(getUserInfoAction(token));
+
     } catch (error) {
         showMessage(error.message);
     }
@@ -119,10 +114,7 @@ function* getUserInfoWorker(action: {
 }) {
     try {
         const { payload: token } = action;
-        console.log('getUserInfoWorker');
-        console.log(action);
         const { data: { userData } } = yield call(getUserInfo, token);
-        console.log(userData);
         yield put(getUserInfoSucceededACtion(userData));
 
     } catch (error) {
@@ -140,10 +132,7 @@ function* getUserDailyRateWorker(action: {
 }) {
     try {
         const { payload } = action;
-        console.log('Payload saga');
-        console.log(payload);
         const userDailyRate = yield call(getGeneralDailyRate, payload);
-        console.log(userDailyRate);
         yield put(getUserDailyRateSucceededAction(userDailyRate));
         yield put(showModalAction());
     } catch (error) {
