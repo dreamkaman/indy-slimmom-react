@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import LabelInput from "shared/components/LabelInput";
 import Button from "shared/components/Button/Button";
-
-import s from './CalculateCaloriesForm.module.css';
 import RadioButton from "shared/components/RadioButton/RadioButton";
+
 import { checkError } from 'shared/tools/checkError';
 import { IDailyRateRequest } from 'API';
 import { showMessage } from 'shared/tools/showMessages';
@@ -15,14 +15,15 @@ import {
     desiredWeightRules,
     heightRules
 } from 'shared/reactHookFormRules';
-
-import { useSelector } from 'react-redux';
 import { isAuthSelector, userIdSelector } from 'redux/selectors/user';
 import { useAppDispatch } from 'redux/hooks';
 import {
     getUserDailyRateAction,
     postUserDailyRateAction
 } from 'redux/actions/user/actionCreators';
+
+import s from './CalculateCaloriesForm.module.css';
+
 
 
 const CalculateCaloriesForm = () => {
@@ -38,16 +39,25 @@ const CalculateCaloriesForm = () => {
     } = useForm();
 
     const handleCaloriesFormSubmit = (data: IDailyRateRequest) => {
+        const { height, weight, desiredWeight, bloodType, age } = data;
+        const newData = {
+            height: Number(height),
+            weight: Number(weight),
+            desiredWeight: Number(desiredWeight),
+            bloodType: Number(bloodType),
+            age: Number(age)
+
+        }
         if (!id) {
             try {
-                dispatch(getUserDailyRateAction(data));
+                dispatch(getUserDailyRateAction(newData));
                 reset();
             } catch (error) {
                 showMessage(error.message);
             }
         } else {
             try {
-                dispatch(postUserDailyRateAction({ request: data, userId: id, token }));
+                dispatch(postUserDailyRateAction({ request: newData, userId: id, token }));
                 reset();
             } catch (error) {
                 showMessage(error.message);

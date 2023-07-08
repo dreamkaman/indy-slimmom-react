@@ -112,11 +112,11 @@ export const refreshUser = (data: IDataRefresh) => {
 
 //Block Daily-rate
 export interface IDailyRateRequest {
-    weight: string,
-    height: string,
-    age: string,
-    desiredWeight: string,
-    bloodType: string
+    weight: number,
+    height: number,
+    age: number,
+    desiredWeight: number,
+    bloodType: number
 }
 
 export interface IDailyRateResponse {
@@ -129,8 +129,6 @@ export interface IDailyRateResponse {
 export const getGeneralDailyRate = async (request: IDailyRateRequest) => {
     try {
         const { data }: IDailyRateResponse = await instanceAxios.post('/daily-rate', request);
-
-        console.log('Response - ', data);
 
         return data;
     } catch (error) {

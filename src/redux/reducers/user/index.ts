@@ -45,8 +45,6 @@ export const initialState: IUserState = {
 
 export const userReducer = createReducer(initialState, {
     [userActionTypes.LOGIN_USER_SUCCEEDED]: (state, action) => {
-        console.log('Reducer');
-        console.log(action);
         return {
             ...state,
             accessToken: action.payload.accessToken,
@@ -61,15 +59,11 @@ export const userReducer = createReducer(initialState, {
             }
         }
     },
-    [userActionTypes.LOGOUT_USER_SUCCEEDED]: (_state, action) => {
-        console.log('LOGIN_USER_SUCCEEDED');
-        console.log(action);
+    [userActionTypes.LOGOUT_USER_SUCCEEDED]: () => {
         return { ...initialState };
     },
     [userActionTypes.POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log('POST_USER_DAILY_RATE_SUCCEEDED');
-        console.log(action);
         return {
             ...state,
             user: {
@@ -82,15 +76,7 @@ export const userReducer = createReducer(initialState, {
             }
         }
     },
-    // [userActionTypes.GET_USER_INFO]: (state, action) => {
-    //     console.log('GET_USER_INFO');
-    //     console.log(state);
-    //     console.log(action);
-    //     return { ...state }
-    // },
     [userActionTypes.GET_USER_INFO_SUCCEEDED]: (state, action) => {
-        console.log('GET_USER_INFO_SUCCEEDED');
-        console.log(action);
         return {
             ...state,
             user: {
@@ -107,8 +93,6 @@ export const userReducer = createReducer(initialState, {
             dailyRate,
             notAllowedProducts
         } } = action;
-        console.log(dailyRate, notAllowedProducts);
-        console.log(state);
         return {
             ...state,
             user: {

@@ -1,44 +1,36 @@
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../../shared/components/Button/Button';
+
+import { v4 as uuidv4 } from 'uuid';
+import { useAppSelector } from 'redux/hooks';
+import { userDailyRateSelector, userNotAllowedProductsSelector } from 'redux/selectors/user';
 
 import s from './RecommendedDailyCalorieForm.module.css';
 
 const RecommendedDailyCalorieForm = () => {
-    const count = 2800;
-    const foodList = [
-        {
-            id: 1,
-            name: 'Red meat'
-        },
-        {
-            id: 2,
-            name: 'Cheese'
-        },
-        {
-            id: 3,
-            name: 'Milk'
-        },
-        {
-            id: 4,
-            name: 'Flour products'
-        },
-        {
-            id: 5,
-            name: 'Tomato'
-        },
-        {
-            id: 6,
-            name: 'Paper'
-        },
-    ];
+    const navigate = useNavigate();
+
+    const userDailyRate = useAppSelector(userDailyRateSelector);
+
+    const userNotAllowedProducts = useAppSelector(userNotAllowedProductsSelector);
+
+    const handleStartLosingWeightClick = () => {
+        navigate('/register');
+    }
 
     return <form className={s.recommendedDailyCalorieForm}>
         <h3 className={s.formTitle}>Your recommended daily <br />calorie intake is</h3>
-        <p className={s.calorieTxt}>{count} <span>kcal</span></p>
+        <p className={s.calorieTxt}>{userDailyRate} <span>kcal</span></p>
         <h4 className={s.formSubtitle}>Foods you should not eat</h4>
-        {foodList.length && <ol className={s.foodList}>
-            {foodList.map(foodItem => <li key={foodItem.id}>{foodItem.name}</li>)}
+        {!!userNotAllowedProducts.length && <ol className={s.foodList}>
+            {userNotAllowedProducts.map(productItem => <li key={uuidv4()}>{productItem}</li>)}
         </ol>}
-        <Button type='button' name='Start losing weight' className={`${s.startLosingWeightBtn} buttonActive buttonRectangle`} />
+        <Button
+            type='button'
+            name='Start losing weight'
+            className={`${s.startLosingWeightBtn} buttonActive buttonRectangle`}
+            onClick={handleStartLosingWeightClick} />
     </form>
 }
 

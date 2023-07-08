@@ -7,3 +7,7 @@ export const userNameSelector = (state: RootState) => state.userState.user.usern
 export const userIdSelector = (state: RootState) => state.userState.user.id;
 
 export const userDataSelector = (state: RootState) => state.userState.user.userData;
+
+export const userDailyRateSelector = (state: RootState) => state.userState.user.userData.dailyRate;
+
+export const userNotAllowedProductsSelector = (state: RootState) => state.userState.user.userData.notAllowedProducts;
