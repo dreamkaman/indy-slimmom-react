@@ -1,17 +1,24 @@
 import { useSelector } from 'react-redux';
 
+import { userNotAllowedProductsSelector } from 'redux/selectors/user';
+
 import s from './FoodNotRecommended.module.css';
-import { userDataSelector } from 'redux/selectors/user';
+
 
 const FoodNotRecommended = () => {
-    const { notAllowedProducts } = useSelector(userDataSelector);
+    const foodNotRecommendedList = useSelector(userNotAllowedProductsSelector);
 
-    const foodNotRecommendedList = notAllowedProducts;
+    console.dir(foodNotRecommendedList);
 
     return <div className={s.foodNotRecommendedBlock}>
         <h4 className={s.title}>Food not recommended</h4>
-        {foodNotRecommendedList.length ?
-            <ul className={s.foodNotRecommendedList}>{foodNotRecommendedList.map(foodItem => <li>{foodItem.name}</li>)}</ul> :
+        {!!foodNotRecommendedList.length ?
+            <ul className={s.foodNotRecommendedList}>{
+                foodNotRecommendedList.map(
+                    (foodItem, index) => <li key={index}>{foodItem}</li>
+                )
+            }
+            </ul> :
             <p>Your diet will be displayed here</p>}
     </div>
 }
