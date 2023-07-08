@@ -151,17 +151,18 @@ export const postUserDailyRate = async (request: IDailyRateRequest, userId: stri
 }
 
 //Block Product-search
-interface IDataSearch extends IToken {
+export interface IDataSearch extends IToken {
     searchText: string;
 }
 export const findProduct = async (data: IDataSearch) => {
+    const { token, searchText } = data;
     try {
         const result = await instanceAxios.get('/product', {
             headers: {
-                Authorization: `Bearer ${data.token}`
+                Authorization: `Bearer ${token}`
             },
             params:
-                { search: data.searchText }
+                { search: searchText }
         });
 
         return result;
