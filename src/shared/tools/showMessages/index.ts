@@ -1,7 +1,7 @@
 import { FieldValues } from 'react-hook-form/dist/types';
 import { toast } from 'react-toastify';
 
-export const showMessage = (message: string | FieldValues, type: string = 'error') => {
+export const showMessage = (message: string | FieldValues, type: 'error' | 'success' = 'error') => {
     switch (type) {
         case 'error':
             toast.error(message as string);

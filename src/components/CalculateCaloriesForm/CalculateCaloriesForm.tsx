@@ -52,6 +52,7 @@ const CalculateCaloriesForm = () => {
             try {
                 dispatch(getUserDailyRateAction(newData));
                 reset();
+                showMessage('Please, Login or Register!', 'success');
             } catch (error) {
                 showMessage(error.message);
             }
