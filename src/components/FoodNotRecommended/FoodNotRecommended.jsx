@@ -15,7 +15,7 @@ const FoodNotRecommended = () => {
         {!!foodNotRecommendedList.length ?
             <ul className={s.foodNotRecommendedList}>{
                 foodNotRecommendedList.map(
-                    (foodItem, index) => <li key={index}>{foodItem}</li>
+                    (foodItem, index) => <li key={index} className={s.foodNotRecommendedListItem}>{foodItem}</li>
                 )
             }
             </ul> :

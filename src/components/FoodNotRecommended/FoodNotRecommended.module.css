@@ -11,3 +11,7 @@
     max-height: 120px;
     overflow-y: auto;
 }
+
+.foodNotRecommendedListItem:not(:last-child) {
+    margin-bottom: 10px;
+}

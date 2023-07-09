@@ -10,7 +10,6 @@ import { checkError } from 'shared/tools/checkError';
 import s from './LoginUserForm.module.css';
 import { useAppDispatch } from 'redux/hooks';
 import { loginUserAction } from 'redux/actions/user/actionCreators';
-import { showMessage } from 'shared/tools/showMessages';
 
 
 export interface IFormData {
@@ -29,12 +28,7 @@ const LoginUserForm = () => {
     const navigate = useNavigate();
 
     const handleSubmitLoginForm = (data: IFormData) => {
-        try {
-            dispatch(loginUserAction(data));
-            showMessage('The user has successfully logged in!', 'success');
-        } catch (error) {
-            showMessage(error.message);
-        }
+        dispatch(loginUserAction(data));
     }
 
     const handleRegistrationClick = () => {

@@ -1,4 +1,4 @@
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import {
     GET_USER_DAILY_RATE,
@@ -13,11 +13,13 @@ import {
 import {
     IDailyRateRequest,
     IUserLoginData,
+    IUserRegisterData,
     getGeneralDailyRate,
     getUserInfo,
     loginUser,
     logoutUser,
-    postUserDailyRate
+    postUserDailyRate,
+    registerUser
 } from 'API';
 import {
     getUserDailyRateSucceededAction,
@@ -28,15 +30,27 @@ import {
     postUserDailyRateSucceededAction,
 } from 'redux/actions/user/actionCreators';
 import { showModalAction } from 'redux/actions/modal/actionCreator';
+import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
+import { showMessage } from 'shared/tools/showMessages';
 
-function* registerUserWorker() {
-    console.log('registerUserWorker works');
-    yield;
+function* registerUserWorker(action: {
+    payload: IUserRegisterData,
+    type: string
+}) {
+    try {
+        const { payload } = action;
+        yield call(registerUser, payload);
+        showMessage(`The user has successfully registered!`, 'success');
+    } catch (error) {
+        showMessage(error.message);
+    }
+
 }
 
 function* registerUserWatcher() {
     yield takeEvery(REGISTER_USER, registerUserWorker);
 }
+
 function* loginUserWorker(action: {
     type: string,
     payload: IUserLoginData
@@ -45,8 +59,9 @@ function* loginUserWorker(action: {
         const { payload } = action;
         const response = yield call(loginUser, payload);
         yield put(loginUserSucceededAction(response));
+        yield showMessage('The user has successfully logged in!', 'success');
     } catch (error) {
-        throw new Error(error.message);
+        showMessage(error.message);
     }
 
 
@@ -79,7 +94,7 @@ function* logoutUserWorker(action: {
 
         yield put(logOutUserSucceededAction());
     } catch (error) {
-        throw new Error(error.message);
+        showMessage(error.message);
     }
 
 }
@@ -99,7 +114,7 @@ function* postUserDailyRateWorker(action: {
         yield put(getUserInfoAction(token));
 
     } catch (error) {
-        throw new Error(error.message);
+        showMessage(error.message);
     }
 }
 
@@ -117,7 +132,7 @@ function* getUserInfoWorker(action: {
         yield put(getUserInfoSucceededACtion(userData));
 
     } catch (error) {
-        throw new Error(error.message);
+        showMessage(error.message);
     }
 }
 
@@ -135,7 +150,7 @@ function* getUserDailyRateWorker(action: {
         yield put(getUserDailyRateSucceededAction(userDailyRate));
         yield put(showModalAction());
     } catch (error) {
-        throw new Error(error.message);
+        showMessage(error.message);
     }
 }
 
@@ -151,6 +166,20 @@ function* getUserDailyRateWatcher() {
 //     yield takeEvery(GET_USER_DAILY_RATE_SUCCEEDED, getUserDailyRateSucceededWorker);
 // }
 
+function* findProductWorker(action: {
+    payload: string,
+    type: string
+}) {
+    console.log('FIND_PRODUCT works!');
+    console.log('Action');
+    console.log(action);
+    yield;
+}
+
+function* findProductWatcher() {
+    yield takeLatest(FIND_PRODUCT, findProductWorker);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(registerUserWatcher),
@@ -159,6 +188,7 @@ export default function* rootSaga() {
         fork(postUserDailyRateWatcher),
         fork(getUserDailyRateWatcher),
         fork(getUserInfoWatcher),
+        fork(findProductWatcher)
         // fork(getUserDailyRateSucceededWatcher)
     ]);
 }
