@@ -4,13 +4,16 @@ import { useForm } from 'react-hook-form';
 import LabelInput from 'shared/components/LabelInput';
 import Button from 'shared/components/Button/Button';
 
-import { nameRegisterRules, emailRegisterRules, passwordRegisterRules } from 'shared/reactHookFormRules';
+import {
+    nameRegisterRules,
+    emailRegisterRules,
+    passwordRegisterRules
+} from 'shared/reactHookFormRules';
 import { checkError } from 'shared/tools/checkError';
-
-import { registerUser } from 'API';
+import { registerUserAction } from 'redux/actions/user/actionCreators';
+import { useAppDispatch } from 'redux/hooks';
 
 import s from './RegisterUserForm.module.css';
-import { showMessage } from 'shared/tools/showMessages';
 
 
 
@@ -25,21 +28,23 @@ interface FormData {
 const RegisterUserForm = () => {
     const navigate = useNavigate();
 
+    const dispatch = useAppDispatch();
+
     const {
         register,
         handleSubmit,
         formState: { errors } } = useForm()
 
 
-    const handleSubmitRegistrationForm = async (data: FormData) => {
+    const handleSubmitRegistrationForm = (data: FormData) => {
         try {
             const { username, email, password } = data;
-            await registerUser({ username, email, password });
-            showMessage(`The user ${username} has successfully registered!`, 'success');
+            dispatch(registerUserAction({ username, email, password }));
             navigate('/login');
         } catch (error) {
-            showMessage(error.message);
+            console.log(error);
         }
+
     };
 
     const handleLoginClick = () => {
