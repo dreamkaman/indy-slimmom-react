@@ -3,19 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../shared/components/Button/Button';
 
 import { v4 as uuidv4 } from 'uuid';
-import { useAppSelector } from 'redux/hooks';
+import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { userDailyRateSelector, userNotAllowedProductsSelector } from 'redux/selectors/user';
 
 import s from './RecommendedDailyCalorieForm.module.css';
+import { showModalAction } from 'redux/actions/modal/actionCreator';
 
 const RecommendedDailyCalorieForm = () => {
     const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
 
     const userDailyRate = useAppSelector(userDailyRateSelector);
 
     const userNotAllowedProducts = useAppSelector(userNotAllowedProductsSelector);
 
     const handleStartLosingWeightClick = () => {
+        dispatch(showModalAction());
+
         navigate('/register');
     }
 
