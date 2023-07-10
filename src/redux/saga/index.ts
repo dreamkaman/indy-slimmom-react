@@ -172,10 +172,15 @@ function* findProductWorker(action: {
     payload: IFindProduct,
     type: string
 }) {
-    const { payload } = action;
-    const filteredProducts = yield call(findProduct, payload);
+    try {
+        const { payload } = action;
+        const filteredProducts = yield call(findProduct, payload);
 
-    console.log('filteredProducts ', filteredProducts);
+        console.log('filteredProducts ', filteredProducts);
+    } catch (error) {
+        console.log(error.message);
+    }
+
 }
 
 function* findProductWatcher() {
