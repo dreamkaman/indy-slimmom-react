@@ -12,8 +12,10 @@ import {
 
 import {
     IDailyRateRequest,
+    IFindProduct,
     IUserLoginData,
     IUserRegisterData,
+    findProduct,
     getGeneralDailyRate,
     getUserInfo,
     loginUser,
@@ -167,13 +169,13 @@ function* getUserDailyRateWatcher() {
 // }
 
 function* findProductWorker(action: {
-    payload: string,
+    payload: IFindProduct,
     type: string
 }) {
-    console.log('FIND_PRODUCT works!');
-    console.log('Action');
-    console.log(action);
-    yield;
+    const { payload } = action;
+    const filteredProducts = yield call(findProduct, payload);
+
+    console.log('filteredProducts ', filteredProducts);
 }
 
 function* findProductWatcher() {
