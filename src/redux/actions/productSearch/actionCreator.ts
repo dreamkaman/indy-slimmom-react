@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
 import { FIND_PRODUCT } from "./actionTypes";
-import { IDataSearch } from "API";
+import { IFindProduct } from "API";
 
-export const findProductAction = createAction<IDataSearch, 'FIND_PRODUCT'>(FIND_PRODUCT);
+export const findProductAction = createAction<IFindProduct, 'FIND_PRODUCT'>(FIND_PRODUCT);

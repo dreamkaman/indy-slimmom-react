@@ -48,5 +48,6 @@ state = {
   },
   productSearch:{
     searchText: '',
+    filteredProducts: ['Гречка']
   }
 };

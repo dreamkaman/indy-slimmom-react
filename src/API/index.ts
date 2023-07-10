@@ -151,10 +151,10 @@ export const postUserDailyRate = async (request: IDailyRateRequest, userId: stri
 }
 
 //Block Product-search
-export interface IDataSearch extends IToken {
+export interface IFindProduct extends IToken {
     searchText: string;
 }
-export const findProduct = async (data: IDataSearch) => {
+export const findProduct = async (data: IFindProduct) => {
     const { token, searchText } = data;
     try {
         const result = await instanceAxios.get('/product', {
