@@ -1,32 +1,43 @@
+import { SyntheticEvent } from "react";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 
 import Calendar from "shared/components/Calendar";
 import AddProductForm from "components/AddProductForm";
 import SummaryForDay from "components/SummaryForDay";
 import FoodNotRecommended from "components/FoodNotRecommended";
 import CalculateCaloriesForm from "components/CalculateCaloriesForm";
-
-import s from './DairyCalculatorPage.module.css';
 import ModalWindow from "shared/components/ModalWindow/ModalWindow";
 import AddProductFormModal from "components/AddProductFormModal/AddProductFormModal";
+
+import { useAppSelector, useAppDispatch } from "redux/hooks";
+import { showModalSelector } from "redux/selectors/modal";
+
+import s from './DairyCalculatorPage.module.css';
+import { isAuthSelector } from "redux/selectors/user";
+import { findProductAction } from "redux/actions/productSearch/actionCreator";
+
+
+
 
 
 
 const DairyCalculatorPage = () => {
 
     const { pathname } = useLocation();
-    const [showModal, setShowModal] = useState(false);
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    const dispatch = useAppDispatch();
 
-        setShowModal(!showModal);
-    }
+    const token = useAppSelector(isAuthSelector);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setShowModal(!showModal);
+    const showModal = useAppSelector(showModalSelector);
+
+    const handleInput = (e: SyntheticEvent) => {
+        console.dir(e.target['value']);
+
+        const searchText = e.target['value'];
+
+        dispatch(findProductAction({ token, searchText }))
+
     }
 
     return <>
@@ -35,7 +46,7 @@ const DairyCalculatorPage = () => {
                 <div className={s.calendarWrapper}>
                     <Calendar />
                 </div>
-                <AddProductForm onClick={handleClick} />
+                <AddProductForm onInput={handleInput} />
             </div>}
             {pathname === '/calculator' && <div className={s.calculatorForm}>
                 <CalculateCaloriesForm />
@@ -50,7 +61,7 @@ const DairyCalculatorPage = () => {
             </div>
         </section>
         {showModal && <ModalWindow>
-            <AddProductFormModal onSubmit={handleSubmit} />
+            <AddProductFormModal />
         </ModalWindow>}
     </>
 }
