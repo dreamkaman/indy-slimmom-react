@@ -11,8 +11,11 @@ const initialState: IProductSearchState = {
 }
 
 export const productSearchReducer = createReducer(initialState, {
-    [productSearchTypes.FIND_PRODUCT]: (state, _action) => {
+    [productSearchTypes.FIND_PRODUCT_SUCCEEDED]: (state, action) => {
 
-        return { ...state }
+        return {
+            ...state,
+            filteredProducts: action.payload
+        }
     }
 })

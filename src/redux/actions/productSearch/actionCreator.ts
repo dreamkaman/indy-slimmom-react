@@ -1,6 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { FIND_PRODUCT } from "./actionTypes";
-import { IFindProduct } from "API";
+import { FIND_PRODUCT, FIND_PRODUCT_SUCCEEDED } from "./actionTypes";
+import { FindProductResponse, IFindProduct } from "API";
 
 export const findProductAction = createAction<IFindProduct, 'FIND_PRODUCT'>(FIND_PRODUCT);
+
+export const findProductSucceededAction = createAction<FindProductResponse, 'FIND_PRODUCT_SUCCEEDED'>(FIND_PRODUCT_SUCCEEDED);

@@ -1,5 +1,6 @@
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useCallback } from "react";
 import { useLocation } from "react-router-dom";
+import debounce from 'lodash.debounce';
 
 import Calendar from "shared/components/Calendar";
 import AddProductForm from "components/AddProductForm";
@@ -37,8 +38,12 @@ const DairyCalculatorPage = () => {
         const searchText = e.target['value'];
 
         dispatch(findProductAction({ token, searchText }))
-
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedHandleInput = useCallback(
+        debounce(handleInput, 500), []
+    );
 
     return <>
         <section className={s.dairyPageContent}>
@@ -46,7 +51,7 @@ const DairyCalculatorPage = () => {
                 <div className={s.calendarWrapper}>
                     <Calendar />
                 </div>
-                <AddProductForm onInput={handleInput} />
+                <AddProductForm onInput={debouncedHandleInput} />
             </div>}
             {pathname === '/calculator' && <div className={s.calculatorForm}>
                 <CalculateCaloriesForm />
