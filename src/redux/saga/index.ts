@@ -174,9 +174,8 @@ function* findProductWorker(action: {
 }) {
     try {
         const { payload } = action;
-        const filteredProducts = yield call(findProduct, payload);
 
-        console.log('filteredProducts ', filteredProducts);
+        const filteredProducts = yield call(findProduct, payload);
 
         yield put(findProductSucceededAction(filteredProducts));
     } catch (error) {

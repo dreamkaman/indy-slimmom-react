@@ -5,10 +5,11 @@ import LabelInput from "shared/components/LabelInput";
 import GetSvg from "shared/components/GetSvg";
 import ProductsList from "./components/ProductsList";
 
-import s from './AddProductForm.module.css';
-import LabelSelect from 'shared/components/LabelSelect';
 import { useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
+
+import s from './AddProductForm.module.css';
+
 
 interface IAddProductFormProps {
     onClick?: (e?: MouseEvent) => void,
@@ -22,9 +23,11 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
         <div className={s.inputProductBlock}>
             <div className={s.inputProductWrapper}>
                 <LabelInput
+                    listName='chooseProductName'
                     type='text'
                     labelHtmlFor='productName'
                     labelText="Enter product name"
+                    optionsArray={filteredProducts}
                     onInput={onInput} />
             </div>
             <div className={s.inputWeightWrapper}>
@@ -50,13 +53,6 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
                 name="plusBtn"
                 className={s.plusIcon} />
         </Button>
-
-        <LabelSelect
-            list='productChoice'
-            labelHtmlFor='filteredProducts'
-            labelText={'Enter product name'}
-            optionsArray={filteredProducts}
-            onInput={onInput} />
     </form>
 }
 
