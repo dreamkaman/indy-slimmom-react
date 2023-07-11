@@ -77,19 +77,19 @@ const CalculateCaloriesForm = () => {
         <div className={s.formFlexBox}>
             <div className={s.formLeftSubFlexWrapper}>
                 <LabelInput
-                    name='height'
+                    labelHtmlFor='height'
                     type='text'
                     labelText="Height*"
                     register={register}
                     rules={heightRules} />
                 <LabelInput
-                    name='age'
+                    labelHtmlFor='age'
                     type='text'
                     labelText="Age*"
                     register={register}
                     rules={ageRules} />
                 <LabelInput
-                    name='weight'
+                    labelHtmlFor='weight'
                     type='text'
                     labelText="Current weight*"
                     register={register}
@@ -97,7 +97,7 @@ const CalculateCaloriesForm = () => {
             </div>
             <div className={s.formRightSubFlexWrapper}>
                 <LabelInput
-                    name='desiredWeight'
+                    labelHtmlFor='desiredWeight'
                     type='text'
                     labelText="Desired weight*"
                     register={register}

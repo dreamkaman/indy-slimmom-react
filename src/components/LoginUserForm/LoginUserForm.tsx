@@ -42,8 +42,8 @@ const LoginUserForm = () => {
     return <form className={s.loginUserForm} onSubmit={handleSubmit(handleSubmitLoginForm)}>
         <h3 className={s.loginFormTitle}>Log in</h3>
         <div className={s.inputWrapper}>
-            <LabelInput name='email' type='email' labelText='Email*' register={register} rules={emailLoginRules} />
-            <LabelInput name='password' type='password' labelText='Password*' register={register} rules={passwordLoginRules} />
+            <LabelInput labelHtmlFor='email' type='email' labelText='Email*' register={register} rules={emailLoginRules} />
+            <LabelInput labelHtmlFor='password' type='password' labelText='Password*' register={register} rules={passwordLoginRules} />
         </div>
         <div className={s.buttonWrapper}>
             <Button className={`${s.loginButton} ${s.button} buttonActive buttonRectangle`} type='submit' name='Login' onClick={handleLoginClick} />

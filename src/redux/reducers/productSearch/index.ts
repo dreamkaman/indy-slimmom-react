@@ -1,9 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { IProductItem } from 'API';
 
 import * as productSearchTypes from 'redux/actions/productSearch/actionTypes';
 
 export interface IProductSearchState {
-    filteredProducts: string[]
+    filteredProducts: IProductItem[]
 }
 
 const initialState: IProductSearchState = {

@@ -36,8 +36,9 @@ const DairyCalculatorPage = () => {
         console.dir(e.target['value']);
 
         const searchText = e.target['value'];
-
-        dispatch(findProductAction({ token, searchText }))
+        if (searchText.length >= 1 && searchText.length <= 30) {
+            dispatch(findProductAction({ token, searchText }))
+        }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +67,7 @@ const DairyCalculatorPage = () => {
             </div>
         </section>
         {showModal && <ModalWindow>
-            <AddProductFormModal />
+            <AddProductFormModal onInput={debouncedHandleInput} />
         </ModalWindow>}
     </>
 }
