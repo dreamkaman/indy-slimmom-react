@@ -59,10 +59,10 @@ const RegisterUserForm = () => {
     return <form className={s.registrationForm} onSubmit={handleSubmit(handleSubmitRegistrationForm)}>
         <h3 className={s.registrationFormTitle}>Register</h3>
         <div className={s.inputWrapper}>
-            <LabelInput name='username' type='text' labelText="Name*" register={register} rules={nameRegisterRules} />
-            <LabelInput name='email' type='email' labelText="Email*" register={register} rules={emailRegisterRules} />
-            <LabelInput name='password' type="password" labelText="Password*" register={register} rules={passwordRegisterRules} />
-            <LabelInput name='repeatedPassword' type="password" labelText="Repeat Password*" register={register} rules={passwordRegisterRules} />
+            <LabelInput labelHtmlFor='username' type='text' labelText="Name*" register={register} rules={nameRegisterRules} />
+            <LabelInput labelHtmlFor='email' type='email' labelText="Email*" register={register} rules={emailRegisterRules} />
+            <LabelInput labelHtmlFor='password' type="password" labelText="Password*" register={register} rules={passwordRegisterRules} />
+            <LabelInput labelHtmlFor='repeatedPassword' type="password" labelText="Repeat Password*" register={register} rules={passwordRegisterRules} />
         </div>
         <div className={s.buttonWrapper}>
             <Button className={`${s.registrationButton} ${s.button} buttonActive buttonRectangle`} type='submit' name="Register" onClick={handleRegisterClick} />

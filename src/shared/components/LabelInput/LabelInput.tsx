@@ -21,28 +21,31 @@ interface IRules {
 }
 
 interface ILabelInput {
-    name: string;
+    list?: string | null,
+    labelHtmlFor: string;
     type: 'telephone' | 'email' | 'text' | 'password';
     labelText: string;
     onInput?: FormEventHandler<HTMLInputElement>,
     register?: UseFormRegister<FieldValues> | null;
     rules?: IRules | null;
 }
-const LabelInput: FC<ILabelInput> = ({ name, type, labelText, register = null, rules = null, onInput }) => {
+const LabelInput: FC<ILabelInput> = ({ list = null, labelHtmlFor, type, labelText, register = null, rules = null, onInput }) => {
     return <div className={s.wrapper}>
         {register === null ?
             <input
+                list={list}
                 onInput={onInput}
-                name={name}
+                name={labelHtmlFor}
                 type={type}
                 placeholder='.' /> :
             <input
+                list={list}
                 onInput={onInput}
                 type={type}
                 placeholder='.'
-                {...register(name, rules)} />
+                {...register(labelHtmlFor, rules)} />
         }
-        <label htmlFor={name}>{labelText}</label>
+        <label htmlFor={labelHtmlFor}>{labelText}</label>
     </div >
 }
 
