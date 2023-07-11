@@ -34,6 +34,7 @@ import {
 import { showModalAction } from 'redux/actions/modal/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
+import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -98,7 +99,6 @@ function* logoutUserWorker(action: {
     } catch (error) {
         showMessage(error.message);
     }
-
 }
 
 function* postUserDailyRateWorker(action: {
@@ -172,10 +172,17 @@ function* findProductWorker(action: {
     payload: IFindProduct,
     type: string
 }) {
-    const { payload } = action;
-    const filteredProducts = yield call(findProduct, payload);
+    try {
+        const { payload } = action;
+        const filteredProducts = yield call(findProduct, payload);
 
-    console.log('filteredProducts ', filteredProducts);
+        console.log('filteredProducts ', filteredProducts);
+
+        yield put(findProductSucceededAction(filteredProducts));
+    } catch (error) {
+        showMessage('Product not found! Please, input product name in Ukrainian!');
+    }
+
 }
 
 function* findProductWatcher() {
@@ -191,7 +198,6 @@ export default function* rootSaga() {
         fork(getUserDailyRateWatcher),
         fork(getUserInfoWatcher),
         fork(findProductWatcher)
-        // fork(getUserDailyRateSucceededWatcher)
     ]);
 }
 

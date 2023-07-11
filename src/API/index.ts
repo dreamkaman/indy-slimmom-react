@@ -154,10 +154,32 @@ export const postUserDailyRate = async (request: IDailyRateRequest, userId: stri
 export interface IFindProduct extends IToken {
     searchText: string;
 }
+
+export interface IProductItem {
+    calories: number,
+    categories: {
+        ru: string,
+        uk: string,
+        en: string
+    },
+    groupBloodNotAllowed: [null, boolean, boolean, boolean, boolean],
+    title: {
+        ua: string,
+        ru?: string,
+        en: string
+    },
+    weight: number,
+    _id: string
+}
+
+export type FindProductResponse = {
+    data: IProductItem[]
+}
+
 export const findProduct = async (data: IFindProduct) => {
     const { token, searchText } = data;
     try {
-        const result = await instanceAxios.get('/product', {
+        const { data }: FindProductResponse = await instanceAxios.get('/product', {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -165,7 +187,7 @@ export const findProduct = async (data: IFindProduct) => {
                 { search: searchText }
         });
 
-        return result;
+        return data;
     } catch (error) {
         throw new Error(error.message);
     }
