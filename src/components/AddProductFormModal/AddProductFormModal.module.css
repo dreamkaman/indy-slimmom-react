@@ -1,0 +1,24 @@
+.addProductForm {
+    width: 100vw;
+    height: 100vh;
+    padding: 80px 20px 0;
+}
+
+.inputProductBlock {
+    max-width: 285px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inputProductWrapper {
+    margin-bottom: 15px;
+}
+
+.inputWeightWrapper {
+    margin-bottom: 60px;
+}
+
+.addProductBtn {
+    padding: 13px 60px;
+    margin: 0 auto;
+}

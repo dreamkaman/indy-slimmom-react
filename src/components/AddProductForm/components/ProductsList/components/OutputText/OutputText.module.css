@@ -1,0 +1,6 @@
+.outputText {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--input-line-color);
+
+    color: var(--font-main-color);
+}

@@ -1,0 +1,19 @@
+.summaryBlock {
+    color: var(--font-secondary-color);
+}
+
+.summaryTitle {
+    margin-bottom: 40px;
+
+    color: var(--font-main-color);
+}
+
+.summaryItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summaryItem:not(:last-child) {
+    margin-bottom: 10px;
+}

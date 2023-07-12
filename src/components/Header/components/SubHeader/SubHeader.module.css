@@ -1,0 +1,38 @@
+.subHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 32px;
+
+    background-color: #EFF1F3;
+
+}
+
+.returnBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+}
+
+.returnIcon {
+    width: 12px;
+    height: 12px;
+}
+
+.nicButton {
+    margin-left: auto;
+}
+
+@media screen and (min-width: 320px) {}
+
+@media screen and (min-width: 600px) {
+    .subHeader {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) {}

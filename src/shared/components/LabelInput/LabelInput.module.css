@@ -1,0 +1,48 @@
+.wrapper {
+    position: relative;
+}
+
+.wrapper input {
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+
+    border: none;
+    border-bottom: 1px solid var(--input-line-color);
+
+    font-size: 16px;
+    color: var(--font-main-color);
+    background-color: transparent;
+}
+
+.wrapper input:focus {
+    outline: transparent !important;
+    border: 2px solid var(--accent-color);
+    border-radius: 2px;
+
+}
+
+.wrapper input::placeholder {
+    color: transparent;
+}
+
+.wrapper label {
+    position: absolute;
+    top: -10px;
+
+    font-weight: 700;
+    color: var(--font-secondary-color);
+
+}
+
+.wrapper input:focus+label {
+    top: -20px;
+}
+
+.wrapper input:not(:placeholder-shown)+label {
+    top: -20px;
+}
+
+.wrapper input:-internal-autofill-selected {
+    background-color: transparent;
+}

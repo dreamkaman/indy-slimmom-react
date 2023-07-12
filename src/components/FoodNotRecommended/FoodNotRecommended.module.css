@@ -1,0 +1,17 @@
+.foodNotRecommendedBlock {
+    color: var(--font-secondary-color);
+}
+
+.title {
+    margin-bottom: 40px;
+    color: var(--font-main-color);
+}
+
+.foodNotRecommendedList {
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.foodNotRecommendedListItem:not(:last-child) {
+    margin-bottom: 10px;
+}
