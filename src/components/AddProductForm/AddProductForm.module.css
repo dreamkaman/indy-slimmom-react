@@ -11,6 +11,10 @@
     text-align: right;
 }
 
+.inputWeightWrapper input {
+    text-align: right;
+}
+
 .addProductBtn {
     display: flex;
     align-items: center;

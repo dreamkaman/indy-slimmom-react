@@ -2,6 +2,7 @@ import { FC, FormEventHandler } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 import s from './LabelInput.module.css';
+import { IProductItem } from 'API';
 
 interface IRules {
     required?: string | boolean;
@@ -21,31 +22,47 @@ interface IRules {
 }
 
 interface ILabelInput {
-    list?: string | null,
-    labelHtmlFor: string;
-    type: 'telephone' | 'email' | 'text' | 'password';
-    labelText: string;
+    listName?: string | null,
+    labelHtmlFor: string,
+    type: 'telephone' | 'email' | 'text' | 'password',
+    labelText: string,
     onInput?: FormEventHandler<HTMLInputElement>,
-    register?: UseFormRegister<FieldValues> | null;
-    rules?: IRules | null;
+    register?: UseFormRegister<FieldValues> | null,
+    rules?: IRules | null,
+    optionsArray?: IProductItem[]
 }
-const LabelInput: FC<ILabelInput> = ({ list = null, labelHtmlFor, type, labelText, register = null, rules = null, onInput }) => {
+const LabelInput: FC<ILabelInput> = ({
+    listName = null,
+    labelHtmlFor,
+    type,
+    labelText,
+    register = null,
+    rules = null,
+    onInput,
+    optionsArray = [] }) => {
     return <div className={s.wrapper}>
         {register === null ?
             <input
-                list={list}
+                list={listName}
                 onInput={onInput}
                 name={labelHtmlFor}
                 type={type}
                 placeholder='.' /> :
             <input
-                list={list}
+                list={listName}
                 onInput={onInput}
                 type={type}
                 placeholder='.'
                 {...register(labelHtmlFor, rules)} />
         }
         <label htmlFor={labelHtmlFor}>{labelText}</label>
+        {!!listName && <datalist id={listName}>
+            {optionsArray.length && optionsArray.map((optionItem) => {
+                return <option key={optionItem._id} value={optionItem.title.ua}>
+                    {optionItem.title.ua}
+                </option>
+            })}
+        </datalist>}
     </div >
 }
 

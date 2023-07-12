@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'redux/hooks';
 
 import { userNotAllowedProductsSelector } from 'redux/selectors/user';
 
@@ -6,9 +6,7 @@ import s from './FoodNotRecommended.module.css';
 
 
 const FoodNotRecommended = () => {
-    const foodNotRecommendedList = useSelector(userNotAllowedProductsSelector);
-
-    console.dir(foodNotRecommendedList);
+    const foodNotRecommendedList = useAppSelector(userNotAllowedProductsSelector);
 
     return <div className={s.foodNotRecommendedBlock}>
         <h4 className={s.title}>Food not recommended</h4>
