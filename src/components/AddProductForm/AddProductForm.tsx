@@ -1,4 +1,5 @@
 import { FC, FormEventHandler } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
 import LabelInput from "shared/components/LabelInput";
@@ -7,6 +8,7 @@ import ProductsList from "./components/ProductsList";
 
 import { useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
+import { productNameRules, productWeightRules } from 'shared/reactHookFormRules';
 
 import s from './AddProductForm.module.css';
 
@@ -16,10 +18,21 @@ interface IAddProductFormProps {
     onInput?: FormEventHandler<HTMLInputElement>
 }
 
+interface Inputs {
+    productName: string,
+    weight: string
+}
+
 const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const filteredProducts = useAppSelector(filteredProductsSelector);
 
-    return <form className={s.addProductForm}>
+    const onSubmit: SubmitHandler<Inputs> = data => {
+        console.log(data);
+        console.log(errors);
+    }
+
+    return <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.inputProductBlock}>
             <div className={s.inputProductWrapper}>
                 <LabelInput
@@ -28,17 +41,23 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
                     labelHtmlFor='productName'
                     labelText="Enter product name"
                     optionsArray={filteredProducts}
-                    onInput={onInput} />
+                    onInput={onInput}
+                    register={register}
+                    rules={productNameRules}
+                />
             </div>
             <div className={s.inputWeightWrapper}>
                 <LabelInput
                     type='text'
                     labelHtmlFor='weight'
-                    labelText="Grams" />
+                    labelText="Grams"
+                    register={register}
+                    rules={productWeightRules}
+                />
             </div>
             <Button
                 className={`${s.addProductBtn} ${s.topBtn} buttonCircle buttonActive`}
-                type={'button'}>
+                type='submit'>
                 <GetSvg name="plusBtn" className={s.plusIcon} />
             </Button>
         </div>
@@ -46,7 +65,7 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
         <ProductsList />
 
         <Button
-            type={"submit"}
+            type='submit'
             className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`}
             onClick={onClick}>
             <GetSvg

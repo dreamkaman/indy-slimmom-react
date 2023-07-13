@@ -89,3 +89,11 @@ export const desiredWeightRules = {
 export const bloodRules = {
     required: true,
 }
+
+export const productNameRules = {
+    required: 'The value of the "Product name" field is required!',
+}
+
+export const productWeightRules = {
+    required: 'The value of the "Weight" field is required!',
+}
