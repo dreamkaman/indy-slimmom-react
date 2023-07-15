@@ -6,11 +6,14 @@ import LabelInput from "shared/components/LabelInput";
 import GetSvg from "shared/components/GetSvg";
 import ProductsList from "./components/ProductsList";
 
-import { useAppSelector } from 'redux/hooks';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
 import { productNameRules, productWeightRules } from 'shared/reactHookFormRules';
 
 import s from './AddProductForm.module.css';
+import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
+import { isAuthSelector } from 'redux/selectors/user';
+// import { postEatenProductAction } from 'redux/actions/days/actionCreator';
 
 
 interface IAddProductFormProps {
@@ -26,10 +29,19 @@ interface Inputs {
 const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const filteredProducts = useAppSelector(filteredProductsSelector);
+    const token = useAppSelector(isAuthSelector);
+
+    const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
-        console.log(data);
         console.log(errors);
+        const { _id: productId } = filteredProducts[0];
+        const { weight } = data;
+        const date = "2023-07-15";
+
+        const eatenProduct = { productId, weight: Number(weight), date };
+
+        dispatch(postEatenProductAction({ eatenProduct, token }));
     }
 
     return <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>

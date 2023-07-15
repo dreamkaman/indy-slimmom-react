@@ -1,0 +1,1 @@
+export const POST_EATEN_PRODUCT = 'POST_EATEN_PRODUCT';
