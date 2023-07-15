@@ -18,31 +18,33 @@ state = {
     },
     id: '507f1f77bcf86cd799439011',
   },
-  days: [
-    {
-      _id: '507f1f77bcf86cd799439011',
-      eatenProducts: [
+  dayInfo: {
+    "id": "64b2cd251fbd810525422fb2",
+    "eatenProducts": [
         {
-          title: 'Меланж яєчний',
-          weight: 100,
-          kcal: 157,
-          id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
+            "title": "Сало",
+            "weight": 120,
+            "kcal": 956.4,
+            "id": "25572aaf-369b-45eb-9f38-3057b05f1fe2"
         },
-      ],
-      date: '2020-12-31',
-      __v: 0,
-      daySummary: {
-        date: '2020-12-31',
-        kcalLeft: 1000,
-        kcalConsumed: 1000,
-        dailyRate: 2000,
-        percentsOfDailyRate: 50,
-        userId: '507f1f77bcf86cd799439011',
-        _id: '507f1f77bcf86cd799439012',
-        __v: 0,
-      },
-    },
-  ],
+        {
+            "title": "Картопля варена",
+            "weight": 100,
+            "kcal": 82,
+            "id": "5f360311-73c1-4fdc-b6c9-3b3d119cd238"
+        }
+    ],
+    "date": "2023-07-15",
+    "daySummary": {
+        "date": "2023-07-15",
+        "kcalLeft": 313.1,
+        "kcalConsumed": 1038.4,
+        "dailyRate": 1351.5,
+        "percentsOfDailyRate": 76.83314835368111,
+        "userId": "649dec411fbd810525422ded",
+        "id": "64b2cd251fbd810525422fb1"
+    }
+},
   modal:{
     showModal:false,
   },
@@ -51,3 +53,4 @@ state = {
     filteredProducts: ['Гречка']
   }
 };
+

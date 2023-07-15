@@ -12,6 +12,7 @@ import {
 
 import {
     IDailyRateRequest,
+    IEatenProduct,
     IFindProduct,
     IUserLoginData,
     IUserRegisterData,
@@ -20,6 +21,7 @@ import {
     getUserInfo,
     loginUser,
     logoutUser,
+    postEatenProduct,
     postUserDailyRate,
     registerUser
 } from 'API';
@@ -35,6 +37,7 @@ import { showModalAction } from 'redux/actions/modal/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
+import { POST_EATEN_PRODUCT } from 'redux/actions/dayInfo/actionTypes';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -188,6 +191,22 @@ function* findProductWatcher() {
     yield takeLatest(FIND_PRODUCT, findProductWorker);
 }
 
+function* postEatenProductWorker(action: {
+    payload: {
+        eatenProduct: IEatenProduct,
+        token: string
+    },
+    type: string
+}) {
+    const { payload } = action;
+    const response = yield call(postEatenProduct, payload);
+    console.log(response);
+}
+
+function* postEatenProductWatcher() {
+    yield takeEvery(POST_EATEN_PRODUCT, postEatenProductWorker);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(registerUserWatcher),
@@ -196,7 +215,8 @@ export default function* rootSaga() {
         fork(postUserDailyRateWatcher),
         fork(getUserDailyRateWatcher),
         fork(getUserInfoWatcher),
-        fork(findProductWatcher)
+        fork(findProductWatcher),
+        fork(postEatenProductWatcher)
     ]);
 }
 

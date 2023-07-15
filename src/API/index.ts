@@ -195,13 +195,13 @@ export const findProduct = async (data: IFindProduct) => {
 }
 
 //Block Day
-interface IEatenProduct {
+export interface IEatenProduct {
     date: string;
     productId: string,
     weight: number
 }
 
-export const setEatenProduct = (data: { eatenProduct: IEatenProduct, token: string }) => instanceAxios.post('/day', data.eatenProduct, {
+export const postEatenProduct = (data: { eatenProduct: IEatenProduct, token: string }) => instanceAxios.post('/day', data.eatenProduct, {
     headers: {
         Authorization: `Bearer ${data.token}`
     }
