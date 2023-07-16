@@ -2,7 +2,6 @@ import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects'
 
 import {
     GET_USER_DAILY_RATE,
-    // GET_USER_DAILY_RATE_SUCCEEDED,
     GET_USER_INFO,
     LOGIN_USER,
     LOGOUT_USER,
@@ -38,6 +37,7 @@ import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
 import { POST_EATEN_PRODUCT } from 'redux/actions/dayInfo/actionTypes';
+import { postEatenProductSucceededAction } from 'redux/actions/dayInfo/actionCreator';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -198,9 +198,14 @@ function* postEatenProductWorker(action: {
     },
     type: string
 }) {
-    const { payload } = action;
-    const response = yield call(postEatenProduct, payload);
-    console.log(response);
+    try {
+        const { payload } = action;
+        const { data } = yield call(postEatenProduct, payload);
+        yield put(postEatenProductSucceededAction(data));
+        console.log(data);
+    } catch (error) {
+        showMessage(error.message);
+    }
 }
 
 function* postEatenProductWatcher() {
