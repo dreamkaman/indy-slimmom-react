@@ -5,15 +5,17 @@ import Button from "shared/components/Button";
 import LabelInput from "shared/components/LabelInput";
 import GetSvg from "shared/components/GetSvg";
 import ProductsList from "./components/ProductsList";
+import dateFormat from "dateformat";
 
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
 import { productNameRules, productWeightRules } from 'shared/reactHookFormRules';
-
-import s from './AddProductForm.module.css';
 import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
-// import { postEatenProductAction } from 'redux/actions/days/actionCreator';
+
+import s from './AddProductForm.module.css';
+import { showMessage } from 'shared/tools/showMessages';
+
 
 
 interface IAddProductFormProps {
@@ -34,14 +36,20 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
-        console.log(errors);
         const { _id: productId } = filteredProducts[0];
         const { weight } = data;
-        const date = "2023-07-15";
+
+        const currentDate = new Date();
+
+        const date = dateFormat(currentDate, 'isoDate')
 
         const eatenProduct = { productId, weight: Number(weight), date };
 
         dispatch(postEatenProductAction({ eatenProduct, token }));
+
+        if (errors.length) {
+            showMessage('Error!');
+        }
     }
 
     return <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>

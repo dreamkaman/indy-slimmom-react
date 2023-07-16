@@ -12,7 +12,7 @@ import {
 
 import {
     IDailyRateRequest,
-    IEatenProduct,
+    IEatenProductRequest,
     IFindProduct,
     IUserLoginData,
     IUserRegisterData,
@@ -193,7 +193,7 @@ function* findProductWatcher() {
 
 function* postEatenProductWorker(action: {
     payload: {
-        eatenProduct: IEatenProduct,
+        eatenProduct: IEatenProductRequest,
         token: string
     },
     type: string

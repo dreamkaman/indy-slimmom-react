@@ -195,17 +195,52 @@ export const findProduct = async (data: IFindProduct) => {
 }
 
 //Block Day
-export interface IEatenProduct {
+export interface IEatenProductRequest {
     date: string;
     productId: string,
     weight: number
 }
 
-export const postEatenProduct = (data: { eatenProduct: IEatenProduct, token: string }) => instanceAxios.post('/day', data.eatenProduct, {
-    headers: {
-        Authorization: `Bearer ${data.token}`
+export interface IEatenProductResponse {
+    eatenProduct: {
+        title: string,
+        weight: number,
+        kcal: number,
+        id: string
+    },
+    day: {
+        id: string,
+        eatenProducts: [
+            {
+                title: string,
+                weight: number,
+                kcal: number,
+                id: string
+            }
+        ],
+        date: string,
+        daySummary: string
+    },
+    daySummary: {
+        date: string,
+        kcalLeft: number,
+        kcalConsumed: number,
+        dailyRate: number,
+        percentsOfDailyRate: number,
+        userId: string,
+        id: string
     }
-});
+}
+
+export const postEatenProduct = async (data: { eatenProduct: IEatenProductRequest, token: string }) => {
+
+    const result: IEatenProductResponse = await instanceAxios.post('/day', data.eatenProduct, {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        }
+    })
+    return result;
+};
 
 interface IDeleteRequest {
     dayId: string;
