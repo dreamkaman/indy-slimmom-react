@@ -243,18 +243,22 @@ export const postEatenProduct = async (data: { eatenProduct: IEatenProductReques
     return result;
 };
 
-interface IDeleteRequest {
+export interface IDeleteRequest {
     dayId: string;
     eatenProductId: string;
 }
-export const deleteEatenProduct = (data: { requestData: IDeleteRequest, token: string }) => instanceAxios.delete('/day', {
-    headers: {
-        Authorization: `Bearer ${data.token}`
-    },
-    data: {
-        body: data.requestData,
-    }
-});
+export const deleteEatenProduct = async (data: { requestData: IDeleteRequest, token: string }) => {
+    const response = await instanceAxios.delete('/day', {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        },
+        data: {
+            body: data.requestData,
+        }
+    });
+    console.log(response);
+    return response;
+}
 
 export interface IGetDayInfo extends IToken {
     date: string

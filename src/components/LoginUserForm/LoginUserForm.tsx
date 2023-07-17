@@ -46,8 +46,8 @@ const LoginUserForm = () => {
             <LabelInput labelHtmlFor='password' type='password' labelText='Password*' register={register} rules={passwordLoginRules} />
         </div>
         <div className={s.buttonWrapper}>
-            <Button className={`${s.loginButton} ${s.button} buttonActive buttonRectangle`} type='submit' name='Login' onClick={handleLoginClick} />
-            <Button className={`${s.registrationButton} ${s.button} buttonPassive buttonRectangle`} type='button' onClick={handleRegistrationClick} name='Register' />
+            <Button className={`${s.button} buttonActive buttonRectangle`} type='submit' name='Login' onClick={handleLoginClick} />
+            <Button className={`${s.button} buttonPassive buttonRectangle`} type='button' onClick={handleRegistrationClick} name='Register' />
         </div>
     </form>
 }
