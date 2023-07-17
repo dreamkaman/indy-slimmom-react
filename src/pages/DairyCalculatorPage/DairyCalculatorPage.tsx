@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback } from "react";
+import { SyntheticEvent, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import debounce from 'lodash.debounce';
 
@@ -31,6 +31,11 @@ const DairyCalculatorPage = () => {
     const token = useAppSelector(isAuthSelector);
 
     const showModal = useAppSelector(showModalSelector);
+
+    useEffect(() => {
+
+        console.log('UseEffect works!');
+    }, []);
 
     const handleInput = (e: SyntheticEvent) => {
         console.dir(e.target['value']);
