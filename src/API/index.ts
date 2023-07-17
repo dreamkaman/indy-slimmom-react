@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { IEatenProduct } from 'redux/reducers/dayInfo';
 
 
 export const instanceAxios = axios.create({
@@ -255,16 +256,36 @@ export const deleteEatenProduct = (data: { requestData: IDeleteRequest, token: s
     }
 });
 
-interface IGetDayInfo extends IToken {
+export interface IGetDayInfo extends IToken {
     date: string
 }
-export const getDayInfo = (data: IGetDayInfo) => instanceAxios.post('/day/info', {
-    date: data.date
-}, {
-    headers: {
-        Authorization: `Bearer ${data.token}`
+
+export interface IGetDayInfoResponse {
+    id: string,
+    eatenProducts: IEatenProduct[],
+    date: string,
+    daySummary: {
+        date: string,
+        kcalLeft: number,
+        kcalConsumed: number,
+        dailyRate: number,
+        percentsOfDailyRate: number,
+        userId: string,
+        id: string
     }
-})
+}
+
+export const getDayInfo = async (data: IGetDayInfo) => {
+    const response: IGetDayInfoResponse = await instanceAxios.post('/day/info', {
+        date: data.date
+    }, {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        }
+    })
+
+    return response
+}
 
 //Block User
 export const getUserInfo = (token: string) => instanceAxios.get('/user', {
