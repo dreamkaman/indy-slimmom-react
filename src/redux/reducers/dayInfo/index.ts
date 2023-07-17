@@ -34,10 +34,7 @@ export const initialState: IDayInfo = {
 
 export const dayInfoReducer = createReducer(initialState, {
     [dayInfoActionTypes.POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
-        console.log(state);
-        console.log(action);
         const { payload } = action;
-        console.log(payload);
         return {
             ...state,
             eatenProducts: [...payload.day.eatenProducts],
@@ -51,4 +48,20 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
+    [dayInfoActionTypes.GET_DAY_INFO_SUCCEEDED]: (state, action) => {
+        const { payload } = action;
+        console.log(payload);
+        return {
+            ...state,
+            eatenProducts: [...payload.eatenProducts],
+            daySummary: {
+                ...state.daySummary,
+                date: payload.daySummary.date,
+                kcalLeft: payload.daySummary.kcalLeft,
+                kcalConsumed: payload.daySummary.kcalConsumed,
+                dailyRate: payload.daySummary.dailyRate,
+                percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
+            }
+        }
+    }
 });
