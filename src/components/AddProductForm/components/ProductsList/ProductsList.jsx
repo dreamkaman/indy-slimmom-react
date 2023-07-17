@@ -5,53 +5,19 @@ import GetSvg from 'shared/components/GetSvg/GetSvg';
 import { addDimension } from 'shared/tools/addDimension/addDimension';
 
 import s from './ProductsList.module.css';
+import { useAppSelector } from 'redux/hooks';
+import { getEatenProductListSelector } from 'redux/selectors/dayInfo'
 
 
 const ProductsList = () => {
-    const productsList = [
-        {
-            id: 1,
-            productName: 'Cheese',
-            productWeight: 150,
-            productCalories: 750,
-        },
-        {
-            id: 2,
-            productName: 'Milk',
-            productWeight: 250,
-            productCalories: 900,
-        },
-        {
-            id: 3,
-            productName: 'Red meat',
-            productWeight: 250,
-            productCalories: 900,
-        },
-        {
-            id: 4,
-            productName: 'Sausage',
-            productWeight: 250,
-            productCalories: 600,
-        },
-        {
-            id: 5,
-            productName: 'Paper',
-            productWeight: 150,
-            productCalories: 300,
-        },
-        {
-            id: 6,
-            productName: 'Sweets',
-            productWeight: 150,
-            productCalories: 400,
-        }
-    ];
+
+    const eatenProductsList = useAppSelector(getEatenProductListSelector);
 
     return <ul className={s.productsList}>
-        {productsList.map((product) => <li key={product.id} className={s.productsListItem}>
-            <OutputText text={product.productName} className={s.outputTextProductName} />
-            <OutputText text={addDimension(product.productWeight, 'g')} className={s.outputTextProductWeight} />
-            <OutputText text={addDimension(product.productCalories, 'kcal')} className={s.outputTextProductCalories} />
+        {eatenProductsList.map((product) => <li key={product.id} className={s.productsListItem}>
+            <OutputText text={product.title} className={s.outputTextProductName} />
+            <OutputText text={addDimension(Math.round(product.weight), 'g')} className={s.outputTextProductWeight} />
+            <OutputText text={addDimension(Math.round(product.kcal), 'kcal')} className={s.outputTextProductCalories} />
             <Button className={`transparentButton`}><GetSvg name='closeBtn' className={s.closeIcon} /></Button>
         </li>)}
 

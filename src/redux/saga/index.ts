@@ -202,7 +202,6 @@ function* postEatenProductWorker(action: {
         const { payload } = action;
         const { data } = yield call(postEatenProduct, payload);
         yield put(postEatenProductSucceededAction(data));
-        console.log(data);
     } catch (error) {
         showMessage(error.message);
     }

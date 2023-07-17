@@ -29,26 +29,32 @@ interface Inputs {
 }
 
 const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const filteredProducts = useAppSelector(filteredProductsSelector);
     const token = useAppSelector(isAuthSelector);
 
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
-        const { _id: productId } = filteredProducts[0];
-        const { weight } = data;
+        try {
+            const { _id: productId } = filteredProducts[0];
+            const { weight } = data;
 
-        const currentDate = new Date();
+            const currentDate = new Date();
 
-        const date = dateFormat(currentDate, 'isoDate')
+            const date = dateFormat(currentDate, 'isoDate')
 
-        const eatenProduct = { productId, weight: Number(weight), date };
+            const eatenProduct = { productId, weight: Number(weight), date };
 
-        dispatch(postEatenProductAction({ eatenProduct, token }));
+            dispatch(postEatenProductAction({ eatenProduct, token }));
 
-        if (errors.length) {
-            showMessage('Error!');
+            if (errors.length) {
+                showMessage('Error!');
+            }
+            reset();
+
+        } catch (error) {
+            showMessage(error.message);
         }
     }
 

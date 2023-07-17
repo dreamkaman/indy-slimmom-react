@@ -1,6 +1,7 @@
-// import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+import dateFormat from 'dateformat';
 
-// import * as dayInfoActionTypes from 'redux/actions/modal/actionTypes';
+import * as dayInfoActionTypes from 'redux/actions/dayInfo/actionTypes';
 
 export interface IEatenProduct {
     title: string,
@@ -19,3 +20,35 @@ export interface IDayInfo {
         percentsOfDailyRate: number
     }
 }
+
+export const initialState: IDayInfo = {
+    eatenProducts: [],
+    daySummary: {
+        date: dateFormat(new Date(), 'isoDate'),
+        kcalLeft: 0,
+        kcalConsumed: 0,
+        dailyRate: 0,
+        percentsOfDailyRate: 0
+    }
+}
+
+export const dayInfoReducer = createReducer(initialState, {
+    [dayInfoActionTypes.POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+        console.log(state);
+        console.log(action);
+        const { payload } = action;
+        console.log(payload);
+        return {
+            ...state,
+            eatenProducts: [...payload.day.eatenProducts],
+            daySummary: {
+                ...state.daySummary,
+                date: payload.daySummary.date,
+                kcalLeft: payload.daySummary.kcalLeft,
+                kcalConsumed: payload.daySummary.kcalConsumed,
+                dailyRate: payload.daySummary.dailyRate,
+                percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
+            }
+        }
+    },
+});
