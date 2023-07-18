@@ -40,8 +40,16 @@ import { showModalAction } from 'redux/actions/modal/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
-import { DELETE_EATEN_PRODUCT, GET_DAY_INFO, POST_EATEN_PRODUCT } from 'redux/actions/dayInfo/actionTypes';
-import { getDayInfoSucceededAction, postEatenProductSucceededAction } from 'redux/actions/dayInfo/actionCreator';
+import {
+    DELETE_EATEN_PRODUCT,
+    GET_DAY_INFO,
+    POST_EATEN_PRODUCT
+} from 'redux/actions/dayInfo/actionTypes';
+import {
+    deleteEatenProductSucceededAction,
+    getDayInfoSucceededAction,
+    postEatenProductSucceededAction
+} from 'redux/actions/dayInfo/actionCreator';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -205,6 +213,7 @@ function* postEatenProductWorker(action: {
     try {
         const { payload } = action;
         const { data } = yield call(postEatenProduct, payload);
+
         yield put(postEatenProductSucceededAction(data));
     } catch (error) {
         showMessage(error.message);
@@ -240,8 +249,27 @@ function* deleteEatenProductWorker(action:
         },
         type: string
     }) {
-    const { payload } = action;
-    yield call(deleteEatenProduct, payload);
+    try {
+        const { payload } = action;
+
+        const response = yield call(deleteEatenProduct, payload);
+
+        const { requestData: { eatenProductId } } = payload;
+
+        const { kcalLeft,
+            kcalConsumed,
+            percentsOfDailyRate } = response.data.newDaySummary;
+
+        yield put(deleteEatenProductSucceededAction({
+            eatenProductId,
+            kcalLeft,
+            kcalConsumed,
+            percentsOfDailyRate
+        }))
+    } catch (error) {
+        showMessage(error.message);
+    }
+
 }
 
 function* deleteEatenProductWatcher() {

@@ -3,22 +3,25 @@ import OutputText from './components/OutputText';
 import GetSvg from 'shared/components/GetSvg/GetSvg';
 
 import { addDimension } from 'shared/tools/addDimension/addDimension';
-
-import s from './ProductsList.module.css';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { getEatenProductListSelector } from 'redux/selectors/dayInfo'
 import { deleteEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
+import { getDayIdSelector } from 'redux/selectors/dayInfo';
 
+import s from './ProductsList.module.css';
 
 const ProductsList = () => {
     const dispatch = useAppDispatch();
     const eatenProductsList = useAppSelector(getEatenProductListSelector);
     const token = useAppSelector(isAuthSelector);
+    const dayId = useAppSelector(getDayIdSelector);
 
     const handleDeleteClick = (e) => {
         console.dir(e.currentTarget.id);
-        dispatch(deleteEatenProductAction())
+        const eatenProductId = e.currentTarget.id;
+
+        dispatch(deleteEatenProductAction({ requestData: { dayId, eatenProductId }, token }));
     }
 
     return <ul className={s.productsList}>
