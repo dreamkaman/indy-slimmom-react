@@ -11,6 +11,7 @@ export interface IEatenProduct {
 }
 
 export interface IDayInfo {
+    id: string,
     eatenProducts: IEatenProduct[],
     daySummary: {
         date: string,
@@ -22,6 +23,7 @@ export interface IDayInfo {
 }
 
 export const initialState: IDayInfo = {
+    id: '',
     eatenProducts: [],
     daySummary: {
         date: dateFormat(new Date(), 'isoDate'),
@@ -37,6 +39,7 @@ export const dayInfoReducer = createReducer(initialState, {
         const { payload } = action;
         return {
             ...state,
+            id: payload.day.id,
             eatenProducts: [...payload.day.eatenProducts],
             daySummary: {
                 ...state.daySummary,
@@ -50,9 +53,9 @@ export const dayInfoReducer = createReducer(initialState, {
     },
     [dayInfoActionTypes.GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log(payload);
         return {
             ...state,
+            id: payload.id,
             eatenProducts: [...payload.eatenProducts],
             daySummary: {
                 ...state.daySummary,
@@ -63,5 +66,18 @@ export const dayInfoReducer = createReducer(initialState, {
                 percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
             }
         }
-    }
+    },
+    [dayInfoActionTypes.DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+        const { payload } = action;
+        return {
+            ...state,
+            eatenProducts: state.eatenProducts.filter((product) => product.id !== payload.eatenProductId),
+            daySummary: {
+                ...state.daySummary,
+                kcalLeft: payload.kcalLeft,
+                kcalConsumed: payload.kcalConsumed,
+                percentsOfDailyRate: payload.percentsOfDailyRate
+            }
+        }
+    },
 });

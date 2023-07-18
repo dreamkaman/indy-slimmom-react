@@ -252,11 +252,9 @@ export const deleteEatenProduct = async (data: { requestData: IDeleteRequest, to
         headers: {
             Authorization: `Bearer ${data.token}`
         },
-        data: {
-            body: data.requestData,
-        }
+        data: data.requestData
     });
-    console.log(response);
+
     return response;
 }
 
