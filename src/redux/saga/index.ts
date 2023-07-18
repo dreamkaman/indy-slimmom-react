@@ -2,7 +2,6 @@ import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects'
 
 import {
     GET_USER_DAILY_RATE,
-    // GET_USER_DAILY_RATE_SUCCEEDED,
     GET_USER_INFO,
     LOGIN_USER,
     LOGOUT_USER,
@@ -12,14 +11,20 @@ import {
 
 import {
     IDailyRateRequest,
+    IDeleteRequest,
+    IEatenProductRequest,
     IFindProduct,
+    IGetDayInfo,
     IUserLoginData,
     IUserRegisterData,
+    deleteEatenProduct,
     findProduct,
+    getDayInfo,
     getGeneralDailyRate,
     getUserInfo,
     loginUser,
     logoutUser,
+    postEatenProduct,
     postUserDailyRate,
     registerUser
 } from 'API';
@@ -35,6 +40,16 @@ import { showModalAction } from 'redux/actions/modal/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
+import {
+    DELETE_EATEN_PRODUCT,
+    GET_DAY_INFO,
+    POST_EATEN_PRODUCT
+} from 'redux/actions/dayInfo/actionTypes';
+import {
+    deleteEatenProductSucceededAction,
+    getDayInfoSucceededAction,
+    postEatenProductSucceededAction
+} from 'redux/actions/dayInfo/actionCreator';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -188,6 +203,79 @@ function* findProductWatcher() {
     yield takeLatest(FIND_PRODUCT, findProductWorker);
 }
 
+function* postEatenProductWorker(action: {
+    payload: {
+        eatenProduct: IEatenProductRequest,
+        token: string
+    },
+    type: string
+}) {
+    try {
+        const { payload } = action;
+        const { data } = yield call(postEatenProduct, payload);
+
+        yield put(postEatenProductSucceededAction(data));
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function* postEatenProductWatcher() {
+    yield takeEvery(POST_EATEN_PRODUCT, postEatenProductWorker);
+}
+
+function* getDaiInfoWorker(action: {
+    payload: IGetDayInfo,
+    type: string
+}) {
+    try {
+        const { payload } = action;
+        const { data } = yield call(getDayInfo, payload);
+        yield put(getDayInfoSucceededAction(data));
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function* getDayInfoWatcher() {
+    yield takeLatest(GET_DAY_INFO, getDaiInfoWorker);
+}
+
+function* deleteEatenProductWorker(action:
+    {
+        payload: {
+            requestData: IDeleteRequest,
+            token: string
+        },
+        type: string
+    }) {
+    try {
+        const { payload } = action;
+
+        const response = yield call(deleteEatenProduct, payload);
+
+        const { requestData: { eatenProductId } } = payload;
+
+        const { kcalLeft,
+            kcalConsumed,
+            percentsOfDailyRate } = response.data.newDaySummary;
+
+        yield put(deleteEatenProductSucceededAction({
+            eatenProductId,
+            kcalLeft,
+            kcalConsumed,
+            percentsOfDailyRate
+        }))
+    } catch (error) {
+        showMessage(error.message);
+    }
+
+}
+
+function* deleteEatenProductWatcher() {
+    yield takeEvery(DELETE_EATEN_PRODUCT, deleteEatenProductWorker);
+}
+
 export default function* rootSaga() {
     yield all([
         fork(registerUserWatcher),
@@ -196,7 +284,10 @@ export default function* rootSaga() {
         fork(postUserDailyRateWatcher),
         fork(getUserDailyRateWatcher),
         fork(getUserInfoWatcher),
-        fork(findProductWatcher)
+        fork(findProductWatcher),
+        fork(postEatenProductWatcher),
+        fork(getDayInfoWatcher),
+        fork(deleteEatenProductWatcher)
     ]);
 }
 

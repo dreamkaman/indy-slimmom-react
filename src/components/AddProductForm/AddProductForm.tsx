@@ -1,14 +1,21 @@
 import { FC, FormEventHandler } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
 import LabelInput from "shared/components/LabelInput";
 import GetSvg from "shared/components/GetSvg";
 import ProductsList from "./components/ProductsList";
+import dateFormat from "dateformat";
 
-import { useAppSelector } from 'redux/hooks';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
+import { productNameRules, productWeightRules } from 'shared/reactHookFormRules';
+import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
+import { isAuthSelector } from 'redux/selectors/user';
 
 import s from './AddProductForm.module.css';
+import { showMessage } from 'shared/tools/showMessages';
+
 
 
 interface IAddProductFormProps {
@@ -16,10 +23,42 @@ interface IAddProductFormProps {
     onInput?: FormEventHandler<HTMLInputElement>
 }
 
-const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
-    const filteredProducts = useAppSelector(filteredProductsSelector);
+interface Inputs {
+    productName: string,
+    weight: string
+}
 
-    return <form className={s.addProductForm}>
+const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const filteredProducts = useAppSelector(filteredProductsSelector);
+    const token = useAppSelector(isAuthSelector);
+
+    const dispatch = useAppDispatch();
+
+    const onSubmit: SubmitHandler<Inputs> = data => {
+        try {
+            const { _id: productId } = filteredProducts[0];
+            const { weight } = data;
+
+            const currentDate = new Date();
+
+            const date = dateFormat(currentDate, 'isoDate')
+
+            const eatenProduct = { productId, weight: Number(weight), date };
+
+            dispatch(postEatenProductAction({ eatenProduct, token }));
+
+            if (errors.length) {
+                showMessage('Error!');
+            }
+            reset();
+
+        } catch (error) {
+            showMessage(error.message);
+        }
+    }
+
+    return <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.inputProductBlock}>
             <div className={s.inputProductWrapper}>
                 <LabelInput
@@ -28,17 +67,23 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
                     labelHtmlFor='productName'
                     labelText="Enter product name"
                     optionsArray={filteredProducts}
-                    onInput={onInput} />
+                    onInput={onInput}
+                    register={register}
+                    rules={productNameRules}
+                />
             </div>
             <div className={s.inputWeightWrapper}>
                 <LabelInput
                     type='text'
                     labelHtmlFor='weight'
-                    labelText="Grams" />
+                    labelText="Grams"
+                    register={register}
+                    rules={productWeightRules}
+                />
             </div>
             <Button
                 className={`${s.addProductBtn} ${s.topBtn} buttonCircle buttonActive`}
-                type={'button'}>
+                type='submit'>
                 <GetSvg name="plusBtn" className={s.plusIcon} />
             </Button>
         </div>
@@ -46,7 +91,7 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
         <ProductsList />
 
         <Button
-            type={"submit"}
+            type='submit'
             className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`}
             onClick={onClick}>
             <GetSvg

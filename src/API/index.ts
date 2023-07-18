@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { IEatenProduct } from 'redux/reducers/dayInfo';
 
 
 export const instanceAxios = axios.create({
@@ -195,41 +196,98 @@ export const findProduct = async (data: IFindProduct) => {
 }
 
 //Block Day
-interface IEatenProduct {
+export interface IEatenProductRequest {
     date: string;
     productId: string,
     weight: number
 }
 
-export const setEatenProduct = (data: { eatenProduct: IEatenProduct, token: string }) => instanceAxios.post('/day', data.eatenProduct, {
-    headers: {
-        Authorization: `Bearer ${data.token}`
+export interface IEatenProductResponse {
+    eatenProduct: {
+        title: string,
+        weight: number,
+        kcal: number,
+        id: string
+    },
+    day: {
+        id: string,
+        eatenProducts: [
+            {
+                title: string,
+                weight: number,
+                kcal: number,
+                id: string
+            }
+        ],
+        date: string,
+        daySummary: string
+    },
+    daySummary: {
+        date: string,
+        kcalLeft: number,
+        kcalConsumed: number,
+        dailyRate: number,
+        percentsOfDailyRate: number,
+        userId: string,
+        id: string
     }
-});
+}
 
-interface IDeleteRequest {
+export const postEatenProduct = async (data: { eatenProduct: IEatenProductRequest, token: string }) => {
+
+    const result: IEatenProductResponse = await instanceAxios.post('/day', data.eatenProduct, {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        }
+    })
+    return result;
+};
+
+export interface IDeleteRequest {
     dayId: string;
     eatenProductId: string;
 }
-export const deleteEatenProduct = (data: { requestData: IDeleteRequest, token: string }) => instanceAxios.delete('/day', {
-    headers: {
-        Authorization: `Bearer ${data.token}`
-    },
-    data: {
-        body: data.requestData,
-    }
-});
+export const deleteEatenProduct = async (data: { requestData: IDeleteRequest, token: string }) => {
+    const response = await instanceAxios.delete('/day', {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        },
+        data: data.requestData
+    });
 
-interface IGetDayInfo extends IToken {
+    return response;
+}
+
+export interface IGetDayInfo extends IToken {
     date: string
 }
-export const getDayInfo = (data: IGetDayInfo) => instanceAxios.post('/day/info', {
-    date: data.date
-}, {
-    headers: {
-        Authorization: `Bearer ${data.token}`
+
+export interface IGetDayInfoResponse {
+    id: string,
+    eatenProducts: IEatenProduct[],
+    date: string,
+    daySummary: {
+        date: string,
+        kcalLeft: number,
+        kcalConsumed: number,
+        dailyRate: number,
+        percentsOfDailyRate: number,
+        userId: string,
+        id: string
     }
-})
+}
+
+export const getDayInfo = async (data: IGetDayInfo) => {
+    const response: IGetDayInfoResponse = await instanceAxios.post('/day/info', {
+        date: data.date
+    }, {
+        headers: {
+            Authorization: `Bearer ${data.token}`
+        }
+    })
+
+    return response
+}
 
 //Block User
 export const getUserInfo = (token: string) => instanceAxios.get('/user', {

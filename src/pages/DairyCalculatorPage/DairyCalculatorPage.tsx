@@ -1,6 +1,6 @@
-import { SyntheticEvent, useCallback } from "react";
+import { SyntheticEvent, useCallback, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import debounce from 'lodash.debounce';
+import { debounce } from "lodash";
 
 import Calendar from "shared/components/Calendar";
 import AddProductForm from "components/AddProductForm";
@@ -12,15 +12,12 @@ import AddProductFormModal from "components/AddProductFormModal/AddProductFormMo
 
 import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { showModalSelector } from "redux/selectors/modal";
-
-import s from './DairyCalculatorPage.module.css';
 import { isAuthSelector } from "redux/selectors/user";
 import { findProductAction } from "redux/actions/productSearch/actionCreator";
+import { getDayInfoAction } from "redux/actions/dayInfo/actionCreator";
+import { getDaySummerySelector } from "redux/selectors/dayInfo";
 
-
-
-
-
+import s from './DairyCalculatorPage.module.css';
 
 const DairyCalculatorPage = () => {
 
@@ -32,9 +29,14 @@ const DairyCalculatorPage = () => {
 
     const showModal = useAppSelector(showModalSelector);
 
-    const handleInput = (e: SyntheticEvent) => {
-        console.dir(e.target['value']);
+    const { date } = useAppSelector(getDaySummerySelector);
 
+    useEffect(() => {
+        dispatch(getDayInfoAction({ date, token }))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleInput = (e: SyntheticEvent) => {
         const searchText = e.target['value'];
         if (searchText.length >= 1 && searchText.length <= 30) {
             dispatch(findProductAction({ token, searchText }))

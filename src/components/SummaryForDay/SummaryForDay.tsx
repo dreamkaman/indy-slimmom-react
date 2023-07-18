@@ -1,27 +1,23 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "redux/hooks";
 
-import { dateFormatter } from "shared/tools/dateFormatter/dateFormatter";
 import { addDimension } from "shared/tools/addDimension/addDimension";
+import { getDaySummerySelector } from "redux/selectors/dayInfo";
 
 import s from './SummaryForDay.module.css';
-import { userDataSelector } from "redux/selectors/user";
+
 
 
 const SummaryForDay = () => {
-    const { dailyRate } = useSelector(userDataSelector);
+    const daySummary = useAppSelector(getDaySummerySelector);
 
-    const day = new Date();
-    const leftCalories = '0.00';
-    const consumedCalories = '0.00';
-    const dailyRateCalories = dailyRate || '0.00';
-    const percentCalories = '0.00';
+    const { date, kcalLeft, kcalConsumed, dailyRate, percentsOfDailyRate } = daySummary;
 
     return <div className={s.summaryBlock}>
-        <h4 className={s.summaryTitle}>Summary for {dateFormatter(day)}</h4>
-        <p className={s.summaryItem}>Left <span>{addDimension(leftCalories, "kcal")}</span></p>
-        <p className={s.summaryItem}>Consumed <span>{addDimension(consumedCalories, "kcal")}</span></p>
-        <p className={s.summaryItem}>Daily rate <span>{addDimension(dailyRateCalories, "kcal")}</span></p>
-        <p className={s.summaryItem}>n% of normal <span>{addDimension(percentCalories, "%")}</span></p>
+        <h4 className={s.summaryTitle}>Summary for {date}</h4>
+        <p className={s.summaryItem}>Left <span>{addDimension(Math.round(kcalLeft), "kcal")}</span></p>
+        <p className={s.summaryItem}>Consumed <span>{addDimension(Math.round(kcalConsumed), "kcal")}</span></p>
+        <p className={s.summaryItem}>Daily rate <span>{addDimension(Math.round(dailyRate), "kcal")}</span></p>
+        <p className={s.summaryItem}>n% of normal <span>{addDimension(Math.round(percentsOfDailyRate), "%")}</span></p>
     </div>
 }
 
