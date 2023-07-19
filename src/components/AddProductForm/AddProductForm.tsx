@@ -29,7 +29,7 @@ interface Inputs {
 }
 
 const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const filteredProducts = useAppSelector(filteredProductsSelector);
     const token = useAppSelector(isAuthSelector);
 
@@ -48,9 +48,6 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
 
             dispatch(postEatenProductAction({ eatenProduct, token }));
 
-            if (errors.length) {
-                showMessage('Error!');
-            }
             reset();
 
         } catch (error) {
