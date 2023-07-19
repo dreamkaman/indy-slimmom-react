@@ -53,10 +53,11 @@ export const dayInfoReducer = createReducer(initialState, {
     },
     [dayInfoActionTypes.GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
+        console.log(payload);
         return {
             ...state,
             id: payload.id,
-            eatenProducts: [...payload.eatenProducts],
+            eatenProducts: payload.eatenProducts,
             daySummary: {
                 ...state.daySummary,
                 date: payload.daySummary.date,
