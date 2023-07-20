@@ -4,16 +4,19 @@ import { useSelector } from 'react-redux';
 import GetSvg from 'shared/components/GetSvg';
 import NicButton from './components/NicButton'
 
-import { isAuthSelector } from 'redux/selectors/user';
+import { isAuthSelector, userDailyRateSelector } from 'redux/selectors/user';
+import { useAppSelector } from 'redux/hooks';
 
 import s from './Navigator.module.css';
-
 
 
 const Navigator = () => {
 
     const isAuth = useSelector(isAuthSelector);
     const showModal = false;
+    const userDairyRate = useAppSelector(userDailyRateSelector);
+
+
 
     return <nav className={s.navigation}>
         <div className={s.navWrapper}>
@@ -23,7 +26,7 @@ const Navigator = () => {
             <ul className={s.menu}>
                 {!isAuth && <li className={s.menuItem}><NavLink to='/login'>Log in</NavLink></li>}
                 {!isAuth && <li className={s.menuItem}><NavLink to='/register'>Registration</NavLink></li>}
-                {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/dairy'>Dairy</NavLink></li>}
+                {isAuth && !!userDairyRate && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/dairy'>Dairy</NavLink></li>}
                 {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/calculator'>Calculator</NavLink></li>}
             </ul>
         </div>

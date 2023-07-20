@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import dateFormat from 'dateformat';
 
 import * as dayInfoActionTypes from 'redux/actions/dayInfo/actionTypes';
+import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
 
 export interface IEatenProduct {
     title: {
@@ -84,4 +85,7 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
+    [LOGOUT_USER_SUCCEEDED]: () => {
+        return { ...initialState };
+    }
 });
