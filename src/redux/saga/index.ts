@@ -89,14 +89,6 @@ function* loginUserWatcher() {
     yield takeEvery(LOGIN_USER, loginUserWorker);
 }
 
-// function* loginUserSucceededWorker() {
-
-// }
-
-// function* loginUserSucceededWatcher() {
-//     yield takeEvery(LOGIN_USER_SUCCEEDED, loginUserSucceededWorker);
-// }
-
 function* logoutUserWatcher() {
     yield takeEvery(LOGOUT_USER, logoutUserWorker);
 }
@@ -175,14 +167,6 @@ function* getUserDailyRateWatcher() {
     yield takeEvery(GET_USER_DAILY_RATE, getUserDailyRateWorker);
 }
 
-// function* getUserDailyRateSucceededWorker() {
-//     yield;
-// }
-
-// function* getUserDailyRateSucceededWatcher() {
-//     yield takeEvery(GET_USER_DAILY_RATE_SUCCEEDED, getUserDailyRateSucceededWorker);
-// }
-
 function* findProductWorker(action: {
     payload: IFindProduct,
     type: string
@@ -231,6 +215,8 @@ function* getDaiInfoWorker(action: {
     try {
         const { payload } = action;
         const { data } = yield call(getDayInfo, payload);
+        console.log('getDayInfoSucceededAction data');
+        console.log(data);
         yield put(getDayInfoSucceededAction(data));
     } catch (error) {
         showMessage(error.message);
