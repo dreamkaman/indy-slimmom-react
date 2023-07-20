@@ -1,4 +1,4 @@
-import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 
 import {
     GET_USER_DAILY_RATE,
@@ -66,7 +66,7 @@ function* registerUserWorker(action: {
 }
 
 function* registerUserWatcher() {
-    yield takeEvery(REGISTER_USER, registerUserWorker);
+    yield takeLatest(REGISTER_USER, registerUserWorker);
 }
 
 function* loginUserWorker(action: {
@@ -86,11 +86,11 @@ function* loginUserWorker(action: {
 }
 
 function* loginUserWatcher() {
-    yield takeEvery(LOGIN_USER, loginUserWorker);
+    yield takeLatest(LOGIN_USER, loginUserWorker);
 }
 
 function* logoutUserWatcher() {
-    yield takeEvery(LOGOUT_USER, logoutUserWorker);
+    yield takeLatest(LOGOUT_USER, logoutUserWorker);
 }
 
 function* logoutUserWorker(action: {
@@ -128,7 +128,7 @@ function* postUserDailyRateWorker(action: {
 }
 
 function* postUserDailyRateWatcher() {
-    yield takeEvery(POST_USER_DAILY_RATE, postUserDailyRateWorker);
+    yield takeLatest(POST_USER_DAILY_RATE, postUserDailyRateWorker);
 }
 
 function* getUserInfoWorker(action: {
@@ -146,7 +146,7 @@ function* getUserInfoWorker(action: {
 }
 
 function* getUserInfoWatcher() {
-    yield takeEvery(GET_USER_INFO, getUserInfoWorker);
+    yield takeLatest(GET_USER_INFO, getUserInfoWorker);
 }
 
 function* getUserDailyRateWorker(action: {
@@ -164,7 +164,7 @@ function* getUserDailyRateWorker(action: {
 }
 
 function* getUserDailyRateWatcher() {
-    yield takeEvery(GET_USER_DAILY_RATE, getUserDailyRateWorker);
+    yield takeLatest(GET_USER_DAILY_RATE, getUserDailyRateWorker);
 }
 
 function* findProductWorker(action: {
@@ -205,7 +205,7 @@ function* postEatenProductWorker(action: {
 }
 
 function* postEatenProductWatcher() {
-    yield takeEvery(POST_EATEN_PRODUCT, postEatenProductWorker);
+    yield takeLatest(POST_EATEN_PRODUCT, postEatenProductWorker);
 }
 
 function* getDaiInfoWorker(action: {
@@ -219,7 +219,13 @@ function* getDaiInfoWorker(action: {
         console.log(data);
         yield put(getDayInfoSucceededAction(data));
     } catch (error) {
-        showMessage(error.message);
+        if (error.response.data.message) {
+            showMessage(error.response.data.message, 'warning');
+        } else {
+            showMessage(error.message);
+        }
+
+
     }
 }
 
@@ -259,7 +265,7 @@ function* deleteEatenProductWorker(action:
 }
 
 function* deleteEatenProductWatcher() {
-    yield takeEvery(DELETE_EATEN_PRODUCT, deleteEatenProductWorker);
+    yield takeLatest(DELETE_EATEN_PRODUCT, deleteEatenProductWorker);
 }
 
 export default function* rootSaga() {
