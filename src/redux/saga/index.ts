@@ -178,7 +178,7 @@ function* findProductWorker(action: {
 
         yield put(findProductSucceededAction(filteredProducts));
     } catch (error) {
-        showMessage('Product not found! Please, input product name in Ukrainian!');
+        showMessage('Product not found! Please, input product name in another language!');
     }
 
 }

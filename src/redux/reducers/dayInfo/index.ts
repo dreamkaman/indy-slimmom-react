@@ -4,7 +4,10 @@ import dateFormat from 'dateformat';
 import * as dayInfoActionTypes from 'redux/actions/dayInfo/actionTypes';
 
 export interface IEatenProduct {
-    title: string,
+    title: {
+        en: string,
+        ua: string
+    } | string,
     weight: number,
     kcal: number,
     id: string
