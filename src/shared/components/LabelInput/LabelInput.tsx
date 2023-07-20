@@ -58,8 +58,8 @@ const LabelInput: FC<ILabelInput> = ({
         <label htmlFor={labelHtmlFor}>{labelText}</label>
         {!!listName && <datalist id={listName}>
             {optionsArray.length && optionsArray.map((optionItem) => {
-                return <option key={optionItem._id} value={optionItem.title.ua}>
-                    {optionItem.title.ua}
+                return <option key={optionItem._id} value={optionItem.title.en}>
+                    {optionItem.title.en}
                 </option>
             })}
         </datalist>}

@@ -202,23 +202,21 @@ export interface IEatenProductRequest {
     weight: number
 }
 
+// export interface IEatenProduct {
+//     title: {
+//         en: string,
+//         ua: string
+//     },
+//     weight: number,
+//     kcal: number,
+//     id: string
+// }
+
 export interface IEatenProductResponse {
-    eatenProduct: {
-        title: string,
-        weight: number,
-        kcal: number,
-        id: string
-    },
+    eatenProduct: IEatenProduct,
     day: {
         id: string,
-        eatenProducts: [
-            {
-                title: string,
-                weight: number,
-                kcal: number,
-                id: string
-            }
-        ],
+        eatenProducts: IEatenProduct[],
         date: string,
         daySummary: string
     },
