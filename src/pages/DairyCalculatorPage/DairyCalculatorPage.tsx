@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useEffect } from "react";
+import { SyntheticEvent, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { debounce } from "lodash";
 
@@ -14,8 +14,8 @@ import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { showModalSelector } from "redux/selectors/modal";
 import { isAuthSelector } from "redux/selectors/user";
 import { findProductAction } from "redux/actions/productSearch/actionCreator";
-import { getDayInfoAction } from "redux/actions/dayInfo/actionCreator";
-import { getDaySummerySelector } from "redux/selectors/dayInfo";
+// import { getDayInfoAction } from "redux/actions/dayInfo/actionCreator";
+// import { getDaySummerySelector } from "redux/selectors/dayInfo";
 
 import s from './DairyCalculatorPage.module.css';
 
@@ -29,12 +29,12 @@ const DairyCalculatorPage = () => {
 
     const showModal = useAppSelector(showModalSelector);
 
-    const { date } = useAppSelector(getDaySummerySelector);
+    // const { date } = useAppSelector(getDaySummerySelector);
 
-    useEffect(() => {
-        dispatch(getDayInfoAction({ date, token }))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     dispatch(getDayInfoAction({ date, token }))
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     const handleInput = (e: SyntheticEvent) => {
         const searchText = e.target['value'];
