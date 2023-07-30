@@ -1,8 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
 import dateFormat from 'dateformat';
 
-import * as dayInfoActionTypes from 'redux/actions/dayInfo/actionTypes';
-import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
+import {
+    POST_EATEN_PRODUCT_SUCCEEDED,
+    GET_DAY_INFO_SUCCEEDED,
+    DELETE_EATEN_PRODUCT_SUCCEEDED
+} from 'redux/actions/dayInfo/actionTypes';
+
+import {
+    LOGOUT_USER_SUCCEEDED,
+    LOGIN_USER_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
 
 export interface IEatenProduct {
     title: {
@@ -39,7 +47,18 @@ export const initialState: IDayInfo = {
 }
 
 export const dayInfoReducer = createReducer(initialState, {
-    [dayInfoActionTypes.POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+    [LOGIN_USER_SUCCEEDED]: (state, action) => {
+        const { payload } = action;
+        console.log(payload);
+        return {
+            ...state,
+            daySummary: {
+                ...state.daySummary,
+                dailyRate: payload.user.userData.dailyRate
+            }
+        }
+    },
+    [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         return {
             ...state,
@@ -55,7 +74,7 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
-    [dayInfoActionTypes.GET_DAY_INFO_SUCCEEDED]: (state, action) => {
+    [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         console.log(payload);
         return {
@@ -72,7 +91,7 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
-    [dayInfoActionTypes.DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+    [DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         return {
             ...state,
