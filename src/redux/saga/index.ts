@@ -76,8 +76,7 @@ function* loginUserWorker(action: {
     try {
         const { payload } = action;
         const response = yield call(loginUser, payload);
-        console.log('LoginUser');
-        console.log(response);
+
         yield put(loginUserSucceededAction(response));
         yield showMessage('The user has successfully logged in!', 'success');
     } catch (error) {
