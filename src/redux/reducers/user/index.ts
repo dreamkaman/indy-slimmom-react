@@ -1,6 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { GET_USER_DAILY_RATE_SUCCEEDED, GET_USER_INFO_SUCCEEDED, LOGIN_USER_SUCCEEDED, LOGOUT_USER_SUCCEEDED, POST_USER_DAILY_RATE_SUCCEEDED } from 'redux/actions/user/actionTypes';
+import {
+    GET_USER_DAILY_RATE_SUCCEEDED,
+    GET_USER_INFO_SUCCEEDED,
+    LOGIN_USER_SUCCEEDED,
+    LOGOUT_USER_SUCCEEDED,
+    POST_USER_DAILY_RATE_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
 
 export interface IUserState {
     accessToken: string,
@@ -64,14 +70,16 @@ export const userReducer = createReducer(initialState, {
     },
     [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
         const { payload } = action;
+        console.log(payload);
+
         return {
             ...state,
             user: {
                 ...state.user,
                 userData: {
                     ...state.user.userData,
-                    dailyRate: payload.dailyRate,
-                    notAllowedProducts: [...payload.notAllowedProducts]
+                    dailyRate: payload.request.dailyRate,
+                    notAllowedProducts: [...payload.request.notAllowedProducts]
                 }
             }
         }
