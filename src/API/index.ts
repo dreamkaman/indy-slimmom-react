@@ -37,7 +37,7 @@ export const registerUser = async (userData: IUserRegisterData) => {
 
 }
 
-interface ILoginUserResponse {
+export interface ILoginUserResponse {
     accessToken: string,
     refreshToken: string,
     sid: string,
@@ -120,11 +120,21 @@ export interface IDailyRateRequest {
     bloodType: number
 }
 
-export interface IDailyRateResponse {
-    data: {
+export interface IDailyRateResponseData {
+    dailyRate: number,
+    notAllowedProducts: string[],
+    summaries: {
+        _id: string,
+        date: string,
+        kcalLeft: number,
+        kcalConsumed: number,
         dailyRate: number,
-        notAllowedProducts: string[]
-    }
+        percentsOfDailyRate: number
+    }[];
+}
+
+export interface IDailyRateResponse {
+    data: IDailyRateResponseData
 }
 
 export const getGeneralDailyRate = async (request: IDailyRateRequest) => {
