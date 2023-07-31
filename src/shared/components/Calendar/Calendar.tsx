@@ -26,7 +26,7 @@ const Calendar = () => {
     const changeCalendarHandler = (value: { $d: Date; }) => {
         setCurrentDate(value.$d);
         setShowCalendarText(false);
-        dispatch(getDayInfoAction({ date: dateFormat(currentDate, 'isoDate'), token }))
+        // dispatch(getDayInfoAction({ date: dateFormat(currentDate, 'isoDate'), token }));
     }
 
     return <>
