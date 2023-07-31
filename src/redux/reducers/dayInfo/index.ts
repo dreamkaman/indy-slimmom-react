@@ -1,7 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 import dateFormat from 'dateformat';
 
-import * as dayInfoActionTypes from 'redux/actions/dayInfo/actionTypes';
+import {
+    POST_EATEN_PRODUCT_SUCCEEDED,
+    GET_DAY_INFO_SUCCEEDED,
+    DELETE_EATEN_PRODUCT_SUCCEEDED
+} from 'redux/actions/dayInfo/actionTypes';
+
 import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
 
 export interface IEatenProduct {
@@ -39,7 +44,7 @@ export const initialState: IDayInfo = {
 }
 
 export const dayInfoReducer = createReducer(initialState, {
-    [dayInfoActionTypes.POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+    [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         return {
             ...state,
@@ -55,24 +60,24 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
-    [dayInfoActionTypes.GET_DAY_INFO_SUCCEEDED]: (state, action) => {
+    [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         console.log(payload);
         return {
             ...state,
-            id: payload.id,
-            eatenProducts: payload.eatenProducts,
+            id: payload?.id,
+            eatenProducts: payload?.eatenProducts || [],
             daySummary: {
                 ...state.daySummary,
-                date: payload.daySummary.date,
-                kcalLeft: payload.daySummary.kcalLeft,
-                kcalConsumed: payload.daySummary.kcalConsumed,
-                dailyRate: payload.daySummary.dailyRate,
-                percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
+                date: payload?.daySummary?.date || dateFormat(new Date(), 'isoDate'),
+                kcalLeft: payload?.daySummary?.kcalLeft || payload?.kcalLeft,
+                kcalConsumed: payload?.daySummary?.kcalConsumed || payload?.kcalConsumed,
+                dailyRate: payload?.daySummary?.dailyRate || payload?.dailyRate,
+                percentsOfDailyRate: payload?.daySummary?.percentsOfDailyRate || payload?.percentsOfDailyRate
             }
         }
     },
-    [dayInfoActionTypes.DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+    [DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         return {
             ...state,

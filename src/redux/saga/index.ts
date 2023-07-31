@@ -215,6 +215,7 @@ function* getDaiInfoWorker(action: {
     try {
         const { payload } = action;
         const { data } = yield call(getDayInfo, payload);
+
         console.log('getDayInfoSucceededAction data');
         console.log(data);
         yield put(getDayInfoSucceededAction(data));
