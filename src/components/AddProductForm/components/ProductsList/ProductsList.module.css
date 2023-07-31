@@ -2,9 +2,13 @@
     width: 100%;
 
     overflow-y: scroll;
-
-    scrollbar-width: inherit;
 }
+
+.productsList::-webkit-scrollbar {
+    height: 4px;
+}
+
+
 
 .productsListItem {
     display: flex;

@@ -7,7 +7,12 @@ import {
     DELETE_EATEN_PRODUCT_SUCCEEDED
 } from 'redux/actions/dayInfo/actionTypes';
 
-import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
+
+import {
+    LOGOUT_USER_SUCCEEDED,
+    LOGIN_USER_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
+
 
 export interface IEatenProduct {
     title: {
@@ -44,25 +49,39 @@ export const initialState: IDayInfo = {
 }
 
 export const dayInfoReducer = createReducer(initialState, {
+
     [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+
         const { payload } = action;
         return {
             ...state,
-            id: payload.day.id,
-            eatenProducts: [...payload.day.eatenProducts],
             daySummary: {
                 ...state.daySummary,
-                date: payload.daySummary.date,
-                kcalLeft: payload.daySummary.kcalLeft,
-                kcalConsumed: payload.daySummary.kcalConsumed,
-                dailyRate: payload.daySummary.dailyRate,
-                percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
+                dailyRate: payload.user.userData.dailyRate
+            }
+        }
+    },
+
+    [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
+        const { payload } = action;
+        console.log(payload);
+
+        return {
+            ...state,
+            id: payload?.newDay?.id || payload?.day.id,
+            eatenProducts: [...state.eatenProducts, payload.eatenProduct],
+            daySummary: {
+                ...state.daySummary,
+                date: payload.daySummary?.date || payload.newSummary?.date,
+                kcalLeft: payload.daySummary?.kcalLeft || payload.newSummary?.kcalLeft,
+                kcalConsumed: payload.daySummary?.kcalConsumed || payload.newSummary?.kcalConsumed,
+                dailyRate: payload.daySummary?.dailyRate || payload.newSummary?.dailyRate,
+                percentsOfDailyRate: payload.daySummary?.percentsOfDailyRate || payload.newSummary?.percentsOfDailyRate
             }
         }
     },
     [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log(payload);
         return {
             ...state,
             id: payload?.id,
