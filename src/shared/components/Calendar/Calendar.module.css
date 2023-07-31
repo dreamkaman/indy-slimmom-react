@@ -13,8 +13,15 @@
 
 .calendarText {
     position: absolute;
-    background-color: #fff;
+    z-index: 5;
+
+    border: 1px solid var(--font-secondary-color);
+    border-radius: 10px;
+
+    background-color: #FFF;
+
 }
+
 
 @media screen and (min-width: 320px) {}
 
