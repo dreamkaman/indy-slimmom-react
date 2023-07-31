@@ -7,10 +7,12 @@ import {
     DELETE_EATEN_PRODUCT_SUCCEEDED
 } from 'redux/actions/dayInfo/actionTypes';
 
+
 import {
     LOGOUT_USER_SUCCEEDED,
     LOGIN_USER_SUCCEEDED
 } from 'redux/actions/user/actionTypes';
+
 
 export interface IEatenProduct {
     title: {
@@ -47,7 +49,9 @@ export const initialState: IDayInfo = {
 }
 
 export const dayInfoReducer = createReducer(initialState, {
-    [LOGIN_USER_SUCCEEDED]: (state, action) => {
+
+    [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+
         const { payload } = action;
         return {
             ...state,
@@ -57,7 +61,8 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
-    [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+
+    [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         console.log(payload);
 
@@ -79,15 +84,15 @@ export const dayInfoReducer = createReducer(initialState, {
         const { payload } = action;
         return {
             ...state,
-            id: payload.id,
-            eatenProducts: payload.eatenProducts,
+            id: payload?.id,
+            eatenProducts: payload?.eatenProducts || [],
             daySummary: {
                 ...state.daySummary,
-                date: payload.daySummary.date,
-                kcalLeft: payload.daySummary.kcalLeft,
-                kcalConsumed: payload.daySummary.kcalConsumed,
-                dailyRate: payload.daySummary.dailyRate,
-                percentsOfDailyRate: payload.daySummary.percentsOfDailyRate
+                date: payload?.daySummary?.date || dateFormat(new Date(), 'isoDate'),
+                kcalLeft: payload?.daySummary?.kcalLeft || payload?.kcalLeft,
+                kcalConsumed: payload?.daySummary?.kcalConsumed || payload?.kcalConsumed,
+                dailyRate: payload?.daySummary?.dailyRate || payload?.dailyRate,
+                percentsOfDailyRate: payload?.daySummary?.percentsOfDailyRate || payload?.percentsOfDailyRate
             }
         }
     },

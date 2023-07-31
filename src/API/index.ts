@@ -212,16 +212,6 @@ export interface IEatenProductRequest {
     weight: number
 }
 
-// export interface IEatenProduct {
-//     title: {
-//         en: string,
-//         ua: string
-//     },
-//     weight: number,
-//     kcal: number,
-//     id: string
-// }
-
 export interface IEatenProductResponse {
     eatenProduct: IEatenProduct,
     day: {
@@ -285,8 +275,15 @@ export interface IGetDayInfoResponse {
     }
 }
 
+export interface IGetDayInfoNewDayResponse {
+    kcalLeft: number,
+    kcalConsumed: number,
+    dailyRate: number,
+    percentsOfDailyRate: number,
+}
+
 export const getDayInfo = async (data: IGetDayInfo) => {
-    const response: IGetDayInfoResponse = await instanceAxios.post('/day/info', {
+    const response: AxiosResponse<IGetDayInfoResponse | IGetDayInfoNewDayResponse> = await instanceAxios.post('/day/info', {
         date: data.date
     }, {
         headers: {
