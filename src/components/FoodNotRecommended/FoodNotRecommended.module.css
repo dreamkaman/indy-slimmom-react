@@ -9,7 +9,11 @@
 
 .foodNotRecommendedList {
     max-height: 120px;
-    overflow-y: auto;
+    overflow-y: scroll;
+}
+
+.foodNotRecommendedList::-webkit-scrollbar {
+    height: 4px;
 }
 
 .foodNotRecommendedListItem:not(:last-child) {

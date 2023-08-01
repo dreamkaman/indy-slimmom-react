@@ -34,13 +34,16 @@ const RegisterUserForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors } } = useForm()
+        formState: { errors },
+        reset
+    } = useForm()
 
 
     const handleSubmitRegistrationForm = (data: FormData) => {
         try {
             const { username, email, password } = data;
             dispatch(registerUserAction({ username, email, password }));
+            reset();
         } catch (error) {
             showMessage(error.message);
         }

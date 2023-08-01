@@ -1,4 +1,10 @@
-import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
+import {
+    all,
+    call,
+    fork,
+    put,
+    takeLatest
+} from 'redux-saga/effects';
 
 import {
     GET_USER_DAILY_RATE,
@@ -11,6 +17,7 @@ import {
 
 import {
     IDailyRateRequest,
+    IDailyRateResponse,
     IDeleteRequest,
     IEatenProductRequest,
     IFindProduct,
@@ -26,8 +33,10 @@ import {
     logoutUser,
     postEatenProduct,
     postUserDailyRate,
-    registerUser
+    registerUser,
+    ILoginUserResponse
 } from 'API';
+
 import {
     getUserDailyRateSucceededAction,
     getUserInfoAction,
@@ -45,11 +54,15 @@ import {
     GET_DAY_INFO,
     POST_EATEN_PRODUCT
 } from 'redux/actions/dayInfo/actionTypes';
+
 import {
     deleteEatenProductSucceededAction,
+    getDayInfoAction,
     getDayInfoSucceededAction,
     postEatenProductSucceededAction
 } from 'redux/actions/dayInfo/actionCreator';
+
+import dateFormat from 'dateformat';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -75,8 +88,13 @@ function* loginUserWorker(action: {
 }) {
     try {
         const { payload } = action;
-        const response = yield call(loginUser, payload);
+        const response: ILoginUserResponse = yield call(loginUser, payload);
+
         yield put(loginUserSucceededAction(response));
+        const { accessToken: token } = response;
+        const date = dateFormat(new Date(), 'isoDate')
+
+        yield put(getDayInfoAction({ date, token }))
         yield showMessage('The user has successfully logged in!', 'success');
     } catch (error) {
         showMessage(error.message);
@@ -118,8 +136,9 @@ function* postUserDailyRateWorker(action: {
 }) {
     try {
         const { payload: { request, userId, token } } = action;
-        const { data } = yield call(postUserDailyRate, request, userId, token);
-        yield put(postUserDailyRateSucceededAction(data));
+        const response: IDailyRateResponse = yield call(postUserDailyRate, request, userId, token);
+        const { data } = response;
+        yield put(postUserDailyRateSucceededAction({ request: data }));
         yield put(getUserInfoAction(token));
 
     } catch (error) {
@@ -197,7 +216,7 @@ function* postEatenProductWorker(action: {
     try {
         const { payload } = action;
         const { data } = yield call(postEatenProduct, payload);
-
+        console.log(data);
         yield put(postEatenProductSucceededAction(data));
     } catch (error) {
         showMessage(error.message);

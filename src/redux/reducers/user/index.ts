@@ -1,6 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import * as userActionTypes from 'redux/actions/user/actionTypes';
+import {
+    GET_USER_DAILY_RATE_SUCCEEDED,
+    GET_USER_INFO_SUCCEEDED,
+    LOGIN_USER_SUCCEEDED,
+    LOGOUT_USER_SUCCEEDED,
+    POST_USER_DAILY_RATE_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
 
 export interface IUserState {
     accessToken: string,
@@ -44,7 +50,7 @@ export const initialState: IUserState = {
 };
 
 export const userReducer = createReducer(initialState, {
-    [userActionTypes.LOGIN_USER_SUCCEEDED]: (state, action) => {
+    [LOGIN_USER_SUCCEEDED]: (state, action) => {
         return {
             ...state,
             accessToken: action.payload.accessToken,
@@ -59,24 +65,26 @@ export const userReducer = createReducer(initialState, {
             }
         }
     },
-    [userActionTypes.LOGOUT_USER_SUCCEEDED]: () => {
+    [LOGOUT_USER_SUCCEEDED]: () => {
         return { ...initialState };
     },
-    [userActionTypes.POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+    [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
         const { payload } = action;
+        console.log(payload);
+
         return {
             ...state,
             user: {
                 ...state.user,
                 userData: {
                     ...state.user.userData,
-                    dailyRate: payload.dailyRate,
-                    notAllowedProducts: [...payload.notAllowedProducts]
+                    dailyRate: payload.request.dailyRate,
+                    notAllowedProducts: [...payload.request.notAllowedProducts]
                 }
             }
         }
     },
-    [userActionTypes.GET_USER_INFO_SUCCEEDED]: (state, action) => {
+    [GET_USER_INFO_SUCCEEDED]: (state, action) => {
         return {
             ...state,
             user: {
@@ -87,7 +95,7 @@ export const userReducer = createReducer(initialState, {
             }
         }
     },
-    [userActionTypes.GET_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+    [GET_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
 
         const { payload: {
             dailyRate,
