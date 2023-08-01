@@ -7,7 +7,11 @@ import {
     DELETE_EATEN_PRODUCT_SUCCEEDED
 } from 'redux/actions/dayInfo/actionTypes';
 
-import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
+
+import {
+    LOGOUT_USER_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
+
 
 export interface IEatenProduct {
     title: {
@@ -44,7 +48,9 @@ export const initialState: IDayInfo = {
 }
 
 export const dayInfoReducer = createReducer(initialState, {
+
     [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
+
         const { payload } = action;
         return {
             ...state,
@@ -60,6 +66,7 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
+
     [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
         const { payload: { dayInfo, date } } = action;
 
