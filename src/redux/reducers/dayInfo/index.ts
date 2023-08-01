@@ -55,44 +55,33 @@ export const dayInfoReducer = createReducer(initialState, {
         const { payload } = action;
         return {
             ...state,
+            id: payload.day?.id,
+            eatenProducts: payload.day?.eatenProducts ? [...payload.day.eatenProducts] : [...state.eatenProducts, payload.eatenProduct],
             daySummary: {
                 ...state.daySummary,
-                dailyRate: payload.user.userData.dailyRate
+                date: payload.daySummary?.date || state.daySummary.date,
+                kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
+                kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
+                dailyRate: payload.daySummary?.dailyRate || payload.dailyRate,
+                percentsOfDailyRate: payload.daySummary?.percentsOfDailyRate || payload.percentsOfDailyRate
             }
         }
     },
 
     [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
-        const { payload } = action;
-        console.log(payload);
+        const { payload: { dayInfo, date } } = action;
 
         return {
             ...state,
-            id: payload?.newDay?.id || payload?.day.id,
-            eatenProducts: [...state.eatenProducts, payload.eatenProduct],
+            id: dayInfo?.id,
+            eatenProducts: dayInfo?.eatenProducts || [],
             daySummary: {
                 ...state.daySummary,
-                date: payload.daySummary?.date || payload.newSummary?.date,
-                kcalLeft: payload.daySummary?.kcalLeft || payload.newSummary?.kcalLeft,
-                kcalConsumed: payload.daySummary?.kcalConsumed || payload.newSummary?.kcalConsumed,
-                dailyRate: payload.daySummary?.dailyRate || payload.newSummary?.dailyRate,
-                percentsOfDailyRate: payload.daySummary?.percentsOfDailyRate || payload.newSummary?.percentsOfDailyRate
-            }
-        }
-    },
-    [GET_DAY_INFO_SUCCEEDED]: (state, action) => {
-        const { payload } = action;
-        return {
-            ...state,
-            id: payload?.id,
-            eatenProducts: payload?.eatenProducts || [],
-            daySummary: {
-                ...state.daySummary,
-                date: payload?.daySummary?.date || dateFormat(new Date(), 'isoDate'),
-                kcalLeft: payload?.daySummary?.kcalLeft || payload?.kcalLeft,
-                kcalConsumed: payload?.daySummary?.kcalConsumed || payload?.kcalConsumed,
-                dailyRate: payload?.daySummary?.dailyRate || payload?.dailyRate,
-                percentsOfDailyRate: payload?.daySummary?.percentsOfDailyRate || payload?.percentsOfDailyRate
+                date,
+                kcalLeft: dayInfo?.daySummary?.kcalLeft || dayInfo?.kcalLeft,
+                kcalConsumed: dayInfo?.daySummary?.kcalConsumed || dayInfo?.kcalConsumed,
+                dailyRate: dayInfo?.daySummary?.dailyRate || dayInfo?.dailyRate,
+                percentsOfDailyRate: dayInfo?.daySummary?.percentsOfDailyRate || dayInfo?.percentsOfDailyRate
             }
         }
     },
