@@ -273,7 +273,7 @@ export interface IGetDayInfoNewDayResponse {
 }
 
 export const getDayInfo = async (data: IGetDayInfo) => {
-    const response: AxiosResponse<IGetDayInfoResponse | IGetDayInfoNewDayResponse> = await instanceAxios.post('/day/info', {
+    const response: IGetDayInfoResponse | IGetDayInfoNewDayResponse = await instanceAxios.post('/day/info', {
         date: data.date
     }, {
         headers: {

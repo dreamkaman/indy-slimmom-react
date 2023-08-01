@@ -5,7 +5,6 @@ import Button from "shared/components/Button";
 import LabelInput from "shared/components/LabelInput";
 import GetSvg from "shared/components/GetSvg";
 import ProductsList from "./components/ProductsList";
-import dateFormat from "dateformat";
 
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
@@ -15,6 +14,7 @@ import { isAuthSelector } from 'redux/selectors/user';
 
 import s from './AddProductForm.module.css';
 import { showMessage } from 'shared/tools/showMessages';
+import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 
 
 
@@ -32,6 +32,7 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
     const { register, handleSubmit, reset } = useForm();
     const filteredProducts = useAppSelector(filteredProductsSelector);
     const token = useAppSelector(isAuthSelector);
+    const currentDate = useAppSelector(getCurrentDateSelector);
 
     const dispatch = useAppDispatch();
 
@@ -40,11 +41,7 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
             const { _id: productId } = filteredProducts[0];
             const { weight } = data;
 
-            const currentDate = new Date();
-
-            const date = dateFormat(currentDate, 'isoDate')
-
-            const eatenProduct = { productId, weight: Number(weight), date };
+            const eatenProduct = { productId, weight: Number(weight), date: currentDate };
 
             dispatch(postEatenProductAction({ eatenProduct, token }));
 

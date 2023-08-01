@@ -14,7 +14,6 @@ import s from './ProductsList.module.css';
 const ProductsList = () => {
     const dispatch = useAppDispatch();
     const eatenProductsList = useAppSelector(getEatenProductListSelector);
-    console.log(eatenProductsList);
 
     const token = useAppSelector(isAuthSelector);
     const dayId = useAppSelector(getDayIdSelector);

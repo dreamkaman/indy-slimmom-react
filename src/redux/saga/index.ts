@@ -216,9 +216,7 @@ function* getDaiInfoWorker(action: {
         const { payload } = action;
         const { data } = yield call(getDayInfo, payload);
 
-        console.log('getDayInfoSucceededAction data');
-        console.log(data);
-        yield put(getDayInfoSucceededAction(data));
+        yield put(getDayInfoSucceededAction({ dayInfo: data, date: payload.date }));
     } catch (error) {
         if (error.response.data.message) {
             showMessage(error.response.data.message, 'warning');
