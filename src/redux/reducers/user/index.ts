@@ -70,7 +70,6 @@ export const userReducer = createReducer(initialState, {
     },
     [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log(payload);
 
         return {
             ...state,

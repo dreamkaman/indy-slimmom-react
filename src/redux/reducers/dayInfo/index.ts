@@ -9,8 +9,7 @@ import {
 
 
 import {
-    LOGOUT_USER_SUCCEEDED,
-    LOGIN_USER_SUCCEEDED
+    LOGOUT_USER_SUCCEEDED
 } from 'redux/actions/user/actionTypes';
 
 
