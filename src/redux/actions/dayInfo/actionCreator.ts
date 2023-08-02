@@ -23,7 +23,7 @@ export const postEatenProductSucceededAction = createAction<IEatenProductRespons
 
 export const getDayInfoAction = createAction<IGetDayInfo, 'GET_DAY_INFO'>(GET_DAY_INFO);
 
-export const getDayInfoSucceededAction = createAction<IGetDayInfoResponse, 'GET_DAY_INFO_SUCCEEDED'>(GET_DAY_INFO_SUCCEEDED);
+export const getDayInfoSucceededAction = createAction<{ dayInfo: IGetDayInfoResponse, date: string }, 'GET_DAY_INFO_SUCCEEDED'>(GET_DAY_INFO_SUCCEEDED);
 
 export const deleteEatenProductAction = createAction<{
     requestData: IDeleteRequest,

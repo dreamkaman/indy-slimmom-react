@@ -8,25 +8,27 @@ import Button from "../Button/Button";
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { getDayInfoAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
+import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 
 import s from "./Calendar.module.css";
+
 
 
 const Calendar = () => {
     const dispatch = useAppDispatch();
     const token = useAppSelector(isAuthSelector)
 
-    const [currentDate, setCurrentDate] = useState(new Date());
     const [showCalendarText, setShowCalendarText] = useState(false);
+
+    const currentDate = useAppSelector(getCurrentDateSelector);
 
     const clickCalendarHandler = () => {
         setShowCalendarText(!showCalendarText);
     }
 
     const changeCalendarHandler = (value: { $d: Date }) => {
-        setCurrentDate(value.$d);
+        dispatch(getDayInfoAction({ date: dateFormat(value.$d, 'isoDate'), token }));
         setShowCalendarText(false);
-        dispatch(getDayInfoAction({ date: dateFormat(currentDate, 'isoDate'), token }));
     }
 
     return <>
@@ -37,7 +39,6 @@ const Calendar = () => {
         {showCalendarText && <div className={s.calendarText}>
             <DateCalendar onChange={changeCalendarHandler} />
         </div>}
-
     </>
 }
 

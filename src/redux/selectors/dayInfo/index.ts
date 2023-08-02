@@ -7,3 +7,5 @@ export const getEatenProductListSelector = (state: RootState) => state.dayInfoSt
 export const getDaySummerySelector = (state: RootState) => state.dayInfoState.daySummary;
 
 export const getDayIdSelector = (state: RootState) => state.dayInfoState.id;
+
+export const getCurrentDateSelector = (state: RootState) => state.dayInfoState.daySummary.date;
