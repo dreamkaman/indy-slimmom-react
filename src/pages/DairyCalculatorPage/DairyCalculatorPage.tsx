@@ -29,16 +29,9 @@ const DairyCalculatorPage = () => {
 
     const showModal = useAppSelector(showModalSelector);
 
-    // const { date } = useAppSelector(getDaySummerySelector);
-
-    // useEffect(() => {
-    //     dispatch(getDayInfoAction({ date, token }))
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
-
     const handleInput = (e: SyntheticEvent) => {
         const searchText = e.target['value'];
-        if (searchText.length >= 1 && searchText.length <= 30) {
+        if (searchText.length >= 2 && searchText.length <= 30) {
             dispatch(findProductAction({ token, searchText }))
         }
     }
