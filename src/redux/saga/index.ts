@@ -242,8 +242,6 @@ function* getDaiInfoWorker(action: {
         } else {
             showMessage(error.message);
         }
-
-
     }
 }
 

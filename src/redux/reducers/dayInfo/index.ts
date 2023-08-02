@@ -94,6 +94,7 @@ export const dayInfoReducer = createReducer(initialState, {
                 ...state.daySummary,
                 kcalLeft: payload.kcalLeft,
                 kcalConsumed: payload.kcalConsumed,
+                dailyRate: payload.dailyRate ?? payload.kcalLeft,
                 percentsOfDailyRate: payload.percentsOfDailyRate
             }
         }
