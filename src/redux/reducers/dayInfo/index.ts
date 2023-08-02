@@ -9,7 +9,7 @@ import {
 
 
 import {
-    LOGOUT_USER_SUCCEEDED
+    LOGOUT_USER_SUCCEEDED, POST_USER_DAILY_RATE_SUCCEEDED
 } from 'redux/actions/user/actionTypes';
 
 
@@ -99,6 +99,24 @@ export const dayInfoReducer = createReducer(initialState, {
             }
         }
     },
+    [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+
+        const { payload: { request: { summaries }, currentDate } } = action;
+
+        const summary = summaries.find(summary => summary.date === currentDate);
+
+        return {
+            ...state,
+            daySummary: {
+                ...state.daySummary,
+                kcalLeft: summary?.kcalLeft,
+                kcalConsumed: summary?.kcalConsumed,
+                dailyRate: summary?.dailyRate,
+                percentsOfDailyRate: summary?.percentsOfDailyRate
+            }
+        };
+    },
+
     [LOGOUT_USER_SUCCEEDED]: () => {
         return { ...initialState };
     }
