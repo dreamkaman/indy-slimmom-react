@@ -216,7 +216,7 @@ function* postEatenProductWorker(action: {
     try {
         const { payload } = action;
         const { data } = yield call(postEatenProduct, payload);
-        console.log(data);
+
         yield put(postEatenProductSucceededAction(data));
     } catch (error) {
         showMessage(error.message);
