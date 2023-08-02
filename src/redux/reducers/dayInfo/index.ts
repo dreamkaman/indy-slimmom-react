@@ -51,7 +51,7 @@ export const dayInfoReducer = createReducer(initialState, {
 
     [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log(payload);
+
         return {
             ...state,
             id: payload.day?.id ?? payload.newDay.id,
