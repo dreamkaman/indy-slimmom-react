@@ -101,18 +101,22 @@ export const dayInfoReducer = createReducer(initialState, {
     },
     [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
 
-        const { payload: { request: { summaries }, currentDate } } = action;
+        const { payload } = action;
 
-        const summary = summaries.find(summary => summary.date === currentDate);
+        const { request } = payload;
+
+        const { summaries, currentDate } = request;
+
+        const summary = summaries?.find(summary => summary.date === currentDate);
 
         return {
             ...state,
             daySummary: {
                 ...state.daySummary,
-                kcalLeft: summary?.kcalLeft,
-                kcalConsumed: summary?.kcalConsumed,
-                dailyRate: summary?.dailyRate,
-                percentsOfDailyRate: summary?.percentsOfDailyRate
+                kcalLeft: summary?.kcalLeft ?? request.dailyRate,
+                kcalConsumed: summary?.kcalConsumed ?? 0,
+                dailyRate: summary?.dailyRate ?? request.dailyRate,
+                percentsOfDailyRate: summary?.percentsOfDailyRate ?? 0
             }
         };
     },
