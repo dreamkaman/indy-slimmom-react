@@ -39,11 +39,10 @@ import {
 
 import {
     getUserDailyRateSucceededAction,
-    getUserInfoAction,
     getUserInfoSucceededACtion,
     logOutUserSucceededAction,
     loginUserSucceededAction,
-    postUserDailyRateSucceededAction,
+    postUserDailyRateSucceededAction
 } from 'redux/actions/user/actionCreators';
 import { showModalAction } from 'redux/actions/modal/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
@@ -131,15 +130,16 @@ function* postUserDailyRateWorker(action: {
     payload: {
         request: IDailyRateRequest,
         userId: string,
-        token: string
+        token: string,
+        currentDate?: string
     }
 }) {
     try {
-        const { payload: { request, userId, token } } = action;
+        const { payload: { request, userId, token, currentDate } } = action;
         const response: IDailyRateResponse = yield call(postUserDailyRate, request, userId, token);
         const { data } = response;
-        yield put(postUserDailyRateSucceededAction({ request: data }));
-        yield put(getUserInfoAction(token));
+
+        yield put(postUserDailyRateSucceededAction({ request: data, currentDate }));
 
     } catch (error) {
         showMessage(error.message);
