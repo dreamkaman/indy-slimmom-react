@@ -50,19 +50,19 @@ export const initialState: IDayInfo = {
 export const dayInfoReducer = createReducer(initialState, {
 
     [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
-
         const { payload } = action;
+        console.log(payload);
         return {
             ...state,
-            id: payload.day?.id,
-            eatenProducts: payload.day?.eatenProducts ? [...payload.day.eatenProducts] : [...state.eatenProducts, payload.eatenProduct],
+            id: payload.day?.id ?? payload.newDay.id,
+            eatenProducts: [...state.eatenProducts, payload.eatenProduct],
             daySummary: {
                 ...state.daySummary,
-                date: payload.daySummary?.date || state.daySummary.date,
-                kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
-                kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
-                dailyRate: payload.daySummary?.dailyRate || payload.dailyRate,
-                percentsOfDailyRate: payload.daySummary?.percentsOfDailyRate || payload.percentsOfDailyRate
+                date: payload.daySummary?.date ?? payload.newSummary.date,
+                kcalLeft: payload.daySummary?.kcalLeft ?? payload.newSummary.kcalLeft,
+                kcalConsumed: payload.daySummary?.kcalConsumed ?? payload.newSummary.kcalConsumed,
+                dailyRate: payload.daySummary?.dailyRate ?? payload.newSummary.dailyRate,
+                percentsOfDailyRate: payload.daySummary?.percentsOfDailyRate ?? payload.newSummary.percentsOfDailyRate
             }
         }
     },
@@ -73,17 +73,18 @@ export const dayInfoReducer = createReducer(initialState, {
         return {
             ...state,
             id: dayInfo?.id,
-            eatenProducts: dayInfo?.eatenProducts || [],
+            eatenProducts: dayInfo?.eatenProducts ?? [],
             daySummary: {
                 ...state.daySummary,
                 date,
-                kcalLeft: dayInfo?.daySummary?.kcalLeft || dayInfo?.kcalLeft,
-                kcalConsumed: dayInfo?.daySummary?.kcalConsumed || dayInfo?.kcalConsumed,
-                dailyRate: dayInfo?.daySummary?.dailyRate || dayInfo?.dailyRate,
-                percentsOfDailyRate: dayInfo?.daySummary?.percentsOfDailyRate || dayInfo?.percentsOfDailyRate
+                kcalLeft: dayInfo?.daySummary?.kcalLeft ?? dayInfo?.kcalLeft,
+                kcalConsumed: dayInfo?.daySummary?.kcalConsumed ?? dayInfo?.kcalConsumed,
+                dailyRate: dayInfo?.daySummary?.dailyRate ?? dayInfo?.dailyRate,
+                percentsOfDailyRate: dayInfo?.daySummary?.percentsOfDailyRate ?? dayInfo?.percentsOfDailyRate
             }
         }
     },
+
     [DELETE_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
         return {
