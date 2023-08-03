@@ -1,3 +1,5 @@
+import { SyntheticEvent } from 'react';
+
 import Button from 'shared/components/Button/Button';
 import OutputText from './components/OutputText';
 import GetSvg from 'shared/components/GetSvg/GetSvg';
@@ -18,7 +20,7 @@ const ProductsList = () => {
     const token = useAppSelector(isAuthSelector);
     const dayId = useAppSelector(getDayIdSelector);
 
-    const handleDeleteClick = (e) => {
+    const handleDeleteClick = (e: SyntheticEvent) => {
         const eatenProductId = e.currentTarget.id;
 
         dispatch(deleteEatenProductAction({ requestData: { dayId, eatenProductId }, token }));

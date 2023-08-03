@@ -1,4 +1,4 @@
-import { FC, FormEventHandler } from 'react';
+import { FC, FormEventHandler, SyntheticEvent } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
@@ -17,9 +17,8 @@ import { showMessage } from 'shared/tools/showMessages';
 import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 
 
-
 interface IAddProductFormProps {
-    onClick?: (e?: MouseEvent) => void,
+    onClick?: (e?: SyntheticEvent) => void,
     onInput?: FormEventHandler<HTMLInputElement>
 }
 

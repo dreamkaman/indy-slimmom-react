@@ -14,10 +14,7 @@ import {
 
 
 export interface IEatenProduct {
-    title: {
-        en: string,
-        ua: string
-    } | string,
+    title: string | number,
     weight: number,
     kcal: number,
     id: string
