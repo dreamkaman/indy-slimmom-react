@@ -28,29 +28,27 @@ const Navigator = () => {
 
 
 
-    return <>
-        <nav className={s.navigation}>
-            <div className={s.navWrapper}>
-                <Link to='/'>
-                    <GetSvg name={'slimMomTxt'} className={'logoTxt'} />
-                </Link>
-                <ul className={s.menu}>
-                    {!isAuth && <li className={s.menuItem}><NavLink to='/login'>Log in</NavLink></li>}
-                    {!isAuth && <li className={s.menuItem}><NavLink to='/register'>Registration</NavLink></li>}
-                    {isAuth && !!userDairyRate && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/dairy'>Dairy</NavLink></li>}
-                    {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/calculator'>Calculator</NavLink></li>}
-                </ul>
+    return <nav className={s.navigation}>
+        <div className={s.navWrapper}>
+            <Link to='/'>
+                <GetSvg name={'slimMomTxt'} className={'logoTxt'} />
+            </Link>
+            <ul className={s.menu}>
+                {!isAuth && <li className={s.menuItem}><NavLink to='/login'>Log in</NavLink></li>}
+                {!isAuth && <li className={s.menuItem}><NavLink to='/register'>Registration</NavLink></li>}
+                {isAuth && !!userDairyRate && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/dairy'>Dairy</NavLink></li>}
+                {isAuth && <li className={`${s.menuItem} ${s.hideBurgerMenuItems}`}><NavLink to='/calculator'>Calculator</NavLink></li>}
+            </ul>
+        </div>
+        {isAuth && <div className={s.rightNavWrapper}>
+            <div className={s.visible}>
+                <NicButton />
             </div>
-            {isAuth && <div className={s.rightNavWrapper}>
-                <div className={s.visible}>
-                    <NicButton />
-                </div>
-                {!showBurgerMenu && <button className={s.burgerBtn} onClick={clickBurgerMenuHandle}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>}
-                {showBurgerMenu && <button className={s.burgerBtn}><GetSvg name={'closeBtn'} className={'closeSvg'} /></button>}
-            </div>}
-        </nav>
+            {!showBurgerMenu && <button className={s.burgerBtn} onClick={clickBurgerMenuHandle}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>}
+            {showBurgerMenu && <button className={s.burgerBtn} onClick={clickBurgerMenuHandle}><GetSvg name={'closeBtn'} className={'closeSvg'} /></button>}
+        </div>}
         {showBurgerMenu && <BurgerMenu />}
-    </>
+    </nav>
 }
 
 export default Navigator;
