@@ -1,0 +1,1 @@
+export const SHOW_BURGER_MENU = 'SHOW_BURGER_MENU';

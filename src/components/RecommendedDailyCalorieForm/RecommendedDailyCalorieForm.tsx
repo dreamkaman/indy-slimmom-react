@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { userDailyRateSelector, userNotAllowedProductsSelector } from 'redux/selectors/user';
 
 import s from './RecommendedDailyCalorieForm.module.css';
-import { showModalAction } from 'redux/actions/modal/actionCreator';
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 
 const RecommendedDailyCalorieForm = () => {
     const navigate = useNavigate();

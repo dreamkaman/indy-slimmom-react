@@ -4,7 +4,7 @@ import { useAppDispatch } from 'redux/hooks';
 
 import GetSvg from 'shared/components/GetSvg';
 
-import { showModalAction } from 'redux/actions/modal/actionCreator';
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 
 import s from './ModalWindow.module.css';
 

@@ -44,7 +44,7 @@ import {
     loginUserSucceededAction,
     postUserDailyRateSucceededAction
 } from 'redux/actions/user/actionCreators';
-import { showModalAction } from 'redux/actions/modal/actionCreator';
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
