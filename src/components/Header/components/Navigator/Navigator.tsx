@@ -22,7 +22,6 @@ const Navigator = () => {
     const userDairyRate = useAppSelector(userDailyRateSelector);
 
     const clickBurgerMenuHandle = () => {
-        console.log('Burger menu click!');
         dispatch(showBurgerMenuAction());
     };
 
