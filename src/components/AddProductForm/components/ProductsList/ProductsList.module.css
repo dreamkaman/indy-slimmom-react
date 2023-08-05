@@ -4,17 +4,10 @@
     overflow-y: scroll;
 }
 
-.productsList::-webkit-scrollbar {
-    height: 4px;
-}
-
-
-
 .productsListItem {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .productsListItem:not(:last-child) {
