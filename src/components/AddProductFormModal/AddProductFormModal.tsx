@@ -58,6 +58,7 @@ const AddProductFormModal: FC<IAddProductFormModalProps> = ({ onInput }) => {
             <div className={s.inputProductWrapper}>
                 <LabelInput
                     type='text'
+                    listName='productNameMob'
                     labelHtmlFor='productName'
                     labelText="Enter product name"
                     register={register}

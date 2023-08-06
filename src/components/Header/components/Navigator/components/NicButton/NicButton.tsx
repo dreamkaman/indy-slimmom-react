@@ -2,8 +2,8 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { isAuthSelector, userNameSelector } from 'redux/selectors/user';
 import { logoutUserAction } from 'redux/actions/user/actionCreators';
 import { showMessage } from 'shared/tools/showMessages';
-import { showModalSelector } from 'redux/selectors/modal';
-import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
+// import { showModalSelector } from 'redux/selectors/modal';
+// import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 
 import s from './NicButton.module.css';
 
@@ -11,16 +11,18 @@ import s from './NicButton.module.css';
 const NicButton = () => {
     const nic = useAppSelector(userNameSelector);
     const token = useAppSelector(isAuthSelector);
-    const showModal = useAppSelector(showModalSelector);
+    // const showModal = useAppSelector(showModalSelector);
 
     const dispatch = useAppDispatch();
 
     const handleClick = () => {
         try {
+            // if (showModal) {
+            //     dispatch(showModalAction())
+            // }
+
             dispatch(logoutUserAction(token));
-            if (showModal) {
-                dispatch(showModalAction())
-            }
+
             showMessage('The user has successfully logged out!', 'success');
         } catch (error) {
             showMessage(error.message);
