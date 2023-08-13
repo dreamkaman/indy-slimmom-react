@@ -43,12 +43,14 @@ const LabelInput: FC<ILabelInput> = ({
     return <div className={s.wrapper}>
         {register === null ?
             <input
+                id={labelHtmlFor}
                 list={listName}
                 onInput={onInput}
                 name={labelHtmlFor}
                 type={type}
                 placeholder='.' /> :
             <input
+                id={labelHtmlFor}
                 list={listName}
                 onInput={onInput}
                 type={type}
