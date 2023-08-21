@@ -8,13 +8,14 @@ import {
     DELETE_EATEN_PRODUCT,
     DELETE_EATEN_PRODUCT_SUCCEEDED
 } from './actionTypes';
+
 import {
     IEatenProductRequest,
     IEatenProductResponse,
     IGetDayInfo,
     IGetDayInfoResponse,
     IDeleteRequest
-} from "API";
+} from "types";
 
 
 export const postEatenProductAction = createAction<{ eatenProduct: IEatenProductRequest, token: string }, 'POST_EATEN_PRODUCT'>(POST_EATEN_PRODUCT);
