@@ -214,6 +214,10 @@ export interface IUserState {
 }
 
 //Components types
+export interface ModalWindowProps {
+    children: ReactNode;
+}
+
 export interface IOutputText {
     text: string | number;
     className?: string;
