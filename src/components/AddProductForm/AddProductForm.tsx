@@ -1,4 +1,4 @@
-import { FC, FormEventHandler } from 'react';
+import { FC } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
@@ -12,23 +12,17 @@ import { productNameRules, productWeightRules } from 'shared/reactHookFormRules'
 import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
 
-import s from './AddProductForm.module.css';
 import { showMessage } from 'shared/tools/showMessages';
 import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 import { showModalSelector } from 'redux/selectors/modal';
 import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 import ModalWindow from 'shared/components/ModalWindow';
 import AddProductFormModal from 'components/AddProductFormModal';
+import { IAddProductFormProps, Inputs } from 'types';
+
+import s from './AddProductForm.module.css';
 
 
-interface IAddProductFormProps {
-    onInput?: FormEventHandler<HTMLInputElement>
-}
-
-interface Inputs {
-    productName: string,
-    weight: string
-}
 
 const AddProductForm: FC<IAddProductFormProps> = ({ onInput }) => {
     const { register, handleSubmit, reset } = useForm();

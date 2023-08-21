@@ -16,14 +16,6 @@ import {
 } from "redux/actions/user/actionTypes";
 
 import {
-    IDailyRateRequest,
-    IDailyRateResponse,
-    IDeleteRequest,
-    IEatenProductRequest,
-    IFindProduct,
-    IGetDayInfo,
-    IUserLoginData,
-    IUserRegisterData,
     deleteEatenProduct,
     findProduct,
     getDayInfo,
@@ -34,7 +26,6 @@ import {
     postEatenProduct,
     postUserDailyRate,
     registerUser,
-    ILoginUserResponse
 } from 'API';
 
 import {
@@ -44,6 +35,7 @@ import {
     loginUserSucceededAction,
     postUserDailyRateSucceededAction
 } from 'redux/actions/user/actionCreators';
+
 import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
@@ -62,6 +54,18 @@ import {
 } from 'redux/actions/dayInfo/actionCreator';
 
 import dateFormat from 'dateformat';
+
+import {
+    IDailyRateRequest,
+    IDailyRateResponse,
+    IDeleteRequest,
+    IEatenProductRequest,
+    IFindProduct,
+    IGetDayInfo,
+    ILoginUserResponse,
+    IUserLoginData,
+    IUserRegisterData
+} from 'types';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,

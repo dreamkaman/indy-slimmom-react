@@ -2,10 +2,8 @@ import { FC } from 'react';
 
 import sprite from 'images/svg/sprite.svg';
 
-interface IGetSvg {
-    name: string;
-    className: string;
-}
+import { IGetSvg } from 'types';
+
 
 const GetSvg: FC<IGetSvg> = ({ name, className }) => {
     return (

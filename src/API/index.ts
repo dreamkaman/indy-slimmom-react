@@ -1,28 +1,33 @@
 import axios, { AxiosResponse } from 'axios';
-import { IEatenProduct } from 'redux/reducers/dayInfo';
+
+import {
+    FindProductResponse,
+    IDailyRateRequest,
+    IDailyRateResponse,
+    IDataRefresh,
+    IDeleteRequest,
+    IEatenProductRequest,
+    IEatenProductResponse,
+    IFindProduct,
+    IGetDayInfo,
+    IGetDayInfoNewDayResponse,
+    IGetDayInfoResponse,
+    ILoginUserResponse,
+    IRegisterUserResponse,
+    IUserLoginData,
+    IUserRegisterData
+} from 'types';
+
+// import { IEatenProduct } from 'redux/reducers/dayInfo';
 
 
 export const instanceAxios = axios.create({
     baseURL: "https://slimmom-backend.goit.global",
 });
 
-export interface IUserLoginData {
-    email: string,
-    password: string,
-}
-export interface IUserRegisterData extends IUserLoginData {
-    username: string
-}
+
 
 //Block Auth
-
-interface IRegisterUserResponse {
-    data: {
-        email: string,
-        username: string,
-        id: string,
-    }
-}
 
 export const registerUser = async (userData: IUserRegisterData) => {
     try {
@@ -37,34 +42,6 @@ export const registerUser = async (userData: IUserRegisterData) => {
 
 }
 
-export interface ILoginUserResponse {
-    accessToken: string,
-    refreshToken: string,
-    sid: string,
-    todaySummary: {
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number,
-        userId: string,
-        id: string
-    },
-    user: {
-        email: string,
-        username: string,
-        userData: {
-            weight: number,
-            height: number,
-            age: number,
-            bloodType: number,
-            desiredWeight: number,
-            dailyRate: number,
-            notAllowedProducts: string[]
-        },
-        id: string
-    }
-}
 export const loginUser = async (userData: IUserLoginData) => {
     try {
         const { data }: AxiosResponse<ILoginUserResponse> = await instanceAxios.post('/auth/login', userData);
@@ -90,13 +67,6 @@ export const logoutUser = async (token: string) => {
 
 }
 
-interface IToken {
-    token: string
-}
-
-interface IDataRefresh extends IToken {
-    sid: string
-}
 export const refreshUser = (data: IDataRefresh) => {
     try {
         instanceAxios.post('auth/refresh', { sid: data.sid }, {
@@ -112,30 +82,6 @@ export const refreshUser = (data: IDataRefresh) => {
 
 
 //Block Daily-rate
-export interface IDailyRateRequest {
-    weight: number,
-    height: number,
-    age: number,
-    desiredWeight: number,
-    bloodType: number
-}
-
-export interface IDailyRateResponseData {
-    dailyRate: number,
-    notAllowedProducts: string[],
-    summaries: {
-        _id: string,
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number
-    }[];
-}
-
-export interface IDailyRateResponse {
-    data: IDailyRateResponseData
-}
 
 export const getGeneralDailyRate = async (request: IDailyRateRequest) => {
     try {
@@ -162,30 +108,6 @@ export const postUserDailyRate = async (request: IDailyRateRequest, userId: stri
 }
 
 //Block Product-search
-export interface IFindProduct extends IToken {
-    searchText: string;
-}
-
-export interface IProductItem {
-    calories: number,
-    categories: {
-        ru: string,
-        uk: string,
-        en: string
-    },
-    groupBloodNotAllowed: [null, boolean, boolean, boolean, boolean],
-    title: {
-        ua: string,
-        ru?: string,
-        en: string
-    },
-    weight: number,
-    _id: string
-}
-
-export type FindProductResponse = {
-    data: IProductItem[]
-}
 
 export const findProduct = async (data: IFindProduct) => {
     const { token, searchText } = data;
@@ -206,30 +128,6 @@ export const findProduct = async (data: IFindProduct) => {
 }
 
 //Block Day
-export interface IEatenProductRequest {
-    date: string;
-    productId: string,
-    weight: number
-}
-
-export interface IEatenProductResponse {
-    eatenProduct: IEatenProduct,
-    day: {
-        id: string,
-        eatenProducts: IEatenProduct[],
-        date: string,
-        daySummary: string
-    },
-    daySummary: {
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number,
-        userId: string,
-        id: string
-    }
-}
 
 export const postEatenProduct = async (data: { eatenProduct: IEatenProductRequest, token: string }) => {
 
@@ -241,10 +139,6 @@ export const postEatenProduct = async (data: { eatenProduct: IEatenProductReques
     return result;
 };
 
-export interface IDeleteRequest {
-    dayId: string;
-    eatenProductId: string;
-}
 export const deleteEatenProduct = async (data: { requestData: IDeleteRequest, token: string }) => {
     const response = await instanceAxios.delete('/day', {
         headers: {
@@ -254,32 +148,6 @@ export const deleteEatenProduct = async (data: { requestData: IDeleteRequest, to
     });
 
     return response;
-}
-
-export interface IGetDayInfo extends IToken {
-    date: string
-}
-
-export interface IGetDayInfoResponse {
-    id: string,
-    eatenProducts: IEatenProduct[],
-    date: string,
-    daySummary: {
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number,
-        userId: string,
-        id: string
-    }
-}
-
-export interface IGetDayInfoNewDayResponse {
-    kcalLeft: number,
-    kcalConsumed: number,
-    dailyRate: number,
-    percentsOfDailyRate: number,
 }
 
 export const getDayInfo = async (data: IGetDayInfo) => {

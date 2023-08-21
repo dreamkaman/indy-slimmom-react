@@ -1,19 +1,17 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch } from 'redux/hooks';
 
 import GetSvg from 'shared/components/GetSvg';
 
 import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
+import { ModalWindowProps } from 'types';
 
 import s from './ModalWindow.module.css';
 
 
-const modalRoot = document.querySelector('#modal-root');
 
-interface ModalWindowProps {
-    children: ReactNode;
-}
+const modalRoot = document.querySelector('#modal-root');
 
 const ModalWindow: FC<ModalWindowProps> = ({ children }) => {
     const dispatch = useAppDispatch();

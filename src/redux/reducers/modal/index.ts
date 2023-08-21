@@ -3,9 +3,8 @@ import { createReducer } from '@reduxjs/toolkit';
 import { SHOW_MODAL } from 'redux/actions/modalWindow/actionTypes';
 import { LOGOUT_USER_SUCCEEDED } from 'redux/actions/user/actionTypes';
 
-export interface IModalState {
-    showModal: boolean,
-}
+import { IModalState } from 'types';
+
 const initialState: IModalState = {
     showModal: false,
 };
