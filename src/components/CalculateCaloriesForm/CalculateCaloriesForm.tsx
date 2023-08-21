@@ -5,7 +5,6 @@ import Button from "shared/components/Button/Button";
 import RadioButton from "shared/components/RadioButton/RadioButton";
 
 import { checkError } from 'shared/tools/checkError';
-import { IDailyRateRequest } from 'API';
 import { showMessage } from 'shared/tools/showMessages';
 import {
     ageRules,
@@ -21,8 +20,12 @@ import {
     postUserDailyRateAction
 } from 'redux/actions/user/actionCreators';
 
-import s from './CalculateCaloriesForm.module.css';
 import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
+import { IDailyRateRequest } from 'types';
+
+import s from './CalculateCaloriesForm.module.css';
+
+
 
 
 

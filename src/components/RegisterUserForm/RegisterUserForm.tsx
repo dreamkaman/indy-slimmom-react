@@ -12,19 +12,10 @@ import {
 import { checkError } from 'shared/tools/checkError';
 import { registerUserAction } from 'redux/actions/user/actionCreators';
 import { useAppDispatch } from 'redux/hooks';
+import { showMessage } from 'shared/tools/showMessages';
+import { IRegistrationFormData } from 'types';
 
 import s from './RegisterUserForm.module.css';
-import { showMessage } from 'shared/tools/showMessages';
-
-
-
-interface FormData {
-    username: string,
-    email: string,
-    password: string,
-    repeatedPassword: string
-}
-
 
 const RegisterUserForm = () => {
     const navigate = useNavigate();
@@ -39,7 +30,7 @@ const RegisterUserForm = () => {
     } = useForm()
 
 
-    const handleSubmitRegistrationForm = (data: FormData) => {
+    const handleSubmitRegistrationForm = (data: IRegistrationFormData) => {
         try {
             const { username, email, password } = data;
             dispatch(registerUserAction({ username, email, password }));

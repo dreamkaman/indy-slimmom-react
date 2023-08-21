@@ -1,11 +1,8 @@
-import { FC, ReactElement } from 'react';
+import { FC } from 'react';
 import { Navigate } from "react-router-dom";
+import { IProtectedRouteProps } from 'types';
 
-interface IProtectedRouteProps {
-    children: ReactElement,
-    criteria: string | boolean,
-    path: string
-}
+
 const ProtectedRoute: FC<IProtectedRouteProps> = ({ children, criteria, path }) => {
 
     if (criteria) {

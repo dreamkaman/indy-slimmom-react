@@ -7,15 +7,13 @@ import LabelInput from 'shared/components/LabelInput/LabelInput';
 import { emailLoginRules, passwordLoginRules } from 'shared/reactHookFormRules';
 import { checkError } from 'shared/tools/checkError';
 
-import s from './LoginUserForm.module.css';
 import { useAppDispatch } from 'redux/hooks';
 import { loginUserAction } from 'redux/actions/user/actionCreators';
+import { IFormData } from 'types';
+
+import s from './LoginUserForm.module.css';
 
 
-export interface IFormData {
-    email: string,
-    password: string
-}
 
 const LoginUserForm = () => {
     const {

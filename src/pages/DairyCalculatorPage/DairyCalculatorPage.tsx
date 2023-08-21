@@ -14,8 +14,6 @@ import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { showModalSelector } from "redux/selectors/modal";
 import { isAuthSelector } from "redux/selectors/user";
 import { findProductAction } from "redux/actions/productSearch/actionCreator";
-// import { getDayInfoAction } from "redux/actions/dayInfo/actionCreator";
-// import { getDaySummerySelector } from "redux/selectors/dayInfo";
 
 import s from './DairyCalculatorPage.module.css';
 

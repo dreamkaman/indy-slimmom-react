@@ -1,8 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { IFormData } from 'components/LoginUserForm/LoginUserForm';
-import { IUserState } from 'redux/reducers/user';
-
 import {
     REGISTER_USER,
     LOGIN_USER,
@@ -17,7 +14,16 @@ import {
     GET_USER_DAILY_RATE_SUCCEEDED
 } from './actionTypes';
 
-import { IDailyRateRequest, IDailyRateResponse, IDailyRateResponseData, IUserRegisterData } from 'API';
+import {
+    IDailyRateRequest,
+    IDailyRateResponse,
+    IDailyRateResponseData,
+    IFormData,
+    IUserRegisterData,
+    IUserState
+} from "types";
+
+
 
 export const registerUserAction = createAction<IUserRegisterData, 'REGISTER_USER'>(REGISTER_USER);
 

@@ -1,26 +1,19 @@
-import { FC, FormEventHandler } from 'react';
+import { FC } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 
 import LabelInput from "shared/components/LabelInput";
 import Button from "shared/components/Button";
 
-import s from './AddProductFormModal.module.css';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
 import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 import { filteredProductsSelector } from 'redux/selectors/productSearch';
-// import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
+import { IAddProductFormModalProps, Inputs } from 'types';
 
-interface IAddProductFormModalProps {
-    onInput?: FormEventHandler<HTMLInputElement>
-}
+import s from './AddProductFormModal.module.css';
 
-interface Inputs {
-    productName: string,
-    weight: number
-}
 
 const AddProductFormModal: FC<IAddProductFormModalProps> = ({ onInput }) => {
     const { handleSubmit, register } = useForm<FieldValues>();

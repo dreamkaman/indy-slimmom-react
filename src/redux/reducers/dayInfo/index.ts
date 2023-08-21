@@ -12,25 +12,7 @@ import {
     LOGOUT_USER_SUCCEEDED, POST_USER_DAILY_RATE_SUCCEEDED
 } from 'redux/actions/user/actionTypes';
 
-
-export interface IEatenProduct {
-    title: string | number,
-    weight: number,
-    kcal: number,
-    id: string
-}
-
-export interface IDayInfo {
-    id: string,
-    eatenProducts: IEatenProduct[],
-    daySummary: {
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number
-    }
-}
+import { IDayInfo } from 'types';
 
 export const initialState: IDayInfo = {
     id: '',
