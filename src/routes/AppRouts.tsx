@@ -2,10 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// import DairyCalculatorPage from 'pages/DairyCalculatorPage';
-// import LoginPage from 'pages/LoginPage/LoginPage';
-// import RegistrationPage from 'pages/RegistrationPage';
-// import HomePage from 'pages/HomePage';
 import ProtectedRoute from 'shared/components/ProtectedRoute';
 
 import { isAuthSelector } from 'redux/selectors/user';
