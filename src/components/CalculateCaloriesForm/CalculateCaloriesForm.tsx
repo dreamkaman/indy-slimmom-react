@@ -1,12 +1,10 @@
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 
 import LabelInput from "shared/components/LabelInput";
 import Button from "shared/components/Button/Button";
 import RadioButton from "shared/components/RadioButton/RadioButton";
 
 import { checkError } from 'shared/tools/checkError';
-import { IDailyRateRequest } from 'API';
 import { showMessage } from 'shared/tools/showMessages';
 import {
     ageRules,
@@ -16,21 +14,27 @@ import {
     heightRules
 } from 'shared/reactHookFormRules';
 import { isAuthSelector, userIdSelector } from 'redux/selectors/user';
-import { useAppDispatch } from 'redux/hooks';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import {
     getUserDailyRateAction,
     postUserDailyRateAction
 } from 'redux/actions/user/actionCreators';
 
+import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
+import { IDailyRateRequest } from 'types';
+
 import s from './CalculateCaloriesForm.module.css';
+
+
 
 
 
 const CalculateCaloriesForm = () => {
     const dispatch = useAppDispatch();
 
-    const id = useSelector(userIdSelector);
-    const token = useSelector(isAuthSelector);
+    const id = useAppSelector(userIdSelector);
+    const token = useAppSelector(isAuthSelector);
+    const currentDate = useAppSelector(getCurrentDateSelector);
 
     const { register,
         handleSubmit,
@@ -58,7 +62,7 @@ const CalculateCaloriesForm = () => {
             }
         } else {
             try {
-                dispatch(postUserDailyRateAction({ request: newData, userId: id, token }));
+                dispatch(postUserDailyRateAction({ request: newData, userId: id, token, currentDate }));
                 reset();
             } catch (error) {
                 showMessage(error.message);

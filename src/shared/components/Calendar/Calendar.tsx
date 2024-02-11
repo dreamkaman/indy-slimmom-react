@@ -13,7 +13,6 @@ import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
 import s from "./Calendar.module.css";
 
 
-
 const Calendar = () => {
     const dispatch = useAppDispatch();
     const token = useAppSelector(isAuthSelector)

@@ -16,14 +16,6 @@ import {
 } from "redux/actions/user/actionTypes";
 
 import {
-    IDailyRateRequest,
-    IDailyRateResponse,
-    IDeleteRequest,
-    IEatenProductRequest,
-    IFindProduct,
-    IGetDayInfo,
-    IUserLoginData,
-    IUserRegisterData,
     deleteEatenProduct,
     findProduct,
     getDayInfo,
@@ -34,18 +26,17 @@ import {
     postEatenProduct,
     postUserDailyRate,
     registerUser,
-    ILoginUserResponse
 } from 'API';
 
 import {
     getUserDailyRateSucceededAction,
-    getUserInfoAction,
     getUserInfoSucceededACtion,
     logOutUserSucceededAction,
     loginUserSucceededAction,
-    postUserDailyRateSucceededAction,
+    postUserDailyRateSucceededAction
 } from 'redux/actions/user/actionCreators';
-import { showModalAction } from 'redux/actions/modal/actionCreator';
+
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 import { FIND_PRODUCT } from 'redux/actions/productSearch/actionTypes';
 import { showMessage } from 'shared/tools/showMessages';
 import { findProductSucceededAction } from 'redux/actions/productSearch/actionCreator';
@@ -63,6 +54,18 @@ import {
 } from 'redux/actions/dayInfo/actionCreator';
 
 import dateFormat from 'dateformat';
+
+import {
+    IDailyRateRequest,
+    IDailyRateResponse,
+    IDeleteRequest,
+    IEatenProductRequest,
+    IFindProduct,
+    IGetDayInfo,
+    ILoginUserResponse,
+    IUserLoginData,
+    IUserRegisterData
+} from 'types';
 
 function* registerUserWorker(action: {
     payload: IUserRegisterData,
@@ -131,15 +134,16 @@ function* postUserDailyRateWorker(action: {
     payload: {
         request: IDailyRateRequest,
         userId: string,
-        token: string
+        token: string,
+        currentDate?: string
     }
 }) {
     try {
-        const { payload: { request, userId, token } } = action;
+        const { payload: { request, userId, token, currentDate } } = action;
         const response: IDailyRateResponse = yield call(postUserDailyRate, request, userId, token);
         const { data } = response;
-        yield put(postUserDailyRateSucceededAction({ request: data }));
-        yield put(getUserInfoAction(token));
+
+        yield put(postUserDailyRateSucceededAction({ request: data, currentDate }));
 
     } catch (error) {
         showMessage(error.message);
@@ -242,8 +246,6 @@ function* getDaiInfoWorker(action: {
         } else {
             showMessage(error.message);
         }
-
-
     }
 }
 

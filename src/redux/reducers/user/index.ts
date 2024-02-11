@@ -1,26 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { GET_USER_DAILY_RATE_SUCCEEDED, GET_USER_INFO_SUCCEEDED, LOGIN_USER_SUCCEEDED, LOGOUT_USER_SUCCEEDED, POST_USER_DAILY_RATE_SUCCEEDED } from 'redux/actions/user/actionTypes';
+import {
+    GET_USER_DAILY_RATE_SUCCEEDED,
+    GET_USER_INFO_SUCCEEDED,
+    LOGIN_USER_SUCCEEDED,
+    LOGOUT_USER_SUCCEEDED,
+    POST_USER_DAILY_RATE_SUCCEEDED
+} from 'redux/actions/user/actionTypes';
 
-export interface IUserState {
-    accessToken: string,
-    refreshToken: string,
-    sid: string,
-    user: {
-        email: string,
-        username: string,
-        userData: {
-            weight: number,
-            height: number,
-            age: number,
-            bloodType: number,
-            desiredWeight: number,
-            dailyRate: number,
-            notAllowedProducts: string[]
-        },
-        id: string,
-    }
-}
+import { IUserState } from 'types';
 
 export const initialState: IUserState = {
     accessToken: '',

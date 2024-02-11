@@ -1,20 +1,29 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import GetSvg from 'shared/components/GetSvg';
-import NicButton from './components/NicButton'
+import NicButton from './components/NicButton';
+import BurgerMenu from 'components/BurgerMenu';
 
 import { isAuthSelector, userDailyRateSelector } from 'redux/selectors/user';
-import { useAppSelector } from 'redux/hooks';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { getShowBurgerMenuSelector } from 'redux/selectors/burgerMenu';
+import { showBurgerMenuAction } from 'redux/actions/burgerMenu/actionsCreator';
 
 import s from './Navigator.module.css';
 
 
-const Navigator = () => {
 
-    const isAuth = useSelector(isAuthSelector);
-    const showModal = false;
+
+const Navigator = () => {
+    const dispatch = useAppDispatch();
+
+    const isAuth = useAppSelector(isAuthSelector);
+    const showBurgerMenu = useAppSelector(getShowBurgerMenuSelector);
     const userDairyRate = useAppSelector(userDailyRateSelector);
+
+    const clickBurgerMenuHandle = () => {
+        dispatch(showBurgerMenuAction());
+    };
 
 
 
@@ -34,9 +43,10 @@ const Navigator = () => {
             <div className={s.visible}>
                 <NicButton />
             </div>
-            {!showModal && <button className={s.burgerBtn}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>}
-            {showModal && <button className={s.burgerBtn}><GetSvg name={'closeBtn'} className={'closeSvg'} /></button>}
+            {!showBurgerMenu && <button className={s.burgerBtn} onClick={clickBurgerMenuHandle}><GetSvg name={'burgerBtn'} className={'burgerSvg'} /></button>}
+            {showBurgerMenu && <button className={s.burgerBtn} onClick={clickBurgerMenuHandle}><GetSvg name={'closeBtn'} className={'closeSvg'} /></button>}
         </div>}
+        {showBurgerMenu && <BurgerMenu />}
     </nav>
 }
 

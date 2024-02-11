@@ -5,9 +5,10 @@ import Button from '../../shared/components/Button/Button';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import { userDailyRateSelector, userNotAllowedProductsSelector } from 'redux/selectors/user';
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
 
 import s from './RecommendedDailyCalorieForm.module.css';
-import { showModalAction } from 'redux/actions/modal/actionCreator';
+
 
 const RecommendedDailyCalorieForm = () => {
     const navigate = useNavigate();

@@ -9,31 +9,10 @@ import {
 
 
 import {
-    LOGOUT_USER_SUCCEEDED
+    LOGOUT_USER_SUCCEEDED, POST_USER_DAILY_RATE_SUCCEEDED
 } from 'redux/actions/user/actionTypes';
 
-
-export interface IEatenProduct {
-    title: {
-        en: string,
-        ua: string
-    } | string,
-    weight: number,
-    kcal: number,
-    id: string
-}
-
-export interface IDayInfo {
-    id: string,
-    eatenProducts: IEatenProduct[],
-    daySummary: {
-        date: string,
-        kcalLeft: number,
-        kcalConsumed: number,
-        dailyRate: number,
-        percentsOfDailyRate: number
-    }
-}
+import { IDayInfo } from 'types';
 
 export const initialState: IDayInfo = {
     id: '',
@@ -51,7 +30,7 @@ export const dayInfoReducer = createReducer(initialState, {
 
     [POST_EATEN_PRODUCT_SUCCEEDED]: (state, action) => {
         const { payload } = action;
-        console.log(payload);
+
         return {
             ...state,
             id: payload.day?.id ?? payload.newDay.id,
@@ -94,10 +73,33 @@ export const dayInfoReducer = createReducer(initialState, {
                 ...state.daySummary,
                 kcalLeft: payload.kcalLeft,
                 kcalConsumed: payload.kcalConsumed,
+                dailyRate: payload.dailyRate ?? payload.kcalLeft,
                 percentsOfDailyRate: payload.percentsOfDailyRate
             }
         }
     },
+    [POST_USER_DAILY_RATE_SUCCEEDED]: (state, action) => {
+
+        const { payload } = action;
+
+        const { request } = payload;
+
+        const { summaries, currentDate } = request;
+
+        const summary = summaries?.find(summary => summary.date === currentDate);
+
+        return {
+            ...state,
+            daySummary: {
+                ...state.daySummary,
+                kcalLeft: summary?.kcalLeft ?? request.dailyRate,
+                kcalConsumed: summary?.kcalConsumed ?? 0,
+                dailyRate: summary?.dailyRate ?? request.dailyRate,
+                percentsOfDailyRate: summary?.percentsOfDailyRate ?? 0
+            }
+        };
+    },
+
     [LOGOUT_USER_SUCCEEDED]: () => {
         return { ...initialState };
     }

@@ -1,4 +1,4 @@
-import { FC, FormEventHandler } from 'react';
+import { FC } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
@@ -12,29 +12,27 @@ import { productNameRules, productWeightRules } from 'shared/reactHookFormRules'
 import { postEatenProductAction } from 'redux/actions/dayInfo/actionCreator';
 import { isAuthSelector } from 'redux/selectors/user';
 
-import s from './AddProductForm.module.css';
 import { showMessage } from 'shared/tools/showMessages';
 import { getCurrentDateSelector } from 'redux/selectors/dayInfo';
+import { showModalSelector } from 'redux/selectors/modal';
+import { showModalAction } from 'redux/actions/modalWindow/actionCreator';
+import ModalWindow from 'shared/components/ModalWindow';
+import AddProductFormModal from 'components/AddProductFormModal';
+import { IAddProductFormProps, Inputs } from 'types';
+
+import s from './AddProductForm.module.css';
 
 
 
-interface IAddProductFormProps {
-    onClick?: (e?: MouseEvent) => void,
-    onInput?: FormEventHandler<HTMLInputElement>
-}
-
-interface Inputs {
-    productName: string,
-    weight: string
-}
-
-const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
+const AddProductForm: FC<IAddProductFormProps> = ({ onInput }) => {
     const { register, handleSubmit, reset } = useForm();
+
+    const dispatch = useAppDispatch();
+
+    const showModal = useAppSelector(showModalSelector);
     const filteredProducts = useAppSelector(filteredProductsSelector);
     const token = useAppSelector(isAuthSelector);
     const currentDate = useAppSelector(getCurrentDateSelector);
-
-    const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
         try {
@@ -52,47 +50,56 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onClick, onInput }) => {
         }
     }
 
-    return <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>
-        <div className={s.inputProductBlock}>
-            <div className={s.inputProductWrapper}>
-                <LabelInput
-                    listName='chooseProductName'
-                    type='text'
-                    labelHtmlFor='productName'
-                    labelText="Enter product name"
-                    optionsArray={filteredProducts}
-                    onInput={onInput}
-                    register={register}
-                    rules={productNameRules}
-                />
+    const onPlusBtnClickHandler = () => {
+        dispatch(showModalAction());
+    }
+
+    return <>
+        <form className={s.addProductForm} onSubmit={handleSubmit(onSubmit)}>
+            <div className={s.inputProductBlock}>
+                <div className={s.inputProductWrapper}>
+                    <LabelInput
+                        listName='chooseProductName'
+                        type='text'
+                        labelHtmlFor='productName'
+                        labelText="Enter product name"
+                        optionsArray={filteredProducts}
+                        onInput={onInput}
+                        register={register}
+                        rules={productNameRules}
+                    />
+                </div>
+                <div className={s.inputWeightWrapper}>
+                    <LabelInput
+                        type='text'
+                        labelHtmlFor='weight'
+                        labelText="Grams"
+                        register={register}
+                        rules={productWeightRules}
+                    />
+                </div>
+                <Button
+                    className={`${s.addProductBtn} ${s.topBtn} buttonCircle buttonActive`}
+                    type='submit'>
+                    <GetSvg name="plusBtn" className={s.plusIcon} />
+                </Button>
             </div>
-            <div className={s.inputWeightWrapper}>
-                <LabelInput
-                    type='text'
-                    labelHtmlFor='weight'
-                    labelText="Grams"
-                    register={register}
-                    rules={productWeightRules}
-                />
-            </div>
+
+            <ProductsList />
+
             <Button
-                className={`${s.addProductBtn} ${s.topBtn} buttonCircle buttonActive`}
-                type='submit'>
-                <GetSvg name="plusBtn" className={s.plusIcon} />
+                type='button'
+                className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`}
+                onClick={onPlusBtnClickHandler}>
+                <GetSvg
+                    name="plusBtn"
+                    className={s.plusIcon} />
             </Button>
-        </div>
-
-        <ProductsList />
-
-        <Button
-            type='submit'
-            className={`${s.addProductBtn} ${s.bottomBtn} buttonCircle buttonActive`}
-            onClick={onClick}>
-            <GetSvg
-                name="plusBtn"
-                className={s.plusIcon} />
-        </Button>
-    </form>
+        </form>
+        {showModal && <ModalWindow>
+            <AddProductFormModal />
+        </ModalWindow>}
+    </>
 }
 
 export default AddProductForm;

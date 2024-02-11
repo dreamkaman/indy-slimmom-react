@@ -47,6 +47,10 @@ export const heightRules = {
     max: {
         value: 250,
         message: 'The height you entered must be less than or equal 250 centimeters!'
+    },
+    pattern: {
+        value: /^[0-9]*$/,
+        message: 'The height you entered must be the number!'
     }
 }
 
@@ -59,6 +63,10 @@ export const ageRules = {
     max: {
         value: 100,
         message: 'The age must be less than or equal 100 years!'
+    },
+    pattern: {
+        value: /^[0-9]*$/,
+        message: 'The age you entered must be the number!'
     }
 }
 
@@ -71,6 +79,10 @@ export const currentWeightRules = {
     max: {
         value: 500,
         message: 'The current weight must be less than or equal 500 kilograms!'
+    },
+    pattern: {
+        value: /^[0-9]*$/,
+        message: 'The weight you entered must be the number!'
     }
 }
 
@@ -83,6 +95,10 @@ export const desiredWeightRules = {
     max: {
         value: 500,
         message: 'The desired weight must be less than or equal 500 kilograms!'
+    },
+    pattern: {
+        value: /^[0-9]*$/,
+        message: 'The weight you entered must be the number!'
     }
 }
 

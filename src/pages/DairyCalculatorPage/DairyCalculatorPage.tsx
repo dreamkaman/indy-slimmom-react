@@ -14,8 +14,6 @@ import { useAppSelector, useAppDispatch } from "redux/hooks";
 import { showModalSelector } from "redux/selectors/modal";
 import { isAuthSelector } from "redux/selectors/user";
 import { findProductAction } from "redux/actions/productSearch/actionCreator";
-// import { getDayInfoAction } from "redux/actions/dayInfo/actionCreator";
-// import { getDaySummerySelector } from "redux/selectors/dayInfo";
 
 import s from './DairyCalculatorPage.module.css';
 
@@ -29,16 +27,9 @@ const DairyCalculatorPage = () => {
 
     const showModal = useAppSelector(showModalSelector);
 
-    // const { date } = useAppSelector(getDaySummerySelector);
-
-    // useEffect(() => {
-    //     dispatch(getDayInfoAction({ date, token }))
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
-
     const handleInput = (e: SyntheticEvent) => {
         const searchText = e.target['value'];
-        if (searchText.length >= 1 && searchText.length <= 30) {
+        if (searchText.length >= 2 && searchText.length <= 30) {
             dispatch(findProductAction({ token, searchText }))
         }
     }
