@@ -36,7 +36,7 @@ const DairyCalculatorPage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedHandleInput = useCallback(
-        debounce(handleInput, 1000), []
+        debounce(handleInput, 2000), []
     );
 
     return <>
