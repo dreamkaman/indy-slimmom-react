@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import Button from "shared/components/Button";
@@ -24,7 +24,7 @@ import s from './AddProductForm.module.css';
 
 
 
-const AddProductForm: FC<IAddProductFormProps> = ({ onInput }) => {
+const AddProductForm: FC<IAddProductFormProps> = ({ onInput, ref }) => {
     const { register, handleSubmit, reset } = useForm();
 
     const dispatch = useAppDispatch();
@@ -67,6 +67,7 @@ const AddProductForm: FC<IAddProductFormProps> = ({ onInput }) => {
                         onInput={onInput}
                         register={register}
                         rules={productNameRules}
+                        ref={ref}
                     />
                 </div>
                 <div className={s.inputWeightWrapper}>

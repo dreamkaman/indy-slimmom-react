@@ -1,4 +1,4 @@
-import { FormEventHandler, ReactElement, ReactNode, SyntheticEvent } from "react"
+import { FormEventHandler, ReactElement, ReactNode, SyntheticEvent, LegacyRef } from "react"
 import { FieldValues, UseFormRegister } from "react-hook-form"
 
 //API types
@@ -225,6 +225,7 @@ export interface IOutputText {
 
 export interface IAddProductFormProps {
     onInput?: FormEventHandler<HTMLInputElement>
+    ref?: LegacyRef<HTMLInputElement>
 }
 
 export interface Inputs {
@@ -288,6 +289,7 @@ export interface ILabelInput {
     register?: UseFormRegister<FieldValues> | null,
     rules?: IRules | null,
     optionsArray?: IProductItem[]
+    ref?: LegacyRef<HTMLInputElement>
 }
 
 export interface IProtectedRouteProps {

@@ -1,6 +1,6 @@
-import { SyntheticEvent, useCallback } from "react";
+import { SyntheticEvent, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { debounce } from "lodash";
+import { Subject, fromEvent, debounceTime, map, takeUntil } from "rxjs";
 
 import Calendar from "shared/components/Calendar";
 import AddProductForm from "components/AddProductForm";
@@ -17,7 +17,11 @@ import { findProductAction } from "redux/actions/productSearch/actionCreator";
 
 import s from './DairyCalculatorPage.module.css';
 
+
+
 const DairyCalculatorPage = () => {
+
+    const ref = useRef<HTMLInputElement>(null)
 
     const { pathname } = useLocation();
 
@@ -27,6 +31,22 @@ const DairyCalculatorPage = () => {
 
     const showModal = useAppSelector(showModalSelector);
 
+    useEffect(() => {
+        const inputEl = ref.current;
+        if (!inputEl) return;
+
+        const destroy$ = new Subject();
+        fromEvent(inputEl, 'input').pipe(
+            takeUntil(destroy$),
+            debounceTime(2000),
+            map(searchText => console.log(searchText))
+        )
+        return () => { 
+            destroy$.next(1);
+            destroy$.complete();
+        }
+    }, []);
+
     const handleInput = (e: SyntheticEvent) => {
         const searchText = e.target['value'];
         if (searchText.length >= 2 && searchText.length <= 30) {
@@ -34,10 +54,6 @@ const DairyCalculatorPage = () => {
         }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const debouncedHandleInput = useCallback(
-        debounce(handleInput, 2000), []
-    );
 
     return <>
         <section className={s.dairyPageContent}>
@@ -45,7 +61,7 @@ const DairyCalculatorPage = () => {
                 <div className={s.calendarWrapper}>
                     <Calendar />
                 </div>
-                <AddProductForm onInput={debouncedHandleInput} />
+                <AddProductForm onInput={handleInput} ref={ref} />
             </div>}
             {pathname === '/calculator' && <div className={s.calculatorForm}>
                 <CalculateCaloriesForm />
@@ -60,7 +76,7 @@ const DairyCalculatorPage = () => {
             </div>
         </section>
         {showModal && <ModalWindow>
-            <AddProductFormModal onInput={debouncedHandleInput} />
+            <AddProductFormModal onInput={handleInput} />
         </ModalWindow>}
     </>
 }
