@@ -54,10 +54,6 @@ const DairyCalculatorPage = () => {
         }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // const debouncedHandleInput = useCallback(
-    //     debounceLD(handleInput, 1000), []
-    // );
 
     return <>
         <section className={s.dairyPageContent}>
@@ -81,7 +77,6 @@ const DairyCalculatorPage = () => {
         </section>
         {showModal && <ModalWindow>
             <AddProductFormModal onInput={handleInput} />
-            {/* <AddProductFormModal onInput={debouncedHandleInput} /> */}
         </ModalWindow>}
     </>
 }
