@@ -14,9 +14,7 @@ const LabelInput: FC<ILabelInput> = ({
     register = null,
     rules = null,
     onInput,
-    optionsArray = [],
-    ref
-}) => {
+    optionsArray = [] }) => {
     return <div className={s.wrapper}>
         {register === null ?
             <input
@@ -32,7 +30,6 @@ const LabelInput: FC<ILabelInput> = ({
                 onInput={onInput}
                 type={type}
                 placeholder='.'
-                ref={ref}
                 {...register(labelHtmlFor, rules)} />
         }
         <label htmlFor={labelHtmlFor}>{labelText}</label>
