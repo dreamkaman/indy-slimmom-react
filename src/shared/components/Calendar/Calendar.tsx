@@ -42,7 +42,6 @@ const Calendar = () => {
         </Button>
         {showCalendarText && <div className={s.calendarText}>
             <DateCalendar onChange={changeCalendarHandler} maxDate={dayjs()} />
-            {/* <DateCalendar onChange={changeCalendarHandler} maxDate={{ $d: new Date() }} /> */}
         </div>}
     </>
 }
